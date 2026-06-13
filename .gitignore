@@ -1,0 +1,83 @@
+# Python cache
+__pycache__/
+*.pyc
+.DS_Store
+
+# Verification summary (local reference only)
+GITIGNORE_SUMMARY.md
+
+# Videos
+*.mp4
+*.MP4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+# Embeddings & model weights
+*.npy
+*.pkl
+*.pt
+*.pth
+
+# Exception: hand_embeddings are tracked inputs
+!symbiotic-ai/hmm-testing/hand_embeddings/
+!symbiotic-ai/hmm-testing/hand_embeddings/*.npy
+
+# =============================================================================
+# Root-level output folders (ignore entire contents)
+# =============================================================================
+models/
+experiments/
+embedding_analysis_out/
+embedding_analysis_out_*/
+frame_similarity_out/
+frame_similarity_out_*/
+
+# =============================================================================
+# symbiotic-ai output folders (ignore entire contents)
+# =============================================================================
+symbiotic-ai/models/
+symbiotic-ai/quick_ablation_results/
+symbiotic-ai/bin_picking_verifier/out/
+
+# =============================================================================
+# Input folders — keep folder structure, ignore all contents except README.md
+# =============================================================================
+
+# hmm-testing videos
+symbiotic-ai/hmm-testing/picklist_videos/*
+!symbiotic-ai/hmm-testing/picklist_videos/README.md
+
+symbiotic-ai/hmm-testing/templ/*
+!symbiotic-ai/hmm-testing/templ/README.md
+
+symbiotic-ai/hmm-testing/smoke_videos/*
+!symbiotic-ai/hmm-testing/smoke_videos/README.md
+
+# Training videos
+symbiotic-ai/training/training_videos/*
+!symbiotic-ai/training/training_videos/README.md
+
+# Image test inputs
+symbiotic-ai/images/background-test/*
+!symbiotic-ai/images/background-test/README.md
+
+symbiotic-ai/images/image-testing/*
+!symbiotic-ai/images/image-testing/README.md
+
+symbiotic-ai/images/orientation-test/*
+!symbiotic-ai/images/orientation-test/README.md
+
+symbiotic-ai/images/pick-items/*
+!symbiotic-ai/images/pick-items/README.md
+
+symbiotic-ai/images/picklist-test/*
+!symbiotic-ai/images/picklist-test/README.md
+
+symbiotic-ai/images/testing-results/*
+!symbiotic-ai/images/testing-results/README.md
+
+# Generated outputs — keep folder, ignore contents
+symbiotic-ai/outputs/*
+!symbiotic-ai/outputs/README.md

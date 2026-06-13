@@ -1,0 +1,3 @@
+{"sessionId": "c63aea", "hypothesisId": "H1", "location": "__main__.py:parse_args", "message": "args after parse", "data": {"has_compact": true, "frame_skip": 4}, "timestamp": 1777319115385.3608}
+{"sessionId": "c63aea", "hypothesisId": "H3", "location": "__main__.py:output_dir", "message": "output dir", "data": {"out": "/Users/colinhvu/Documents/coding/symbai/022026/embedding_analysis_out", "out_exists": true}, "timestamp": 1777319115385.649}
+{"sessionId": "c63aea", "hypothesisId": "H3", "location": "__main__.py:summary_write", "message": "before summary json", "data": {"summary_len": 26, "sjson_parent_exists": true}, "timestamp": 1777319120974.339}
