@@ -1,0 +1,849 @@
+{
+  "dictionary": "DICT_5X5_1000",
+  "grid": {
+    "rows": 4,
+    "cols": 6
+  },
+  "bins": [
+    {
+      "marker_id": 106,
+      "sku": "c11",
+      "row": 1,
+      "col": 1,
+      "item_name": "Purple_Gem_Teardrop"
+    },
+    {
+      "marker_id": 8,
+      "sku": "c12",
+      "row": 1,
+      "col": 2,
+      "item_name": "Block_H"
+    },
+    {
+      "marker_id": 83,
+      "sku": "c13",
+      "row": 1,
+      "col": 3,
+      "item_name": "Red_Gem_Teardrop"
+    },
+    {
+      "marker_id": 50,
+      "sku": "c14",
+      "row": 1,
+      "col": 4,
+      "item_name": "Orange_Clip_Leaf"
+    },
+    {
+      "marker_id": 81,
+      "sku": "c15",
+      "row": 1,
+      "col": 5,
+      "item_name": "Clothespin_Magenta"
+    },
+    {
+      "marker_id": 25,
+      "sku": "c16",
+      "row": 1,
+      "col": 6,
+      "item_name": "Block_Y"
+    },
+    {
+      "marker_id": 87,
+      "sku": "c21",
+      "row": 2,
+      "col": 1,
+      "item_name": "Orange_Gem_Oval"
+    },
+    {
+      "marker_id": 107,
+      "sku": "c22",
+      "row": 2,
+      "col": 2,
+      "item_name": "Purple_Gem_Round"
+    },
+    {
+      "marker_id": 4,
+      "sku": "c23",
+      "row": 2,
+      "col": 3,
+      "item_name": "Block_D"
+    },
+    {
+      "marker_id": 39,
+      "sku": "c24",
+      "row": 2,
+      "col": 4,
+      "item_name": "Knife_Red"
+    },
+    {
+      "marker_id": 90,
+      "sku": "c25",
+      "row": 2,
+      "col": 5,
+      "item_name": "Yellow_Gem_Round"
+    },
+    {
+      "marker_id": 2,
+      "sku": "c26",
+      "row": 2,
+      "col": 6,
+      "item_name": "Block_B"
+    },
+    {
+      "marker_id": 76,
+      "sku": "c31",
+      "row": 3,
+      "col": 1,
+      "item_name": "Clothespin_Green"
+    },
+    {
+      "marker_id": 62,
+      "sku": "c32",
+      "row": 3,
+      "col": 2,
+      "item_name": "Chipclip_Red"
+    },
+    {
+      "marker_id": 12,
+      "sku": "c33",
+      "row": 3,
+      "col": 3,
+      "item_name": "Block_L"
+    },
+    {
+      "marker_id": 58,
+      "sku": "c34",
+      "row": 3,
+      "col": 4,
+      "item_name": "Green_Clip_Owl_Resting"
+    },
+    {
+      "marker_id": 120,
+      "sku": "c35",
+      "row": 3,
+      "col": 5,
+      "item_name": "Clear_Gem_Teardrop"
+    },
+    {
+      "marker_id": 31,
+      "sku": "c36",
+      "row": 3,
+      "col": 6,
+      "item_name": "Spoon_Blue"
+    },
+    {
+      "marker_id": 68,
+      "sku": "c41",
+      "row": 4,
+      "col": 1,
+      "item_name": "Alligator_Clip"
+    },
+    {
+      "marker_id": 80,
+      "sku": "c42",
+      "row": 4,
+      "col": 2,
+      "item_name": "Clothespin_Pink"
+    },
+    {
+      "marker_id": 75,
+      "sku": "c43",
+      "row": 4,
+      "col": 3,
+      "item_name": "Clothespin_Yellow"
+    },
+    {
+      "marker_id": 104,
+      "sku": "c44",
+      "row": 4,
+      "col": 4,
+      "item_name": "Blue_Gem_Square"
+    },
+    {
+      "marker_id": 27,
+      "sku": "c45",
+      "row": 4,
+      "col": 5,
+      "item_name": "Spoon_Red"
+    },
+    {
+      "marker_id": 96,
+      "sku": "c46",
+      "row": 4,
+      "col": 6,
+      "item_name": "Green_Gem_Round"
+    },
+    {
+      "marker_id": 91,
+      "sku": "d11",
+      "row": 1,
+      "col": 1,
+      "item_name": "Yellow_Gem_Teardrop"
+    },
+    {
+      "marker_id": 112,
+      "sku": "d12",
+      "row": 1,
+      "col": 2,
+      "item_name": "Pink_Gem_Convex"
+    },
+    {
+      "marker_id": 37,
+      "sku": "d13",
+      "row": 1,
+      "col": 3,
+      "item_name": "Fork_Blue"
+    },
+    {
+      "marker_id": 93,
+      "sku": "d14",
+      "row": 1,
+      "col": 4,
+      "item_name": "Green_Gem_Convex"
+    },
+    {
+      "marker_id": 70,
+      "sku": "d15",
+      "row": 1,
+      "col": 5,
+      "item_name": "Casing_Blue"
+    },
+    {
+      "marker_id": 65,
+      "sku": "d16",
+      "row": 1,
+      "col": 6,
+      "item_name": "Chipclip_Black"
+    },
+    {
+      "marker_id": 94,
+      "sku": "d21",
+      "row": 2,
+      "col": 1,
+      "item_name": "Green_Gem_Oval"
+    },
+    {
+      "marker_id": 1,
+      "sku": "d22",
+      "row": 2,
+      "col": 2,
+      "item_name": "Block_A"
+    },
+    {
+      "marker_id": 6,
+      "sku": "d23",
+      "row": 2,
+      "col": 3,
+      "item_name": "Block_F"
+    },
+    {
+      "marker_id": 11,
+      "sku": "d24",
+      "row": 2,
+      "col": 4,
+      "item_name": "Block_K"
+    },
+    {
+      "marker_id": 117,
+      "sku": "d25",
+      "row": 2,
+      "col": 5,
+      "item_name": "Clear_Gem_Oval"
+    },
+    {
+      "marker_id": 77,
+      "sku": "d26",
+      "row": 2,
+      "col": 6,
+      "item_name": "Clothespin_Blue"
+    },
+    {
+      "marker_id": 79,
+      "sku": "d31",
+      "row": 3,
+      "col": 1,
+      "item_name": "Clothespin_Purple"
+    },
+    {
+      "marker_id": 10,
+      "sku": "d32",
+      "row": 3,
+      "col": 2,
+      "item_name": "Block_J"
+    },
+    {
+      "marker_id": 115,
+      "sku": "d33",
+      "row": 3,
+      "col": 3,
+      "item_name": "Pink_Gem_Square"
+    },
+    {
+      "marker_id": 5,
+      "sku": "d34",
+      "row": 3,
+      "col": 4,
+      "item_name": "Block_E"
+    },
+    {
+      "marker_id": 52,
+      "sku": "d35",
+      "row": 3,
+      "col": 5,
+      "item_name": "Orange_Clip_Owl_Resting"
+    },
+    {
+      "marker_id": 40,
+      "sku": "d36",
+      "row": 3,
+      "col": 6,
+      "item_name": "Knife_Orange"
+    },
+    {
+      "marker_id": 7,
+      "sku": "d41",
+      "row": 4,
+      "col": 1,
+      "item_name": "Block_G"
+    },
+    {
+      "marker_id": 63,
+      "sku": "d42",
+      "row": 4,
+      "col": 2,
+      "item_name": "Chipclip_Blue"
+    },
+    {
+      "marker_id": 36,
+      "sku": "d43",
+      "row": 4,
+      "col": 3,
+      "item_name": "Fork_Green"
+    },
+    {
+      "marker_id": 84,
+      "sku": "d44",
+      "row": 4,
+      "col": 4,
+      "item_name": "Red_Gem_Oval"
+    },
+    {
+      "marker_id": 20,
+      "sku": "d45",
+      "row": 4,
+      "col": 5,
+      "item_name": "Block_T"
+    },
+    {
+      "marker_id": 24,
+      "sku": "d46",
+      "row": 4,
+      "col": 6,
+      "item_name": "Block_X"
+    },
+    {
+      "marker_id": 85,
+      "sku": "e11",
+      "row": 1,
+      "col": 1,
+      "item_name": "Red_Gem_Square"
+    },
+    {
+      "marker_id": 97,
+      "sku": "e12",
+      "row": 1,
+      "col": 2,
+      "item_name": "Green_Gem_Square"
+    },
+    {
+      "marker_id": 99,
+      "sku": "e13",
+      "row": 1,
+      "col": 3,
+      "item_name": "Lightblue_Gem_Convex"
+    },
+    {
+      "marker_id": 69,
+      "sku": "e14",
+      "row": 1,
+      "col": 4,
+      "item_name": "Casing_Black"
+    },
+    {
+      "marker_id": 57,
+      "sku": "e15",
+      "row": 1,
+      "col": 5,
+      "item_name": "Green_Clip_Owl_Flying"
+    },
+    {
+      "marker_id": 18,
+      "sku": "e16",
+      "row": 1,
+      "col": 6,
+      "item_name": "Block_R"
+    },
+    {
+      "marker_id": 82,
+      "sku": "e21",
+      "row": 2,
+      "col": 1,
+      "item_name": "Clothespin_Brown"
+    },
+    {
+      "marker_id": 101,
+      "sku": "e22",
+      "row": 2,
+      "col": 2,
+      "item_name": "Lightblue_Gem_Round"
+    },
+    {
+      "marker_id": 41,
+      "sku": "e23",
+      "row": 2,
+      "col": 3,
+      "item_name": "Knife_Yellow"
+    },
+    {
+      "marker_id": 111,
+      "sku": "e24",
+      "row": 2,
+      "col": 4,
+      "item_name": "Magenta_Gem_Oval"
+    },
+    {
+      "marker_id": 49,
+      "sku": "e25",
+      "row": 2,
+      "col": 5,
+      "item_name": "Bead_Wood"
+    },
+    {
+      "marker_id": 43,
+      "sku": "e26",
+      "row": 2,
+      "col": 6,
+      "item_name": "Knife_Blue"
+    },
+    {
+      "marker_id": 34,
+      "sku": "e31",
+      "row": 3,
+      "col": 1,
+      "item_name": "Fork_Orange"
+    },
+    {
+      "marker_id": 92,
+      "sku": "e32",
+      "row": 3,
+      "col": 2,
+      "item_name": "Yellow_Gem_Square"
+    },
+    {
+      "marker_id": 16,
+      "sku": "e33",
+      "row": 3,
+      "col": 3,
+      "item_name": "Block_P"
+    },
+    {
+      "marker_id": 48,
+      "sku": "e34",
+      "row": 3,
+      "col": 4,
+      "item_name": "Bead_Blue"
+    },
+    {
+      "marker_id": 102,
+      "sku": "e35",
+      "row": 3,
+      "col": 5,
+      "item_name": "Lightblue_Gem_Oval"
+    },
+    {
+      "marker_id": 42,
+      "sku": "e36",
+      "row": 3,
+      "col": 6,
+      "item_name": "Knife_Green"
+    },
+    {
+      "marker_id": 44,
+      "sku": "e41",
+      "row": 4,
+      "col": 1,
+      "item_name": "Knife_Purple"
+    },
+    {
+      "marker_id": 46,
+      "sku": "e42",
+      "row": 4,
+      "col": 2,
+      "item_name": "Bead_Yellow"
+    },
+    {
+      "marker_id": 13,
+      "sku": "e43",
+      "row": 4,
+      "col": 3,
+      "item_name": "Block_M"
+    },
+    {
+      "marker_id": 113,
+      "sku": "e44",
+      "row": 4,
+      "col": 4,
+      "item_name": "Pink_Gem_Oval"
+    },
+    {
+      "marker_id": 86,
+      "sku": "e45",
+      "row": 4,
+      "col": 5,
+      "item_name": "Orange_Gem_Convex"
+    },
+    {
+      "marker_id": 74,
+      "sku": "e46",
+      "row": 4,
+      "col": 6,
+      "item_name": "Clothespin_Orange"
+    },
+    {
+      "marker_id": 35,
+      "sku": "f11",
+      "row": 1,
+      "col": 1,
+      "item_name": "Fork_Yellow"
+    },
+    {
+      "marker_id": 109,
+      "sku": "f12",
+      "row": 1,
+      "col": 2,
+      "item_name": "Magenta_Gem_Convex"
+    },
+    {
+      "marker_id": 55,
+      "sku": "f13",
+      "row": 1,
+      "col": 3,
+      "item_name": "Yellow_Clip_Owl_Resting"
+    },
+    {
+      "marker_id": 114,
+      "sku": "f14",
+      "row": 1,
+      "col": 4,
+      "item_name": "Pink_Gem_Round"
+    },
+    {
+      "marker_id": 53,
+      "sku": "f15",
+      "row": 1,
+      "col": 5,
+      "item_name": "Yellow_Clip_Leaf"
+    },
+    {
+      "marker_id": 54,
+      "sku": "f16",
+      "row": 1,
+      "col": 6,
+      "item_name": "Yellow_Clip_Owl_Flying"
+    },
+    {
+      "marker_id": 95,
+      "sku": "f21",
+      "row": 2,
+      "col": 1,
+      "item_name": "Green_Gem_Teardrop"
+    },
+    {
+      "marker_id": 32,
+      "sku": "f22",
+      "row": 2,
+      "col": 2,
+      "item_name": "Spoon_Purple"
+    },
+    {
+      "marker_id": 100,
+      "sku": "f23",
+      "row": 2,
+      "col": 3,
+      "item_name": "Lightblue_Gem_Teardrop"
+    },
+    {
+      "marker_id": 78,
+      "sku": "f24",
+      "row": 2,
+      "col": 4,
+      "item_name": "Clothespin_Teal"
+    },
+    {
+      "marker_id": 60,
+      "sku": "f25",
+      "row": 2,
+      "col": 5,
+      "item_name": "Tile_Red"
+    },
+    {
+      "marker_id": 19,
+      "sku": "f26",
+      "row": 2,
+      "col": 6,
+      "item_name": "Block_S"
+    },
+    {
+      "marker_id": 88,
+      "sku": "f31",
+      "row": 3,
+      "col": 1,
+      "item_name": "Orange_Gem_Round"
+    },
+    {
+      "marker_id": 45,
+      "sku": "f32",
+      "row": 3,
+      "col": 2,
+      "item_name": "Bead_Red"
+    },
+    {
+      "marker_id": 22,
+      "sku": "f33",
+      "row": 3,
+      "col": 3,
+      "item_name": "Block_V"
+    },
+    {
+      "marker_id": 98,
+      "sku": "f34",
+      "row": 3,
+      "col": 4,
+      "item_name": "Lightblue_Gem_Square"
+    },
+    {
+      "marker_id": 56,
+      "sku": "f35",
+      "row": 3,
+      "col": 5,
+      "item_name": "Green_Clip_Leaf"
+    },
+    {
+      "marker_id": 64,
+      "sku": "f36",
+      "row": 3,
+      "col": 6,
+      "item_name": "Chipclip_Green"
+    },
+    {
+      "marker_id": 26,
+      "sku": "f41",
+      "row": 4,
+      "col": 1,
+      "item_name": "Block_Z"
+    },
+    {
+      "marker_id": 72,
+      "sku": "f42",
+      "row": 4,
+      "col": 2,
+      "item_name": "Paperclip_Green"
+    },
+    {
+      "marker_id": 66,
+      "sku": "f43",
+      "row": 4,
+      "col": 3,
+      "item_name": "Chipclip_White"
+    },
+    {
+      "marker_id": 21,
+      "sku": "f44",
+      "row": 4,
+      "col": 4,
+      "item_name": "Block_U"
+    },
+    {
+      "marker_id": 105,
+      "sku": "f45",
+      "row": 4,
+      "col": 5,
+      "item_name": "Purple_Gem_Convex"
+    },
+    {
+      "marker_id": 116,
+      "sku": "f46",
+      "row": 4,
+      "col": 6,
+      "item_name": "Pink_Gem_Teardrop"
+    },
+    {
+      "marker_id": 118,
+      "sku": "g11",
+      "row": 1,
+      "col": 1,
+      "item_name": "Clear_Gem_Round"
+    },
+    {
+      "marker_id": 17,
+      "sku": "g12",
+      "row": 1,
+      "col": 2,
+      "item_name": "Block_Q"
+    },
+    {
+      "marker_id": 47,
+      "sku": "g13",
+      "row": 1,
+      "col": 3,
+      "item_name": "Bead_Green"
+    },
+    {
+      "marker_id": 29,
+      "sku": "g14",
+      "row": 1,
+      "col": 4,
+      "item_name": "Spoon_Yellow"
+    },
+    {
+      "marker_id": 33,
+      "sku": "g15",
+      "row": 1,
+      "col": 5,
+      "item_name": "Fork_Red"
+    },
+    {
+      "marker_id": 119,
+      "sku": "g16",
+      "row": 1,
+      "col": 6,
+      "item_name": "Clear_Gem_Square"
+    },
+    {
+      "marker_id": 61,
+      "sku": "g21",
+      "row": 2,
+      "col": 1,
+      "item_name": "Tile_Wood"
+    },
+    {
+      "marker_id": 89,
+      "sku": "g22",
+      "row": 2,
+      "col": 2,
+      "item_name": "Yellow_Gem_Oval"
+    },
+    {
+      "marker_id": 23,
+      "sku": "g23",
+      "row": 2,
+      "col": 3,
+      "item_name": "Block_W"
+    },
+    {
+      "marker_id": 67,
+      "sku": "g24",
+      "row": 2,
+      "col": 4,
+      "item_name": "Candle"
+    },
+    {
+      "marker_id": 108,
+      "sku": "g25",
+      "row": 2,
+      "col": 5,
+      "item_name": "Purple_Gem_Square"
+    },
+    {
+      "marker_id": 15,
+      "sku": "g26",
+      "row": 2,
+      "col": 6,
+      "item_name": "Block_O"
+    },
+    {
+      "marker_id": 103,
+      "sku": "g31",
+      "row": 3,
+      "col": 1,
+      "item_name": "Blue_Gem_Convex"
+    },
+    {
+      "marker_id": 71,
+      "sku": "g32",
+      "row": 3,
+      "col": 2,
+      "item_name": "Paperclip_Red"
+    },
+    {
+      "marker_id": 51,
+      "sku": "g33",
+      "row": 3,
+      "col": 3,
+      "item_name": "Orange_Clip_Owl_Flying"
+    },
+    {
+      "marker_id": 110,
+      "sku": "g34",
+      "row": 3,
+      "col": 4,
+      "item_name": "Magenta_Gem_Square"
+    },
+    {
+      "marker_id": 14,
+      "sku": "g35",
+      "row": 3,
+      "col": 5,
+      "item_name": "Block_N"
+    },
+    {
+      "marker_id": 59,
+      "sku": "g36",
+      "row": 3,
+      "col": 6,
+      "item_name": "Tile_Clear"
+    },
+    {
+      "marker_id": 73,
+      "sku": "g41",
+      "row": 4,
+      "col": 1,
+      "item_name": "Clothespin_Red"
+    },
+    {
+      "marker_id": 28,
+      "sku": "g42",
+      "row": 4,
+      "col": 2,
+      "item_name": "Spoon_Orange"
+    },
+    {
+      "marker_id": 9,
+      "sku": "g43",
+      "row": 4,
+      "col": 3,
+      "item_name": "Block_I"
+    },
+    {
+      "marker_id": 30,
+      "sku": "g44",
+      "row": 4,
+      "col": 4,
+      "item_name": "Spoon_Green"
+    },
+    {
+      "marker_id": 38,
+      "sku": "g45",
+      "row": 4,
+      "col": 5,
+      "item_name": "Fork_Purple"
+    },
+    {
+      "marker_id": 3,
+      "sku": "g46",
+      "row": 4,
+      "col": 6,
+      "item_name": "Block_C"
+    }
+  ]
+}

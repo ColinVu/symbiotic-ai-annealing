@@ -1,0 +1,38 @@
+*/__pycache__/*
+symbiosis/models/
+symbiosis/mlf/
+symbiosis/ext/
+symbiosis/all-data
+symbiosis/all-labels
+symbiosis/testsets
+symbiosis/trainsets
+symbiosis/all-extfiles
+symbiosis/datafiles
+symbiosis/hresults.log_letter
+symbiosis/data
+*.pyc
+*.txt
+!requirements.txt
+.DS_Store
+*.mp4
+*.MP4
+*.lab
+packaged/shared/
+
+# Large files/directories to exclude
+# Videos folder - keep folder but ignore contents
+videos/*
+!videos/.gitkeep
+
+# Models classifier folder - keep folder but ignore contents
+models/classifier/*
+!models/classifier/.gitkeep
+
+# Image testing folder - keep folder but ignore contents
+images/image-testing/*
+!images/image-testing/.gitkeep
+
+# Non-blurry folder - ignore entire folder
+non-blurry/
+
+./old/**

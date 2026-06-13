@@ -1,0 +1,6000 @@
+{
+  "marker_dict": "DICT_5X5_1000",
+  "bins": {
+    "1": {
+      "type": "pick",
+      "object": "Block_A",
+      "name": "Block_A",
+      "description": "Block_A pick bin (Shelf D, Row 2, Col 2)"
+    },
+    "2": {
+      "type": "pick",
+      "object": "Block_B",
+      "name": "Block_B",
+      "description": "Block_B pick bin (Shelf C, Row 2, Col 6)"
+    },
+    "3": {
+      "type": "pick",
+      "object": "Block_C",
+      "name": "Block_C",
+      "description": "Block_C pick bin (Shelf G, Row 4, Col 6)"
+    },
+    "4": {
+      "type": "pick",
+      "object": "Block_D",
+      "name": "Block_D",
+      "description": "Block_D pick bin (Shelf C, Row 2, Col 3)"
+    },
+    "5": {
+      "type": "pick",
+      "object": "Block_E",
+      "name": "Block_E",
+      "description": "Block_E pick bin (Shelf D, Row 3, Col 4)"
+    },
+    "6": {
+      "type": "pick",
+      "object": "Block_F",
+      "name": "Block_F",
+      "description": "Block_F pick bin (Shelf D, Row 2, Col 3)"
+    },
+    "7": {
+      "type": "pick",
+      "object": "Block_G",
+      "name": "Block_G",
+      "description": "Block_G pick bin (Shelf D, Row 4, Col 1)"
+    },
+    "8": {
+      "type": "pick",
+      "object": "Block_H",
+      "name": "Block_H",
+      "description": "Block_H pick bin (Shelf C, Row 1, Col 2)"
+    },
+    "9": {
+      "type": "pick",
+      "object": "Block_I",
+      "name": "Block_I",
+      "description": "Block_I pick bin (Shelf G, Row 4, Col 3)"
+    },
+    "10": {
+      "type": "pick",
+      "object": "Block_J",
+      "name": "Block_J",
+      "description": "Block_J pick bin (Shelf D, Row 3, Col 2)"
+    },
+    "11": {
+      "type": "pick",
+      "object": "Block_K",
+      "name": "Block_K",
+      "description": "Block_K pick bin (Shelf D, Row 2, Col 4)"
+    },
+    "12": {
+      "type": "pick",
+      "object": "Block_L",
+      "name": "Block_L",
+      "description": "Block_L pick bin (Shelf C, Row 3, Col 3)"
+    },
+    "13": {
+      "type": "pick",
+      "object": "Block_M",
+      "name": "Block_M",
+      "description": "Block_M pick bin (Shelf E, Row 4, Col 3)"
+    },
+    "14": {
+      "type": "pick",
+      "object": "Block_N",
+      "name": "Block_N",
+      "description": "Block_N pick bin (Shelf G, Row 3, Col 5)"
+    },
+    "15": {
+      "type": "pick",
+      "object": "Block_O",
+      "name": "Block_O",
+      "description": "Block_O pick bin (Shelf G, Row 2, Col 6)"
+    },
+    "16": {
+      "type": "pick",
+      "object": "Block_P",
+      "name": "Block_P",
+      "description": "Block_P pick bin (Shelf E, Row 3, Col 3)"
+    },
+    "17": {
+      "type": "pick",
+      "object": "Block_Q",
+      "name": "Block_Q",
+      "description": "Block_Q pick bin (Shelf G, Row 1, Col 2)"
+    },
+    "18": {
+      "type": "pick",
+      "object": "Block_R",
+      "name": "Block_R",
+      "description": "Block_R pick bin (Shelf E, Row 1, Col 6)"
+    },
+    "19": {
+      "type": "pick",
+      "object": "Block_S",
+      "name": "Block_S",
+      "description": "Block_S pick bin (Shelf F, Row 2, Col 6)"
+    },
+    "20": {
+      "type": "pick",
+      "object": "Block_T",
+      "name": "Block_T",
+      "description": "Block_T pick bin (Shelf D, Row 4, Col 5)"
+    },
+    "21": {
+      "type": "pick",
+      "object": "Block_U",
+      "name": "Block_U",
+      "description": "Block_U pick bin (Shelf F, Row 4, Col 4)"
+    },
+    "22": {
+      "type": "pick",
+      "object": "Block_V",
+      "name": "Block_V",
+      "description": "Block_V pick bin (Shelf F, Row 3, Col 3)"
+    },
+    "23": {
+      "type": "pick",
+      "object": "Block_W",
+      "name": "Block_W",
+      "description": "Block_W pick bin (Shelf G, Row 2, Col 3)"
+    },
+    "24": {
+      "type": "pick",
+      "object": "Block_X",
+      "name": "Block_X",
+      "description": "Block_X pick bin (Shelf D, Row 4, Col 6)"
+    },
+    "25": {
+      "type": "pick",
+      "object": "Block_Y",
+      "name": "Block_Y",
+      "description": "Block_Y pick bin (Shelf C, Row 1, Col 6)"
+    },
+    "26": {
+      "type": "pick",
+      "object": "Block_Z",
+      "name": "Block_Z",
+      "description": "Block_Z pick bin (Shelf F, Row 4, Col 1)"
+    },
+    "27": {
+      "type": "pick",
+      "object": "Spoon_Red",
+      "name": "Spoon_Red",
+      "description": "Spoon_Red pick bin (Shelf C, Row 4, Col 5)"
+    },
+    "28": {
+      "type": "pick",
+      "object": "Spoon_Orange",
+      "name": "Spoon_Orange",
+      "description": "Spoon_Orange pick bin (Shelf G, Row 4, Col 2)"
+    },
+    "29": {
+      "type": "pick",
+      "object": "Spoon_Yellow",
+      "name": "Spoon_Yellow",
+      "description": "Spoon_Yellow pick bin (Shelf G, Row 1, Col 4)"
+    },
+    "30": {
+      "type": "pick",
+      "object": "Spoon_Green",
+      "name": "Spoon_Green",
+      "description": "Spoon_Green pick bin (Shelf G, Row 4, Col 4)"
+    },
+    "31": {
+      "type": "pick",
+      "object": "Spoon_Blue",
+      "name": "Spoon_Blue",
+      "description": "Spoon_Blue pick bin (Shelf C, Row 3, Col 6)"
+    },
+    "32": {
+      "type": "pick",
+      "object": "Spoon_Purple",
+      "name": "Spoon_Purple",
+      "description": "Spoon_Purple pick bin (Shelf F, Row 2, Col 2)"
+    },
+    "33": {
+      "type": "pick",
+      "object": "Fork_Red",
+      "name": "Fork_Red",
+      "description": "Fork_Red pick bin (Shelf G, Row 1, Col 5)"
+    },
+    "34": {
+      "type": "pick",
+      "object": "Fork_Orange",
+      "name": "Fork_Orange",
+      "description": "Fork_Orange pick bin (Shelf E, Row 3, Col 1)"
+    },
+    "35": {
+      "type": "pick",
+      "object": "Fork_Yellow",
+      "name": "Fork_Yellow",
+      "description": "Fork_Yellow pick bin (Shelf F, Row 1, Col 1)"
+    },
+    "36": {
+      "type": "pick",
+      "object": "Fork_Green",
+      "name": "Fork_Green",
+      "description": "Fork_Green pick bin (Shelf D, Row 4, Col 3)"
+    },
+    "37": {
+      "type": "pick",
+      "object": "Fork_Blue",
+      "name": "Fork_Blue",
+      "description": "Fork_Blue pick bin (Shelf D, Row 1, Col 3)"
+    },
+    "38": {
+      "type": "pick",
+      "object": "Fork_Purple",
+      "name": "Fork_Purple",
+      "description": "Fork_Purple pick bin (Shelf G, Row 4, Col 5)"
+    },
+    "39": {
+      "type": "pick",
+      "object": "Knife_Red",
+      "name": "Knife_Red",
+      "description": "Knife_Red pick bin (Shelf C, Row 2, Col 4)"
+    },
+    "40": {
+      "type": "pick",
+      "object": "Knife_Orange",
+      "name": "Knife_Orange",
+      "description": "Knife_Orange pick bin (Shelf D, Row 3, Col 6)"
+    },
+    "41": {
+      "type": "pick",
+      "object": "Knife_Yellow",
+      "name": "Knife_Yellow",
+      "description": "Knife_Yellow pick bin (Shelf E, Row 2, Col 3)"
+    },
+    "42": {
+      "type": "pick",
+      "object": "Knife_Green",
+      "name": "Knife_Green",
+      "description": "Knife_Green pick bin (Shelf E, Row 3, Col 6)"
+    },
+    "43": {
+      "type": "pick",
+      "object": "Knife_Blue",
+      "name": "Knife_Blue",
+      "description": "Knife_Blue pick bin (Shelf E, Row 2, Col 6)"
+    },
+    "44": {
+      "type": "pick",
+      "object": "Knife_Purple",
+      "name": "Knife_Purple",
+      "description": "Knife_Purple pick bin (Shelf E, Row 4, Col 1)"
+    },
+    "45": {
+      "type": "pick",
+      "object": "Bead_Red",
+      "name": "Bead_Red",
+      "description": "Bead_Red pick bin (Shelf F, Row 3, Col 2)"
+    },
+    "46": {
+      "type": "pick",
+      "object": "Bead_Yellow",
+      "name": "Bead_Yellow",
+      "description": "Bead_Yellow pick bin (Shelf E, Row 4, Col 2)"
+    },
+    "47": {
+      "type": "pick",
+      "object": "Bead_Green",
+      "name": "Bead_Green",
+      "description": "Bead_Green pick bin (Shelf G, Row 1, Col 3)"
+    },
+    "48": {
+      "type": "pick",
+      "object": "Bead_Blue",
+      "name": "Bead_Blue",
+      "description": "Bead_Blue pick bin (Shelf E, Row 3, Col 4)"
+    },
+    "49": {
+      "type": "pick",
+      "object": "Bead_Wood",
+      "name": "Bead_Wood",
+      "description": "Bead_Wood pick bin (Shelf E, Row 2, Col 5)"
+    },
+    "50": {
+      "type": "pick",
+      "object": "Orange_Clip_Leaf",
+      "name": "Orange_Clip_Leaf",
+      "description": "Orange_Clip_Leaf pick bin (Shelf C, Row 1, Col 4)"
+    },
+    "51": {
+      "type": "pick",
+      "object": "Orange_Clip_Owl_Flying",
+      "name": "Orange_Clip_Owl_Flying",
+      "description": "Orange_Clip_Owl_Flying pick bin (Shelf G, Row 3, Col 3)"
+    },
+    "52": {
+      "type": "pick",
+      "object": "Orange_Clip_Owl_Resting",
+      "name": "Orange_Clip_Owl_Resting",
+      "description": "Orange_Clip_Owl_Resting pick bin (Shelf D, Row 3, Col 5)"
+    },
+    "53": {
+      "type": "pick",
+      "object": "Yellow_Clip_Leaf",
+      "name": "Yellow_Clip_Leaf",
+      "description": "Yellow_Clip_Leaf pick bin (Shelf F, Row 1, Col 5)"
+    },
+    "54": {
+      "type": "pick",
+      "object": "Yellow_Clip_Owl_Flying",
+      "name": "Yellow_Clip_Owl_Flying",
+      "description": "Yellow_Clip_Owl_Flying pick bin (Shelf F, Row 1, Col 6)"
+    },
+    "55": {
+      "type": "pick",
+      "object": "Yellow_Clip_Owl_Resting",
+      "name": "Yellow_Clip_Owl_Resting",
+      "description": "Yellow_Clip_Owl_Resting pick bin (Shelf F, Row 1, Col 3)"
+    },
+    "56": {
+      "type": "pick",
+      "object": "Green_Clip_Leaf",
+      "name": "Green_Clip_Leaf",
+      "description": "Green_Clip_Leaf pick bin (Shelf F, Row 3, Col 5)"
+    },
+    "57": {
+      "type": "pick",
+      "object": "Green_Clip_Owl_Flying",
+      "name": "Green_Clip_Owl_Flying",
+      "description": "Green_Clip_Owl_Flying pick bin (Shelf E, Row 1, Col 5)"
+    },
+    "58": {
+      "type": "pick",
+      "object": "Green_Clip_Owl_Resting",
+      "name": "Green_Clip_Owl_Resting",
+      "description": "Green_Clip_Owl_Resting pick bin (Shelf C, Row 3, Col 4)"
+    },
+    "59": {
+      "type": "pick",
+      "object": "Tile_Clear",
+      "name": "Tile_Clear",
+      "description": "Tile_Clear pick bin (Shelf G, Row 3, Col 6)"
+    },
+    "60": {
+      "type": "pick",
+      "object": "Tile_Red",
+      "name": "Tile_Red",
+      "description": "Tile_Red pick bin (Shelf F, Row 2, Col 5)"
+    },
+    "61": {
+      "type": "pick",
+      "object": "Tile_Wood",
+      "name": "Tile_Wood",
+      "description": "Tile_Wood pick bin (Shelf G, Row 2, Col 1)"
+    },
+    "62": {
+      "type": "pick",
+      "object": "Chipclip_Red",
+      "name": "Chipclip_Red",
+      "description": "Chipclip_Red pick bin (Shelf C, Row 3, Col 2)"
+    },
+    "63": {
+      "type": "pick",
+      "object": "Chipclip_Blue",
+      "name": "Chipclip_Blue",
+      "description": "Chipclip_Blue pick bin (Shelf D, Row 4, Col 2)"
+    },
+    "64": {
+      "type": "pick",
+      "object": "Chipclip_Green",
+      "name": "Chipclip_Green",
+      "description": "Chipclip_Green pick bin (Shelf F, Row 3, Col 6)"
+    },
+    "65": {
+      "type": "pick",
+      "object": "Chipclip_Black",
+      "name": "Chipclip_Black",
+      "description": "Chipclip_Black pick bin (Shelf D, Row 1, Col 6)"
+    },
+    "66": {
+      "type": "pick",
+      "object": "Chipclip_White",
+      "name": "Chipclip_White",
+      "description": "Chipclip_White pick bin (Shelf F, Row 4, Col 3)"
+    },
+    "67": {
+      "type": "pick",
+      "object": "Candle",
+      "name": "Candle",
+      "description": "Candle pick bin (Shelf G, Row 2, Col 4)"
+    },
+    "68": {
+      "type": "pick",
+      "object": "Alligator_Clip",
+      "name": "Alligator_Clip",
+      "description": "Alligator_Clip pick bin (Shelf C, Row 4, Col 1)"
+    },
+    "69": {
+      "type": "pick",
+      "object": "Casing_Black",
+      "name": "Casing_Black",
+      "description": "Casing_Black pick bin (Shelf E, Row 1, Col 4)"
+    },
+    "70": {
+      "type": "pick",
+      "object": "Casing_Blue",
+      "name": "Casing_Blue",
+      "description": "Casing_Blue pick bin (Shelf D, Row 1, Col 5)"
+    },
+    "71": {
+      "type": "pick",
+      "object": "Paperclip_Red",
+      "name": "Paperclip_Red",
+      "description": "Paperclip_Red pick bin (Shelf G, Row 3, Col 2)"
+    },
+    "72": {
+      "type": "pick",
+      "object": "Paperclip_Green",
+      "name": "Paperclip_Green",
+      "description": "Paperclip_Green pick bin (Shelf F, Row 4, Col 2)"
+    },
+    "73": {
+      "type": "pick",
+      "object": "Clothespin_Red",
+      "name": "Clothespin_Red",
+      "description": "Clothespin_Red pick bin (Shelf G, Row 4, Col 1)"
+    },
+    "74": {
+      "type": "pick",
+      "object": "Clothespin_Orange",
+      "name": "Clothespin_Orange",
+      "description": "Clothespin_Orange pick bin (Shelf E, Row 4, Col 6)"
+    },
+    "75": {
+      "type": "pick",
+      "object": "Clothespin_Yellow",
+      "name": "Clothespin_Yellow",
+      "description": "Clothespin_Yellow pick bin (Shelf C, Row 4, Col 3)"
+    },
+    "76": {
+      "type": "pick",
+      "object": "Clothespin_Green",
+      "name": "Clothespin_Green",
+      "description": "Clothespin_Green pick bin (Shelf C, Row 3, Col 1)"
+    },
+    "77": {
+      "type": "pick",
+      "object": "Clothespin_Blue",
+      "name": "Clothespin_Blue",
+      "description": "Clothespin_Blue pick bin (Shelf D, Row 2, Col 6)"
+    },
+    "78": {
+      "type": "pick",
+      "object": "Clothespin_Teal",
+      "name": "Clothespin_Teal",
+      "description": "Clothespin_Teal pick bin (Shelf F, Row 2, Col 4)"
+    },
+    "79": {
+      "type": "pick",
+      "object": "Clothespin_Purple",
+      "name": "Clothespin_Purple",
+      "description": "Clothespin_Purple pick bin (Shelf D, Row 3, Col 1)"
+    },
+    "80": {
+      "type": "pick",
+      "object": "Clothespin_Pink",
+      "name": "Clothespin_Pink",
+      "description": "Clothespin_Pink pick bin (Shelf C, Row 4, Col 2)"
+    },
+    "81": {
+      "type": "pick",
+      "object": "Clothespin_Magenta",
+      "name": "Clothespin_Magenta",
+      "description": "Clothespin_Magenta pick bin (Shelf C, Row 1, Col 5)"
+    },
+    "82": {
+      "type": "pick",
+      "object": "Clothespin_Brown",
+      "name": "Clothespin_Brown",
+      "description": "Clothespin_Brown pick bin (Shelf E, Row 2, Col 1)"
+    },
+    "83": {
+      "type": "pick",
+      "object": "Red_Gem_Teardrop",
+      "name": "Red_Gem_Teardrop",
+      "description": "Red_Gem_Teardrop pick bin (Shelf C, Row 1, Col 3)"
+    },
+    "84": {
+      "type": "pick",
+      "object": "Red_Gem_Oval",
+      "name": "Red_Gem_Oval",
+      "description": "Red_Gem_Oval pick bin (Shelf D, Row 4, Col 4)"
+    },
+    "85": {
+      "type": "pick",
+      "object": "Red_Gem_Square",
+      "name": "Red_Gem_Square",
+      "description": "Red_Gem_Square pick bin (Shelf E, Row 1, Col 1)"
+    },
+    "86": {
+      "type": "pick",
+      "object": "Orange_Gem_Convex",
+      "name": "Orange_Gem_Convex",
+      "description": "Orange_Gem_Convex pick bin (Shelf E, Row 4, Col 5)"
+    },
+    "87": {
+      "type": "pick",
+      "object": "Orange_Gem_Oval",
+      "name": "Orange_Gem_Oval",
+      "description": "Orange_Gem_Oval pick bin (Shelf C, Row 2, Col 1)"
+    },
+    "88": {
+      "type": "pick",
+      "object": "Orange_Gem_Round",
+      "name": "Orange_Gem_Round",
+      "description": "Orange_Gem_Round pick bin (Shelf F, Row 3, Col 1)"
+    },
+    "89": {
+      "type": "pick",
+      "object": "Yellow_Gem_Oval",
+      "name": "Yellow_Gem_Oval",
+      "description": "Yellow_Gem_Oval pick bin (Shelf G, Row 2, Col 2)"
+    },
+    "90": {
+      "type": "pick",
+      "object": "Yellow_Gem_Round",
+      "name": "Yellow_Gem_Round",
+      "description": "Yellow_Gem_Round pick bin (Shelf C, Row 2, Col 5)"
+    },
+    "91": {
+      "type": "pick",
+      "object": "Yellow_Gem_Teardrop",
+      "name": "Yellow_Gem_Teardrop",
+      "description": "Yellow_Gem_Teardrop pick bin (Shelf D, Row 1, Col 1)"
+    },
+    "92": {
+      "type": "pick",
+      "object": "Yellow_Gem_Square",
+      "name": "Yellow_Gem_Square",
+      "description": "Yellow_Gem_Square pick bin (Shelf E, Row 3, Col 2)"
+    },
+    "93": {
+      "type": "pick",
+      "object": "Green_Gem_Convex",
+      "name": "Green_Gem_Convex",
+      "description": "Green_Gem_Convex pick bin (Shelf D, Row 1, Col 4)"
+    },
+    "94": {
+      "type": "pick",
+      "object": "Green_Gem_Oval",
+      "name": "Green_Gem_Oval",
+      "description": "Green_Gem_Oval pick bin (Shelf D, Row 2, Col 1)"
+    },
+    "95": {
+      "type": "pick",
+      "object": "Green_Gem_Teardrop",
+      "name": "Green_Gem_Teardrop",
+      "description": "Green_Gem_Teardrop pick bin (Shelf F, Row 2, Col 1)"
+    },
+    "96": {
+      "type": "pick",
+      "object": "Green_Gem_Round",
+      "name": "Green_Gem_Round",
+      "description": "Green_Gem_Round pick bin (Shelf C, Row 4, Col 6)"
+    },
+    "97": {
+      "type": "pick",
+      "object": "Green_Gem_Square",
+      "name": "Green_Gem_Square",
+      "description": "Green_Gem_Square pick bin (Shelf E, Row 1, Col 2)"
+    },
+    "98": {
+      "type": "pick",
+      "object": "Lightblue_Gem_Square",
+      "name": "Lightblue_Gem_Square",
+      "description": "Lightblue_Gem_Square pick bin (Shelf F, Row 3, Col 4)"
+    },
+    "99": {
+      "type": "pick",
+      "object": "Lightblue_Gem_Convex",
+      "name": "Lightblue_Gem_Convex",
+      "description": "Lightblue_Gem_Convex pick bin (Shelf E, Row 1, Col 3)"
+    },
+    "100": {
+      "type": "pick",
+      "object": "Lightblue_Gem_Teardrop",
+      "name": "Lightblue_Gem_Teardrop",
+      "description": "Lightblue_Gem_Teardrop pick bin (Shelf F, Row 2, Col 3)"
+    },
+    "101": {
+      "type": "pick",
+      "object": "Lightblue_Gem_Round",
+      "name": "Lightblue_Gem_Round",
+      "description": "Lightblue_Gem_Round pick bin (Shelf E, Row 2, Col 2)"
+    },
+    "102": {
+      "type": "pick",
+      "object": "Lightblue_Gem_Oval",
+      "name": "Lightblue_Gem_Oval",
+      "description": "Lightblue_Gem_Oval pick bin (Shelf E, Row 3, Col 5)"
+    },
+    "103": {
+      "type": "pick",
+      "object": "Blue_Gem_Convex",
+      "name": "Blue_Gem_Convex",
+      "description": "Blue_Gem_Convex pick bin (Shelf G, Row 3, Col 1)"
+    },
+    "104": {
+      "type": "pick",
+      "object": "Blue_Gem_Square",
+      "name": "Blue_Gem_Square",
+      "description": "Blue_Gem_Square pick bin (Shelf C, Row 4, Col 4)"
+    },
+    "105": {
+      "type": "pick",
+      "object": "Purple_Gem_Convex",
+      "name": "Purple_Gem_Convex",
+      "description": "Purple_Gem_Convex pick bin (Shelf F, Row 4, Col 5)"
+    },
+    "106": {
+      "type": "pick",
+      "object": "Purple_Gem_Teardrop",
+      "name": "Purple_Gem_Teardrop",
+      "description": "Purple_Gem_Teardrop pick bin (Shelf C, Row 1, Col 1)"
+    },
+    "107": {
+      "type": "pick",
+      "object": "Purple_Gem_Round",
+      "name": "Purple_Gem_Round",
+      "description": "Purple_Gem_Round pick bin (Shelf C, Row 2, Col 2)"
+    },
+    "108": {
+      "type": "pick",
+      "object": "Purple_Gem_Square",
+      "name": "Purple_Gem_Square",
+      "description": "Purple_Gem_Square pick bin (Shelf G, Row 2, Col 5)"
+    },
+    "109": {
+      "type": "pick",
+      "object": "Magenta_Gem_Convex",
+      "name": "Magenta_Gem_Convex",
+      "description": "Magenta_Gem_Convex pick bin (Shelf F, Row 1, Col 2)"
+    },
+    "110": {
+      "type": "pick",
+      "object": "Magenta_Gem_Square",
+      "name": "Magenta_Gem_Square",
+      "description": "Magenta_Gem_Square pick bin (Shelf G, Row 3, Col 4)"
+    },
+    "111": {
+      "type": "pick",
+      "object": "Magenta_Gem_Oval",
+      "name": "Magenta_Gem_Oval",
+      "description": "Magenta_Gem_Oval pick bin (Shelf E, Row 2, Col 4)"
+    },
+    "112": {
+      "type": "pick",
+      "object": "Pink_Gem_Convex",
+      "name": "Pink_Gem_Convex",
+      "description": "Pink_Gem_Convex pick bin (Shelf D, Row 1, Col 2)"
+    },
+    "113": {
+      "type": "pick",
+      "object": "Pink_Gem_Oval",
+      "name": "Pink_Gem_Oval",
+      "description": "Pink_Gem_Oval pick bin (Shelf E, Row 4, Col 4)"
+    },
+    "114": {
+      "type": "pick",
+      "object": "Pink_Gem_Round",
+      "name": "Pink_Gem_Round",
+      "description": "Pink_Gem_Round pick bin (Shelf F, Row 1, Col 4)"
+    },
+    "115": {
+      "type": "pick",
+      "object": "Pink_Gem_Square",
+      "name": "Pink_Gem_Square",
+      "description": "Pink_Gem_Square pick bin (Shelf D, Row 3, Col 3)"
+    },
+    "116": {
+      "type": "pick",
+      "object": "Pink_Gem_Teardrop",
+      "name": "Pink_Gem_Teardrop",
+      "description": "Pink_Gem_Teardrop pick bin (Shelf F, Row 4, Col 6)"
+    },
+    "117": {
+      "type": "pick",
+      "object": "Clear_Gem_Oval",
+      "name": "Clear_Gem_Oval",
+      "description": "Clear_Gem_Oval pick bin (Shelf D, Row 2, Col 5)"
+    },
+    "118": {
+      "type": "pick",
+      "object": "Clear_Gem_Round",
+      "name": "Clear_Gem_Round",
+      "description": "Clear_Gem_Round pick bin (Shelf G, Row 1, Col 1)"
+    },
+    "119": {
+      "type": "pick",
+      "object": "Clear_Gem_Square",
+      "name": "Clear_Gem_Square",
+      "description": "Clear_Gem_Square pick bin (Shelf G, Row 1, Col 6)"
+    },
+    "120": {
+      "type": "pick",
+      "object": "Clear_Gem_Teardrop",
+      "name": "Clear_Gem_Teardrop",
+      "description": "Clear_Gem_Teardrop pick bin (Shelf C, Row 3, Col 5)"
+    },
+    "121": {
+      "type": "pick",
+      "object": "pick_bin_121",
+      "name": "pick_bin_121",
+      "description": "Pick bin (ID 121)"
+    },
+    "122": {
+      "type": "pick",
+      "object": "pick_bin_122",
+      "name": "pick_bin_122",
+      "description": "Pick bin (ID 122)"
+    },
+    "123": {
+      "type": "pick",
+      "object": "pick_bin_123",
+      "name": "pick_bin_123",
+      "description": "Pick bin (ID 123)"
+    },
+    "124": {
+      "type": "pick",
+      "object": "pick_bin_124",
+      "name": "pick_bin_124",
+      "description": "Pick bin (ID 124)"
+    },
+    "125": {
+      "type": "pick",
+      "object": "pick_bin_125",
+      "name": "pick_bin_125",
+      "description": "Pick bin (ID 125)"
+    },
+    "126": {
+      "type": "pick",
+      "object": "pick_bin_126",
+      "name": "pick_bin_126",
+      "description": "Pick bin (ID 126)"
+    },
+    "127": {
+      "type": "pick",
+      "object": "pick_bin_127",
+      "name": "pick_bin_127",
+      "description": "Pick bin (ID 127)"
+    },
+    "128": {
+      "type": "pick",
+      "object": "pick_bin_128",
+      "name": "pick_bin_128",
+      "description": "Pick bin (ID 128)"
+    },
+    "129": {
+      "type": "pick",
+      "object": "pick_bin_129",
+      "name": "pick_bin_129",
+      "description": "Pick bin (ID 129)"
+    },
+    "130": {
+      "type": "pick",
+      "object": "pick_bin_130",
+      "name": "pick_bin_130",
+      "description": "Pick bin (ID 130)"
+    },
+    "131": {
+      "type": "pick",
+      "object": "pick_bin_131",
+      "name": "pick_bin_131",
+      "description": "Pick bin (ID 131)"
+    },
+    "132": {
+      "type": "pick",
+      "object": "pick_bin_132",
+      "name": "pick_bin_132",
+      "description": "Pick bin (ID 132)"
+    },
+    "133": {
+      "type": "pick",
+      "object": "pick_bin_133",
+      "name": "pick_bin_133",
+      "description": "Pick bin (ID 133)"
+    },
+    "134": {
+      "type": "pick",
+      "object": "pick_bin_134",
+      "name": "pick_bin_134",
+      "description": "Pick bin (ID 134)"
+    },
+    "135": {
+      "type": "pick",
+      "object": "pick_bin_135",
+      "name": "pick_bin_135",
+      "description": "Pick bin (ID 135)"
+    },
+    "136": {
+      "type": "pick",
+      "object": "pick_bin_136",
+      "name": "pick_bin_136",
+      "description": "Pick bin (ID 136)"
+    },
+    "137": {
+      "type": "pick",
+      "object": "pick_bin_137",
+      "name": "pick_bin_137",
+      "description": "Pick bin (ID 137)"
+    },
+    "138": {
+      "type": "pick",
+      "object": "pick_bin_138",
+      "name": "pick_bin_138",
+      "description": "Pick bin (ID 138)"
+    },
+    "139": {
+      "type": "pick",
+      "object": "pick_bin_139",
+      "name": "pick_bin_139",
+      "description": "Pick bin (ID 139)"
+    },
+    "140": {
+      "type": "pick",
+      "object": "pick_bin_140",
+      "name": "pick_bin_140",
+      "description": "Pick bin (ID 140)"
+    },
+    "141": {
+      "type": "pick",
+      "object": "pick_bin_141",
+      "name": "pick_bin_141",
+      "description": "Pick bin (ID 141)"
+    },
+    "142": {
+      "type": "pick",
+      "object": "pick_bin_142",
+      "name": "pick_bin_142",
+      "description": "Pick bin (ID 142)"
+    },
+    "143": {
+      "type": "pick",
+      "object": "pick_bin_143",
+      "name": "pick_bin_143",
+      "description": "Pick bin (ID 143)"
+    },
+    "144": {
+      "type": "pick",
+      "object": "pick_bin_144",
+      "name": "pick_bin_144",
+      "description": "Pick bin (ID 144)"
+    },
+    "145": {
+      "type": "pick",
+      "object": "pick_bin_145",
+      "name": "pick_bin_145",
+      "description": "Pick bin (ID 145)"
+    },
+    "146": {
+      "type": "pick",
+      "object": "pick_bin_146",
+      "name": "pick_bin_146",
+      "description": "Pick bin (ID 146)"
+    },
+    "147": {
+      "type": "pick",
+      "object": "pick_bin_147",
+      "name": "pick_bin_147",
+      "description": "Pick bin (ID 147)"
+    },
+    "148": {
+      "type": "pick",
+      "object": "pick_bin_148",
+      "name": "pick_bin_148",
+      "description": "Pick bin (ID 148)"
+    },
+    "149": {
+      "type": "pick",
+      "object": "pick_bin_149",
+      "name": "pick_bin_149",
+      "description": "Pick bin (ID 149)"
+    },
+    "150": {
+      "type": "pick",
+      "object": "pick_bin_150",
+      "name": "pick_bin_150",
+      "description": "Pick bin (ID 150)"
+    },
+    "151": {
+      "type": "pick",
+      "object": "pick_bin_151",
+      "name": "pick_bin_151",
+      "description": "Pick bin (ID 151)"
+    },
+    "152": {
+      "type": "pick",
+      "object": "pick_bin_152",
+      "name": "pick_bin_152",
+      "description": "Pick bin (ID 152)"
+    },
+    "153": {
+      "type": "pick",
+      "object": "pick_bin_153",
+      "name": "pick_bin_153",
+      "description": "Pick bin (ID 153)"
+    },
+    "154": {
+      "type": "pick",
+      "object": "pick_bin_154",
+      "name": "pick_bin_154",
+      "description": "Pick bin (ID 154)"
+    },
+    "155": {
+      "type": "pick",
+      "object": "pick_bin_155",
+      "name": "pick_bin_155",
+      "description": "Pick bin (ID 155)"
+    },
+    "156": {
+      "type": "pick",
+      "object": "pick_bin_156",
+      "name": "pick_bin_156",
+      "description": "Pick bin (ID 156)"
+    },
+    "157": {
+      "type": "pick",
+      "object": "pick_bin_157",
+      "name": "pick_bin_157",
+      "description": "Pick bin (ID 157)"
+    },
+    "158": {
+      "type": "pick",
+      "object": "pick_bin_158",
+      "name": "pick_bin_158",
+      "description": "Pick bin (ID 158)"
+    },
+    "159": {
+      "type": "pick",
+      "object": "pick_bin_159",
+      "name": "pick_bin_159",
+      "description": "Pick bin (ID 159)"
+    },
+    "160": {
+      "type": "pick",
+      "object": "pick_bin_160",
+      "name": "pick_bin_160",
+      "description": "Pick bin (ID 160)"
+    },
+    "161": {
+      "type": "pick",
+      "object": "pick_bin_161",
+      "name": "pick_bin_161",
+      "description": "Pick bin (ID 161)"
+    },
+    "162": {
+      "type": "pick",
+      "object": "pick_bin_162",
+      "name": "pick_bin_162",
+      "description": "Pick bin (ID 162)"
+    },
+    "163": {
+      "type": "pick",
+      "object": "pick_bin_163",
+      "name": "pick_bin_163",
+      "description": "Pick bin (ID 163)"
+    },
+    "164": {
+      "type": "pick",
+      "object": "pick_bin_164",
+      "name": "pick_bin_164",
+      "description": "Pick bin (ID 164)"
+    },
+    "165": {
+      "type": "pick",
+      "object": "pick_bin_165",
+      "name": "pick_bin_165",
+      "description": "Pick bin (ID 165)"
+    },
+    "166": {
+      "type": "pick",
+      "object": "pick_bin_166",
+      "name": "pick_bin_166",
+      "description": "Pick bin (ID 166)"
+    },
+    "167": {
+      "type": "pick",
+      "object": "pick_bin_167",
+      "name": "pick_bin_167",
+      "description": "Pick bin (ID 167)"
+    },
+    "168": {
+      "type": "pick",
+      "object": "pick_bin_168",
+      "name": "pick_bin_168",
+      "description": "Pick bin (ID 168)"
+    },
+    "169": {
+      "type": "pick",
+      "object": "pick_bin_169",
+      "name": "pick_bin_169",
+      "description": "Pick bin (ID 169)"
+    },
+    "170": {
+      "type": "pick",
+      "object": "pick_bin_170",
+      "name": "pick_bin_170",
+      "description": "Pick bin (ID 170)"
+    },
+    "171": {
+      "type": "pick",
+      "object": "pick_bin_171",
+      "name": "pick_bin_171",
+      "description": "Pick bin (ID 171)"
+    },
+    "172": {
+      "type": "pick",
+      "object": "pick_bin_172",
+      "name": "pick_bin_172",
+      "description": "Pick bin (ID 172)"
+    },
+    "173": {
+      "type": "pick",
+      "object": "pick_bin_173",
+      "name": "pick_bin_173",
+      "description": "Pick bin (ID 173)"
+    },
+    "174": {
+      "type": "pick",
+      "object": "pick_bin_174",
+      "name": "pick_bin_174",
+      "description": "Pick bin (ID 174)"
+    },
+    "175": {
+      "type": "pick",
+      "object": "pick_bin_175",
+      "name": "pick_bin_175",
+      "description": "Pick bin (ID 175)"
+    },
+    "176": {
+      "type": "pick",
+      "object": "pick_bin_176",
+      "name": "pick_bin_176",
+      "description": "Pick bin (ID 176)"
+    },
+    "177": {
+      "type": "pick",
+      "object": "pick_bin_177",
+      "name": "pick_bin_177",
+      "description": "Pick bin (ID 177)"
+    },
+    "178": {
+      "type": "pick",
+      "object": "pick_bin_178",
+      "name": "pick_bin_178",
+      "description": "Pick bin (ID 178)"
+    },
+    "179": {
+      "type": "pick",
+      "object": "pick_bin_179",
+      "name": "pick_bin_179",
+      "description": "Pick bin (ID 179)"
+    },
+    "180": {
+      "type": "pick",
+      "object": "pick_bin_180",
+      "name": "pick_bin_180",
+      "description": "Pick bin (ID 180)"
+    },
+    "181": {
+      "type": "pick",
+      "object": "pick_bin_181",
+      "name": "pick_bin_181",
+      "description": "Pick bin (ID 181)"
+    },
+    "182": {
+      "type": "pick",
+      "object": "pick_bin_182",
+      "name": "pick_bin_182",
+      "description": "Pick bin (ID 182)"
+    },
+    "183": {
+      "type": "pick",
+      "object": "pick_bin_183",
+      "name": "pick_bin_183",
+      "description": "Pick bin (ID 183)"
+    },
+    "184": {
+      "type": "pick",
+      "object": "pick_bin_184",
+      "name": "pick_bin_184",
+      "description": "Pick bin (ID 184)"
+    },
+    "185": {
+      "type": "pick",
+      "object": "pick_bin_185",
+      "name": "pick_bin_185",
+      "description": "Pick bin (ID 185)"
+    },
+    "186": {
+      "type": "pick",
+      "object": "pick_bin_186",
+      "name": "pick_bin_186",
+      "description": "Pick bin (ID 186)"
+    },
+    "187": {
+      "type": "pick",
+      "object": "pick_bin_187",
+      "name": "pick_bin_187",
+      "description": "Pick bin (ID 187)"
+    },
+    "188": {
+      "type": "pick",
+      "object": "pick_bin_188",
+      "name": "pick_bin_188",
+      "description": "Pick bin (ID 188)"
+    },
+    "189": {
+      "type": "pick",
+      "object": "pick_bin_189",
+      "name": "pick_bin_189",
+      "description": "Pick bin (ID 189)"
+    },
+    "190": {
+      "type": "pick",
+      "object": "pick_bin_190",
+      "name": "pick_bin_190",
+      "description": "Pick bin (ID 190)"
+    },
+    "191": {
+      "type": "pick",
+      "object": "pick_bin_191",
+      "name": "pick_bin_191",
+      "description": "Pick bin (ID 191)"
+    },
+    "192": {
+      "type": "pick",
+      "object": "pick_bin_192",
+      "name": "pick_bin_192",
+      "description": "Pick bin (ID 192)"
+    },
+    "193": {
+      "type": "pick",
+      "object": "pick_bin_193",
+      "name": "pick_bin_193",
+      "description": "Pick bin (ID 193)"
+    },
+    "194": {
+      "type": "pick",
+      "object": "pick_bin_194",
+      "name": "pick_bin_194",
+      "description": "Pick bin (ID 194)"
+    },
+    "195": {
+      "type": "pick",
+      "object": "pick_bin_195",
+      "name": "pick_bin_195",
+      "description": "Pick bin (ID 195)"
+    },
+    "196": {
+      "type": "pick",
+      "object": "pick_bin_196",
+      "name": "pick_bin_196",
+      "description": "Pick bin (ID 196)"
+    },
+    "197": {
+      "type": "pick",
+      "object": "pick_bin_197",
+      "name": "pick_bin_197",
+      "description": "Pick bin (ID 197)"
+    },
+    "198": {
+      "type": "pick",
+      "object": "pick_bin_198",
+      "name": "pick_bin_198",
+      "description": "Pick bin (ID 198)"
+    },
+    "199": {
+      "type": "pick",
+      "object": "pick_bin_199",
+      "name": "pick_bin_199",
+      "description": "Pick bin (ID 199)"
+    },
+    "200": {
+      "type": "pick",
+      "object": "pick_bin_200",
+      "name": "pick_bin_200",
+      "description": "Pick bin (ID 200)"
+    },
+    "201": {
+      "type": "pick",
+      "object": "pick_bin_201",
+      "name": "pick_bin_201",
+      "description": "Pick bin (ID 201)"
+    },
+    "202": {
+      "type": "pick",
+      "object": "pick_bin_202",
+      "name": "pick_bin_202",
+      "description": "Pick bin (ID 202)"
+    },
+    "203": {
+      "type": "pick",
+      "object": "pick_bin_203",
+      "name": "pick_bin_203",
+      "description": "Pick bin (ID 203)"
+    },
+    "204": {
+      "type": "pick",
+      "object": "pick_bin_204",
+      "name": "pick_bin_204",
+      "description": "Pick bin (ID 204)"
+    },
+    "205": {
+      "type": "pick",
+      "object": "pick_bin_205",
+      "name": "pick_bin_205",
+      "description": "Pick bin (ID 205)"
+    },
+    "206": {
+      "type": "pick",
+      "object": "pick_bin_206",
+      "name": "pick_bin_206",
+      "description": "Pick bin (ID 206)"
+    },
+    "207": {
+      "type": "pick",
+      "object": "pick_bin_207",
+      "name": "pick_bin_207",
+      "description": "Pick bin (ID 207)"
+    },
+    "208": {
+      "type": "pick",
+      "object": "pick_bin_208",
+      "name": "pick_bin_208",
+      "description": "Pick bin (ID 208)"
+    },
+    "209": {
+      "type": "pick",
+      "object": "pick_bin_209",
+      "name": "pick_bin_209",
+      "description": "Pick bin (ID 209)"
+    },
+    "210": {
+      "type": "pick",
+      "object": "pick_bin_210",
+      "name": "pick_bin_210",
+      "description": "Pick bin (ID 210)"
+    },
+    "211": {
+      "type": "pick",
+      "object": "pick_bin_211",
+      "name": "pick_bin_211",
+      "description": "Pick bin (ID 211)"
+    },
+    "212": {
+      "type": "pick",
+      "object": "pick_bin_212",
+      "name": "pick_bin_212",
+      "description": "Pick bin (ID 212)"
+    },
+    "213": {
+      "type": "pick",
+      "object": "pick_bin_213",
+      "name": "pick_bin_213",
+      "description": "Pick bin (ID 213)"
+    },
+    "214": {
+      "type": "pick",
+      "object": "pick_bin_214",
+      "name": "pick_bin_214",
+      "description": "Pick bin (ID 214)"
+    },
+    "215": {
+      "type": "pick",
+      "object": "pick_bin_215",
+      "name": "pick_bin_215",
+      "description": "Pick bin (ID 215)"
+    },
+    "216": {
+      "type": "pick",
+      "object": "pick_bin_216",
+      "name": "pick_bin_216",
+      "description": "Pick bin (ID 216)"
+    },
+    "217": {
+      "type": "pick",
+      "object": "pick_bin_217",
+      "name": "pick_bin_217",
+      "description": "Pick bin (ID 217)"
+    },
+    "218": {
+      "type": "pick",
+      "object": "pick_bin_218",
+      "name": "pick_bin_218",
+      "description": "Pick bin (ID 218)"
+    },
+    "219": {
+      "type": "pick",
+      "object": "pick_bin_219",
+      "name": "pick_bin_219",
+      "description": "Pick bin (ID 219)"
+    },
+    "220": {
+      "type": "pick",
+      "object": "pick_bin_220",
+      "name": "pick_bin_220",
+      "description": "Pick bin (ID 220)"
+    },
+    "221": {
+      "type": "pick",
+      "object": "pick_bin_221",
+      "name": "pick_bin_221",
+      "description": "Pick bin (ID 221)"
+    },
+    "222": {
+      "type": "pick",
+      "object": "pick_bin_222",
+      "name": "pick_bin_222",
+      "description": "Pick bin (ID 222)"
+    },
+    "223": {
+      "type": "pick",
+      "object": "pick_bin_223",
+      "name": "pick_bin_223",
+      "description": "Pick bin (ID 223)"
+    },
+    "224": {
+      "type": "pick",
+      "object": "pick_bin_224",
+      "name": "pick_bin_224",
+      "description": "Pick bin (ID 224)"
+    },
+    "225": {
+      "type": "pick",
+      "object": "pick_bin_225",
+      "name": "pick_bin_225",
+      "description": "Pick bin (ID 225)"
+    },
+    "226": {
+      "type": "pick",
+      "object": "pick_bin_226",
+      "name": "pick_bin_226",
+      "description": "Pick bin (ID 226)"
+    },
+    "227": {
+      "type": "pick",
+      "object": "pick_bin_227",
+      "name": "pick_bin_227",
+      "description": "Pick bin (ID 227)"
+    },
+    "228": {
+      "type": "pick",
+      "object": "pick_bin_228",
+      "name": "pick_bin_228",
+      "description": "Pick bin (ID 228)"
+    },
+    "229": {
+      "type": "pick",
+      "object": "pick_bin_229",
+      "name": "pick_bin_229",
+      "description": "Pick bin (ID 229)"
+    },
+    "230": {
+      "type": "pick",
+      "object": "pick_bin_230",
+      "name": "pick_bin_230",
+      "description": "Pick bin (ID 230)"
+    },
+    "231": {
+      "type": "pick",
+      "object": "pick_bin_231",
+      "name": "pick_bin_231",
+      "description": "Pick bin (ID 231)"
+    },
+    "232": {
+      "type": "pick",
+      "object": "pick_bin_232",
+      "name": "pick_bin_232",
+      "description": "Pick bin (ID 232)"
+    },
+    "233": {
+      "type": "pick",
+      "object": "pick_bin_233",
+      "name": "pick_bin_233",
+      "description": "Pick bin (ID 233)"
+    },
+    "234": {
+      "type": "pick",
+      "object": "pick_bin_234",
+      "name": "pick_bin_234",
+      "description": "Pick bin (ID 234)"
+    },
+    "235": {
+      "type": "pick",
+      "object": "pick_bin_235",
+      "name": "pick_bin_235",
+      "description": "Pick bin (ID 235)"
+    },
+    "236": {
+      "type": "pick",
+      "object": "pick_bin_236",
+      "name": "pick_bin_236",
+      "description": "Pick bin (ID 236)"
+    },
+    "237": {
+      "type": "pick",
+      "object": "pick_bin_237",
+      "name": "pick_bin_237",
+      "description": "Pick bin (ID 237)"
+    },
+    "238": {
+      "type": "pick",
+      "object": "pick_bin_238",
+      "name": "pick_bin_238",
+      "description": "Pick bin (ID 238)"
+    },
+    "239": {
+      "type": "pick",
+      "object": "pick_bin_239",
+      "name": "pick_bin_239",
+      "description": "Pick bin (ID 239)"
+    },
+    "240": {
+      "type": "pick",
+      "object": "pick_bin_240",
+      "name": "pick_bin_240",
+      "description": "Pick bin (ID 240)"
+    },
+    "241": {
+      "type": "pick",
+      "object": "pick_bin_241",
+      "name": "pick_bin_241",
+      "description": "Pick bin (ID 241)"
+    },
+    "242": {
+      "type": "pick",
+      "object": "pick_bin_242",
+      "name": "pick_bin_242",
+      "description": "Pick bin (ID 242)"
+    },
+    "243": {
+      "type": "pick",
+      "object": "pick_bin_243",
+      "name": "pick_bin_243",
+      "description": "Pick bin (ID 243)"
+    },
+    "244": {
+      "type": "pick",
+      "object": "pick_bin_244",
+      "name": "pick_bin_244",
+      "description": "Pick bin (ID 244)"
+    },
+    "245": {
+      "type": "pick",
+      "object": "pick_bin_245",
+      "name": "pick_bin_245",
+      "description": "Pick bin (ID 245)"
+    },
+    "246": {
+      "type": "pick",
+      "object": "pick_bin_246",
+      "name": "pick_bin_246",
+      "description": "Pick bin (ID 246)"
+    },
+    "247": {
+      "type": "pick",
+      "object": "pick_bin_247",
+      "name": "pick_bin_247",
+      "description": "Pick bin (ID 247)"
+    },
+    "248": {
+      "type": "pick",
+      "object": "pick_bin_248",
+      "name": "pick_bin_248",
+      "description": "Pick bin (ID 248)"
+    },
+    "249": {
+      "type": "pick",
+      "object": "pick_bin_249",
+      "name": "pick_bin_249",
+      "description": "Pick bin (ID 249)"
+    },
+    "250": {
+      "type": "pick",
+      "object": "pick_bin_250",
+      "name": "pick_bin_250",
+      "description": "Pick bin (ID 250)"
+    },
+    "251": {
+      "type": "pick",
+      "object": "pick_bin_251",
+      "name": "pick_bin_251",
+      "description": "Pick bin (ID 251)"
+    },
+    "252": {
+      "type": "pick",
+      "object": "pick_bin_252",
+      "name": "pick_bin_252",
+      "description": "Pick bin (ID 252)"
+    },
+    "253": {
+      "type": "pick",
+      "object": "pick_bin_253",
+      "name": "pick_bin_253",
+      "description": "Pick bin (ID 253)"
+    },
+    "254": {
+      "type": "pick",
+      "object": "pick_bin_254",
+      "name": "pick_bin_254",
+      "description": "Pick bin (ID 254)"
+    },
+    "255": {
+      "type": "pick",
+      "object": "pick_bin_255",
+      "name": "pick_bin_255",
+      "description": "Pick bin (ID 255)"
+    },
+    "256": {
+      "type": "pick",
+      "object": "pick_bin_256",
+      "name": "pick_bin_256",
+      "description": "Pick bin (ID 256)"
+    },
+    "257": {
+      "type": "pick",
+      "object": "pick_bin_257",
+      "name": "pick_bin_257",
+      "description": "Pick bin (ID 257)"
+    },
+    "258": {
+      "type": "pick",
+      "object": "pick_bin_258",
+      "name": "pick_bin_258",
+      "description": "Pick bin (ID 258)"
+    },
+    "259": {
+      "type": "pick",
+      "object": "pick_bin_259",
+      "name": "pick_bin_259",
+      "description": "Pick bin (ID 259)"
+    },
+    "260": {
+      "type": "pick",
+      "object": "pick_bin_260",
+      "name": "pick_bin_260",
+      "description": "Pick bin (ID 260)"
+    },
+    "261": {
+      "type": "pick",
+      "object": "pick_bin_261",
+      "name": "pick_bin_261",
+      "description": "Pick bin (ID 261)"
+    },
+    "262": {
+      "type": "pick",
+      "object": "pick_bin_262",
+      "name": "pick_bin_262",
+      "description": "Pick bin (ID 262)"
+    },
+    "263": {
+      "type": "pick",
+      "object": "pick_bin_263",
+      "name": "pick_bin_263",
+      "description": "Pick bin (ID 263)"
+    },
+    "264": {
+      "type": "pick",
+      "object": "pick_bin_264",
+      "name": "pick_bin_264",
+      "description": "Pick bin (ID 264)"
+    },
+    "265": {
+      "type": "pick",
+      "object": "pick_bin_265",
+      "name": "pick_bin_265",
+      "description": "Pick bin (ID 265)"
+    },
+    "266": {
+      "type": "pick",
+      "object": "pick_bin_266",
+      "name": "pick_bin_266",
+      "description": "Pick bin (ID 266)"
+    },
+    "267": {
+      "type": "pick",
+      "object": "pick_bin_267",
+      "name": "pick_bin_267",
+      "description": "Pick bin (ID 267)"
+    },
+    "268": {
+      "type": "pick",
+      "object": "pick_bin_268",
+      "name": "pick_bin_268",
+      "description": "Pick bin (ID 268)"
+    },
+    "269": {
+      "type": "pick",
+      "object": "pick_bin_269",
+      "name": "pick_bin_269",
+      "description": "Pick bin (ID 269)"
+    },
+    "270": {
+      "type": "pick",
+      "object": "pick_bin_270",
+      "name": "pick_bin_270",
+      "description": "Pick bin (ID 270)"
+    },
+    "271": {
+      "type": "pick",
+      "object": "pick_bin_271",
+      "name": "pick_bin_271",
+      "description": "Pick bin (ID 271)"
+    },
+    "272": {
+      "type": "pick",
+      "object": "pick_bin_272",
+      "name": "pick_bin_272",
+      "description": "Pick bin (ID 272)"
+    },
+    "273": {
+      "type": "pick",
+      "object": "pick_bin_273",
+      "name": "pick_bin_273",
+      "description": "Pick bin (ID 273)"
+    },
+    "274": {
+      "type": "pick",
+      "object": "pick_bin_274",
+      "name": "pick_bin_274",
+      "description": "Pick bin (ID 274)"
+    },
+    "275": {
+      "type": "pick",
+      "object": "pick_bin_275",
+      "name": "pick_bin_275",
+      "description": "Pick bin (ID 275)"
+    },
+    "276": {
+      "type": "pick",
+      "object": "pick_bin_276",
+      "name": "pick_bin_276",
+      "description": "Pick bin (ID 276)"
+    },
+    "277": {
+      "type": "pick",
+      "object": "pick_bin_277",
+      "name": "pick_bin_277",
+      "description": "Pick bin (ID 277)"
+    },
+    "278": {
+      "type": "pick",
+      "object": "pick_bin_278",
+      "name": "pick_bin_278",
+      "description": "Pick bin (ID 278)"
+    },
+    "279": {
+      "type": "pick",
+      "object": "pick_bin_279",
+      "name": "pick_bin_279",
+      "description": "Pick bin (ID 279)"
+    },
+    "280": {
+      "type": "pick",
+      "object": "pick_bin_280",
+      "name": "pick_bin_280",
+      "description": "Pick bin (ID 280)"
+    },
+    "281": {
+      "type": "pick",
+      "object": "pick_bin_281",
+      "name": "pick_bin_281",
+      "description": "Pick bin (ID 281)"
+    },
+    "282": {
+      "type": "pick",
+      "object": "pick_bin_282",
+      "name": "pick_bin_282",
+      "description": "Pick bin (ID 282)"
+    },
+    "283": {
+      "type": "pick",
+      "object": "pick_bin_283",
+      "name": "pick_bin_283",
+      "description": "Pick bin (ID 283)"
+    },
+    "284": {
+      "type": "pick",
+      "object": "pick_bin_284",
+      "name": "pick_bin_284",
+      "description": "Pick bin (ID 284)"
+    },
+    "285": {
+      "type": "pick",
+      "object": "pick_bin_285",
+      "name": "pick_bin_285",
+      "description": "Pick bin (ID 285)"
+    },
+    "286": {
+      "type": "pick",
+      "object": "pick_bin_286",
+      "name": "pick_bin_286",
+      "description": "Pick bin (ID 286)"
+    },
+    "287": {
+      "type": "pick",
+      "object": "pick_bin_287",
+      "name": "pick_bin_287",
+      "description": "Pick bin (ID 287)"
+    },
+    "288": {
+      "type": "pick",
+      "object": "pick_bin_288",
+      "name": "pick_bin_288",
+      "description": "Pick bin (ID 288)"
+    },
+    "289": {
+      "type": "pick",
+      "object": "pick_bin_289",
+      "name": "pick_bin_289",
+      "description": "Pick bin (ID 289)"
+    },
+    "290": {
+      "type": "pick",
+      "object": "pick_bin_290",
+      "name": "pick_bin_290",
+      "description": "Pick bin (ID 290)"
+    },
+    "291": {
+      "type": "pick",
+      "object": "pick_bin_291",
+      "name": "pick_bin_291",
+      "description": "Pick bin (ID 291)"
+    },
+    "292": {
+      "type": "pick",
+      "object": "pick_bin_292",
+      "name": "pick_bin_292",
+      "description": "Pick bin (ID 292)"
+    },
+    "293": {
+      "type": "pick",
+      "object": "pick_bin_293",
+      "name": "pick_bin_293",
+      "description": "Pick bin (ID 293)"
+    },
+    "294": {
+      "type": "pick",
+      "object": "pick_bin_294",
+      "name": "pick_bin_294",
+      "description": "Pick bin (ID 294)"
+    },
+    "295": {
+      "type": "pick",
+      "object": "pick_bin_295",
+      "name": "pick_bin_295",
+      "description": "Pick bin (ID 295)"
+    },
+    "296": {
+      "type": "pick",
+      "object": "pick_bin_296",
+      "name": "pick_bin_296",
+      "description": "Pick bin (ID 296)"
+    },
+    "297": {
+      "type": "pick",
+      "object": "pick_bin_297",
+      "name": "pick_bin_297",
+      "description": "Pick bin (ID 297)"
+    },
+    "298": {
+      "type": "pick",
+      "object": "pick_bin_298",
+      "name": "pick_bin_298",
+      "description": "Pick bin (ID 298)"
+    },
+    "299": {
+      "type": "pick",
+      "object": "pick_bin_299",
+      "name": "pick_bin_299",
+      "description": "Pick bin (ID 299)"
+    },
+    "300": {
+      "type": "pick",
+      "object": "pick_bin_300",
+      "name": "pick_bin_300",
+      "description": "Pick bin (ID 300)"
+    },
+    "301": {
+      "type": "pick",
+      "object": "pick_bin_301",
+      "name": "pick_bin_301",
+      "description": "Pick bin (ID 301)"
+    },
+    "302": {
+      "type": "pick",
+      "object": "pick_bin_302",
+      "name": "pick_bin_302",
+      "description": "Pick bin (ID 302)"
+    },
+    "303": {
+      "type": "pick",
+      "object": "pick_bin_303",
+      "name": "pick_bin_303",
+      "description": "Pick bin (ID 303)"
+    },
+    "304": {
+      "type": "pick",
+      "object": "pick_bin_304",
+      "name": "pick_bin_304",
+      "description": "Pick bin (ID 304)"
+    },
+    "305": {
+      "type": "pick",
+      "object": "pick_bin_305",
+      "name": "pick_bin_305",
+      "description": "Pick bin (ID 305)"
+    },
+    "306": {
+      "type": "pick",
+      "object": "pick_bin_306",
+      "name": "pick_bin_306",
+      "description": "Pick bin (ID 306)"
+    },
+    "307": {
+      "type": "pick",
+      "object": "pick_bin_307",
+      "name": "pick_bin_307",
+      "description": "Pick bin (ID 307)"
+    },
+    "308": {
+      "type": "pick",
+      "object": "pick_bin_308",
+      "name": "pick_bin_308",
+      "description": "Pick bin (ID 308)"
+    },
+    "309": {
+      "type": "pick",
+      "object": "pick_bin_309",
+      "name": "pick_bin_309",
+      "description": "Pick bin (ID 309)"
+    },
+    "310": {
+      "type": "pick",
+      "object": "pick_bin_310",
+      "name": "pick_bin_310",
+      "description": "Pick bin (ID 310)"
+    },
+    "311": {
+      "type": "pick",
+      "object": "pick_bin_311",
+      "name": "pick_bin_311",
+      "description": "Pick bin (ID 311)"
+    },
+    "312": {
+      "type": "pick",
+      "object": "pick_bin_312",
+      "name": "pick_bin_312",
+      "description": "Pick bin (ID 312)"
+    },
+    "313": {
+      "type": "pick",
+      "object": "pick_bin_313",
+      "name": "pick_bin_313",
+      "description": "Pick bin (ID 313)"
+    },
+    "314": {
+      "type": "pick",
+      "object": "pick_bin_314",
+      "name": "pick_bin_314",
+      "description": "Pick bin (ID 314)"
+    },
+    "315": {
+      "type": "pick",
+      "object": "pick_bin_315",
+      "name": "pick_bin_315",
+      "description": "Pick bin (ID 315)"
+    },
+    "316": {
+      "type": "pick",
+      "object": "pick_bin_316",
+      "name": "pick_bin_316",
+      "description": "Pick bin (ID 316)"
+    },
+    "317": {
+      "type": "pick",
+      "object": "pick_bin_317",
+      "name": "pick_bin_317",
+      "description": "Pick bin (ID 317)"
+    },
+    "318": {
+      "type": "pick",
+      "object": "pick_bin_318",
+      "name": "pick_bin_318",
+      "description": "Pick bin (ID 318)"
+    },
+    "319": {
+      "type": "pick",
+      "object": "pick_bin_319",
+      "name": "pick_bin_319",
+      "description": "Pick bin (ID 319)"
+    },
+    "320": {
+      "type": "pick",
+      "object": "pick_bin_320",
+      "name": "pick_bin_320",
+      "description": "Pick bin (ID 320)"
+    },
+    "321": {
+      "type": "pick",
+      "object": "pick_bin_321",
+      "name": "pick_bin_321",
+      "description": "Pick bin (ID 321)"
+    },
+    "322": {
+      "type": "pick",
+      "object": "pick_bin_322",
+      "name": "pick_bin_322",
+      "description": "Pick bin (ID 322)"
+    },
+    "323": {
+      "type": "pick",
+      "object": "pick_bin_323",
+      "name": "pick_bin_323",
+      "description": "Pick bin (ID 323)"
+    },
+    "324": {
+      "type": "pick",
+      "object": "pick_bin_324",
+      "name": "pick_bin_324",
+      "description": "Pick bin (ID 324)"
+    },
+    "325": {
+      "type": "pick",
+      "object": "pick_bin_325",
+      "name": "pick_bin_325",
+      "description": "Pick bin (ID 325)"
+    },
+    "326": {
+      "type": "pick",
+      "object": "pick_bin_326",
+      "name": "pick_bin_326",
+      "description": "Pick bin (ID 326)"
+    },
+    "327": {
+      "type": "pick",
+      "object": "pick_bin_327",
+      "name": "pick_bin_327",
+      "description": "Pick bin (ID 327)"
+    },
+    "328": {
+      "type": "pick",
+      "object": "pick_bin_328",
+      "name": "pick_bin_328",
+      "description": "Pick bin (ID 328)"
+    },
+    "329": {
+      "type": "pick",
+      "object": "pick_bin_329",
+      "name": "pick_bin_329",
+      "description": "Pick bin (ID 329)"
+    },
+    "330": {
+      "type": "pick",
+      "object": "pick_bin_330",
+      "name": "pick_bin_330",
+      "description": "Pick bin (ID 330)"
+    },
+    "331": {
+      "type": "pick",
+      "object": "pick_bin_331",
+      "name": "pick_bin_331",
+      "description": "Pick bin (ID 331)"
+    },
+    "332": {
+      "type": "pick",
+      "object": "pick_bin_332",
+      "name": "pick_bin_332",
+      "description": "Pick bin (ID 332)"
+    },
+    "333": {
+      "type": "pick",
+      "object": "pick_bin_333",
+      "name": "pick_bin_333",
+      "description": "Pick bin (ID 333)"
+    },
+    "334": {
+      "type": "pick",
+      "object": "pick_bin_334",
+      "name": "pick_bin_334",
+      "description": "Pick bin (ID 334)"
+    },
+    "335": {
+      "type": "pick",
+      "object": "pick_bin_335",
+      "name": "pick_bin_335",
+      "description": "Pick bin (ID 335)"
+    },
+    "336": {
+      "type": "pick",
+      "object": "pick_bin_336",
+      "name": "pick_bin_336",
+      "description": "Pick bin (ID 336)"
+    },
+    "337": {
+      "type": "pick",
+      "object": "pick_bin_337",
+      "name": "pick_bin_337",
+      "description": "Pick bin (ID 337)"
+    },
+    "338": {
+      "type": "pick",
+      "object": "pick_bin_338",
+      "name": "pick_bin_338",
+      "description": "Pick bin (ID 338)"
+    },
+    "339": {
+      "type": "pick",
+      "object": "pick_bin_339",
+      "name": "pick_bin_339",
+      "description": "Pick bin (ID 339)"
+    },
+    "340": {
+      "type": "pick",
+      "object": "pick_bin_340",
+      "name": "pick_bin_340",
+      "description": "Pick bin (ID 340)"
+    },
+    "341": {
+      "type": "pick",
+      "object": "pick_bin_341",
+      "name": "pick_bin_341",
+      "description": "Pick bin (ID 341)"
+    },
+    "342": {
+      "type": "pick",
+      "object": "pick_bin_342",
+      "name": "pick_bin_342",
+      "description": "Pick bin (ID 342)"
+    },
+    "343": {
+      "type": "pick",
+      "object": "pick_bin_343",
+      "name": "pick_bin_343",
+      "description": "Pick bin (ID 343)"
+    },
+    "344": {
+      "type": "pick",
+      "object": "pick_bin_344",
+      "name": "pick_bin_344",
+      "description": "Pick bin (ID 344)"
+    },
+    "345": {
+      "type": "pick",
+      "object": "pick_bin_345",
+      "name": "pick_bin_345",
+      "description": "Pick bin (ID 345)"
+    },
+    "346": {
+      "type": "pick",
+      "object": "pick_bin_346",
+      "name": "pick_bin_346",
+      "description": "Pick bin (ID 346)"
+    },
+    "347": {
+      "type": "pick",
+      "object": "pick_bin_347",
+      "name": "pick_bin_347",
+      "description": "Pick bin (ID 347)"
+    },
+    "348": {
+      "type": "pick",
+      "object": "pick_bin_348",
+      "name": "pick_bin_348",
+      "description": "Pick bin (ID 348)"
+    },
+    "349": {
+      "type": "pick",
+      "object": "pick_bin_349",
+      "name": "pick_bin_349",
+      "description": "Pick bin (ID 349)"
+    },
+    "350": {
+      "type": "pick",
+      "object": "pick_bin_350",
+      "name": "pick_bin_350",
+      "description": "Pick bin (ID 350)"
+    },
+    "351": {
+      "type": "pick",
+      "object": "pick_bin_351",
+      "name": "pick_bin_351",
+      "description": "Pick bin (ID 351)"
+    },
+    "352": {
+      "type": "pick",
+      "object": "pick_bin_352",
+      "name": "pick_bin_352",
+      "description": "Pick bin (ID 352)"
+    },
+    "353": {
+      "type": "pick",
+      "object": "pick_bin_353",
+      "name": "pick_bin_353",
+      "description": "Pick bin (ID 353)"
+    },
+    "354": {
+      "type": "pick",
+      "object": "pick_bin_354",
+      "name": "pick_bin_354",
+      "description": "Pick bin (ID 354)"
+    },
+    "355": {
+      "type": "pick",
+      "object": "pick_bin_355",
+      "name": "pick_bin_355",
+      "description": "Pick bin (ID 355)"
+    },
+    "356": {
+      "type": "pick",
+      "object": "pick_bin_356",
+      "name": "pick_bin_356",
+      "description": "Pick bin (ID 356)"
+    },
+    "357": {
+      "type": "pick",
+      "object": "pick_bin_357",
+      "name": "pick_bin_357",
+      "description": "Pick bin (ID 357)"
+    },
+    "358": {
+      "type": "pick",
+      "object": "pick_bin_358",
+      "name": "pick_bin_358",
+      "description": "Pick bin (ID 358)"
+    },
+    "359": {
+      "type": "pick",
+      "object": "pick_bin_359",
+      "name": "pick_bin_359",
+      "description": "Pick bin (ID 359)"
+    },
+    "360": {
+      "type": "pick",
+      "object": "pick_bin_360",
+      "name": "pick_bin_360",
+      "description": "Pick bin (ID 360)"
+    },
+    "361": {
+      "type": "pick",
+      "object": "pick_bin_361",
+      "name": "pick_bin_361",
+      "description": "Pick bin (ID 361)"
+    },
+    "362": {
+      "type": "pick",
+      "object": "pick_bin_362",
+      "name": "pick_bin_362",
+      "description": "Pick bin (ID 362)"
+    },
+    "363": {
+      "type": "pick",
+      "object": "pick_bin_363",
+      "name": "pick_bin_363",
+      "description": "Pick bin (ID 363)"
+    },
+    "364": {
+      "type": "pick",
+      "object": "pick_bin_364",
+      "name": "pick_bin_364",
+      "description": "Pick bin (ID 364)"
+    },
+    "365": {
+      "type": "pick",
+      "object": "pick_bin_365",
+      "name": "pick_bin_365",
+      "description": "Pick bin (ID 365)"
+    },
+    "366": {
+      "type": "pick",
+      "object": "pick_bin_366",
+      "name": "pick_bin_366",
+      "description": "Pick bin (ID 366)"
+    },
+    "367": {
+      "type": "pick",
+      "object": "pick_bin_367",
+      "name": "pick_bin_367",
+      "description": "Pick bin (ID 367)"
+    },
+    "368": {
+      "type": "pick",
+      "object": "pick_bin_368",
+      "name": "pick_bin_368",
+      "description": "Pick bin (ID 368)"
+    },
+    "369": {
+      "type": "pick",
+      "object": "pick_bin_369",
+      "name": "pick_bin_369",
+      "description": "Pick bin (ID 369)"
+    },
+    "370": {
+      "type": "pick",
+      "object": "pick_bin_370",
+      "name": "pick_bin_370",
+      "description": "Pick bin (ID 370)"
+    },
+    "371": {
+      "type": "pick",
+      "object": "pick_bin_371",
+      "name": "pick_bin_371",
+      "description": "Pick bin (ID 371)"
+    },
+    "372": {
+      "type": "pick",
+      "object": "pick_bin_372",
+      "name": "pick_bin_372",
+      "description": "Pick bin (ID 372)"
+    },
+    "373": {
+      "type": "pick",
+      "object": "pick_bin_373",
+      "name": "pick_bin_373",
+      "description": "Pick bin (ID 373)"
+    },
+    "374": {
+      "type": "pick",
+      "object": "pick_bin_374",
+      "name": "pick_bin_374",
+      "description": "Pick bin (ID 374)"
+    },
+    "375": {
+      "type": "pick",
+      "object": "pick_bin_375",
+      "name": "pick_bin_375",
+      "description": "Pick bin (ID 375)"
+    },
+    "376": {
+      "type": "pick",
+      "object": "pick_bin_376",
+      "name": "pick_bin_376",
+      "description": "Pick bin (ID 376)"
+    },
+    "377": {
+      "type": "pick",
+      "object": "pick_bin_377",
+      "name": "pick_bin_377",
+      "description": "Pick bin (ID 377)"
+    },
+    "378": {
+      "type": "pick",
+      "object": "pick_bin_378",
+      "name": "pick_bin_378",
+      "description": "Pick bin (ID 378)"
+    },
+    "379": {
+      "type": "pick",
+      "object": "pick_bin_379",
+      "name": "pick_bin_379",
+      "description": "Pick bin (ID 379)"
+    },
+    "380": {
+      "type": "pick",
+      "object": "pick_bin_380",
+      "name": "pick_bin_380",
+      "description": "Pick bin (ID 380)"
+    },
+    "381": {
+      "type": "pick",
+      "object": "pick_bin_381",
+      "name": "pick_bin_381",
+      "description": "Pick bin (ID 381)"
+    },
+    "382": {
+      "type": "pick",
+      "object": "pick_bin_382",
+      "name": "pick_bin_382",
+      "description": "Pick bin (ID 382)"
+    },
+    "383": {
+      "type": "pick",
+      "object": "pick_bin_383",
+      "name": "pick_bin_383",
+      "description": "Pick bin (ID 383)"
+    },
+    "384": {
+      "type": "pick",
+      "object": "pick_bin_384",
+      "name": "pick_bin_384",
+      "description": "Pick bin (ID 384)"
+    },
+    "385": {
+      "type": "pick",
+      "object": "pick_bin_385",
+      "name": "pick_bin_385",
+      "description": "Pick bin (ID 385)"
+    },
+    "386": {
+      "type": "pick",
+      "object": "pick_bin_386",
+      "name": "pick_bin_386",
+      "description": "Pick bin (ID 386)"
+    },
+    "387": {
+      "type": "pick",
+      "object": "pick_bin_387",
+      "name": "pick_bin_387",
+      "description": "Pick bin (ID 387)"
+    },
+    "388": {
+      "type": "pick",
+      "object": "pick_bin_388",
+      "name": "pick_bin_388",
+      "description": "Pick bin (ID 388)"
+    },
+    "389": {
+      "type": "pick",
+      "object": "pick_bin_389",
+      "name": "pick_bin_389",
+      "description": "Pick bin (ID 389)"
+    },
+    "390": {
+      "type": "pick",
+      "object": "pick_bin_390",
+      "name": "pick_bin_390",
+      "description": "Pick bin (ID 390)"
+    },
+    "391": {
+      "type": "pick",
+      "object": "pick_bin_391",
+      "name": "pick_bin_391",
+      "description": "Pick bin (ID 391)"
+    },
+    "392": {
+      "type": "pick",
+      "object": "pick_bin_392",
+      "name": "pick_bin_392",
+      "description": "Pick bin (ID 392)"
+    },
+    "393": {
+      "type": "pick",
+      "object": "pick_bin_393",
+      "name": "pick_bin_393",
+      "description": "Pick bin (ID 393)"
+    },
+    "394": {
+      "type": "pick",
+      "object": "pick_bin_394",
+      "name": "pick_bin_394",
+      "description": "Pick bin (ID 394)"
+    },
+    "395": {
+      "type": "pick",
+      "object": "pick_bin_395",
+      "name": "pick_bin_395",
+      "description": "Pick bin (ID 395)"
+    },
+    "396": {
+      "type": "pick",
+      "object": "pick_bin_396",
+      "name": "pick_bin_396",
+      "description": "Pick bin (ID 396)"
+    },
+    "397": {
+      "type": "pick",
+      "object": "pick_bin_397",
+      "name": "pick_bin_397",
+      "description": "Pick bin (ID 397)"
+    },
+    "398": {
+      "type": "pick",
+      "object": "pick_bin_398",
+      "name": "pick_bin_398",
+      "description": "Pick bin (ID 398)"
+    },
+    "399": {
+      "type": "pick",
+      "object": "pick_bin_399",
+      "name": "pick_bin_399",
+      "description": "Pick bin (ID 399)"
+    },
+    "400": {
+      "type": "pick",
+      "object": "pick_bin_400",
+      "name": "pick_bin_400",
+      "description": "Pick bin (ID 400)"
+    },
+    "401": {
+      "type": "pick",
+      "object": "pick_bin_401",
+      "name": "pick_bin_401",
+      "description": "Pick bin (ID 401)"
+    },
+    "402": {
+      "type": "pick",
+      "object": "pick_bin_402",
+      "name": "pick_bin_402",
+      "description": "Pick bin (ID 402)"
+    },
+    "403": {
+      "type": "pick",
+      "object": "pick_bin_403",
+      "name": "pick_bin_403",
+      "description": "Pick bin (ID 403)"
+    },
+    "404": {
+      "type": "pick",
+      "object": "pick_bin_404",
+      "name": "pick_bin_404",
+      "description": "Pick bin (ID 404)"
+    },
+    "405": {
+      "type": "pick",
+      "object": "pick_bin_405",
+      "name": "pick_bin_405",
+      "description": "Pick bin (ID 405)"
+    },
+    "406": {
+      "type": "pick",
+      "object": "pick_bin_406",
+      "name": "pick_bin_406",
+      "description": "Pick bin (ID 406)"
+    },
+    "407": {
+      "type": "pick",
+      "object": "pick_bin_407",
+      "name": "pick_bin_407",
+      "description": "Pick bin (ID 407)"
+    },
+    "408": {
+      "type": "pick",
+      "object": "pick_bin_408",
+      "name": "pick_bin_408",
+      "description": "Pick bin (ID 408)"
+    },
+    "409": {
+      "type": "pick",
+      "object": "pick_bin_409",
+      "name": "pick_bin_409",
+      "description": "Pick bin (ID 409)"
+    },
+    "410": {
+      "type": "pick",
+      "object": "pick_bin_410",
+      "name": "pick_bin_410",
+      "description": "Pick bin (ID 410)"
+    },
+    "411": {
+      "type": "pick",
+      "object": "pick_bin_411",
+      "name": "pick_bin_411",
+      "description": "Pick bin (ID 411)"
+    },
+    "412": {
+      "type": "pick",
+      "object": "pick_bin_412",
+      "name": "pick_bin_412",
+      "description": "Pick bin (ID 412)"
+    },
+    "413": {
+      "type": "pick",
+      "object": "pick_bin_413",
+      "name": "pick_bin_413",
+      "description": "Pick bin (ID 413)"
+    },
+    "414": {
+      "type": "pick",
+      "object": "pick_bin_414",
+      "name": "pick_bin_414",
+      "description": "Pick bin (ID 414)"
+    },
+    "415": {
+      "type": "pick",
+      "object": "pick_bin_415",
+      "name": "pick_bin_415",
+      "description": "Pick bin (ID 415)"
+    },
+    "416": {
+      "type": "pick",
+      "object": "pick_bin_416",
+      "name": "pick_bin_416",
+      "description": "Pick bin (ID 416)"
+    },
+    "417": {
+      "type": "pick",
+      "object": "pick_bin_417",
+      "name": "pick_bin_417",
+      "description": "Pick bin (ID 417)"
+    },
+    "418": {
+      "type": "pick",
+      "object": "pick_bin_418",
+      "name": "pick_bin_418",
+      "description": "Pick bin (ID 418)"
+    },
+    "419": {
+      "type": "pick",
+      "object": "pick_bin_419",
+      "name": "pick_bin_419",
+      "description": "Pick bin (ID 419)"
+    },
+    "420": {
+      "type": "pick",
+      "object": "pick_bin_420",
+      "name": "pick_bin_420",
+      "description": "Pick bin (ID 420)"
+    },
+    "421": {
+      "type": "pick",
+      "object": "pick_bin_421",
+      "name": "pick_bin_421",
+      "description": "Pick bin (ID 421)"
+    },
+    "422": {
+      "type": "pick",
+      "object": "pick_bin_422",
+      "name": "pick_bin_422",
+      "description": "Pick bin (ID 422)"
+    },
+    "423": {
+      "type": "pick",
+      "object": "pick_bin_423",
+      "name": "pick_bin_423",
+      "description": "Pick bin (ID 423)"
+    },
+    "424": {
+      "type": "pick",
+      "object": "pick_bin_424",
+      "name": "pick_bin_424",
+      "description": "Pick bin (ID 424)"
+    },
+    "425": {
+      "type": "pick",
+      "object": "pick_bin_425",
+      "name": "pick_bin_425",
+      "description": "Pick bin (ID 425)"
+    },
+    "426": {
+      "type": "pick",
+      "object": "pick_bin_426",
+      "name": "pick_bin_426",
+      "description": "Pick bin (ID 426)"
+    },
+    "427": {
+      "type": "pick",
+      "object": "pick_bin_427",
+      "name": "pick_bin_427",
+      "description": "Pick bin (ID 427)"
+    },
+    "428": {
+      "type": "pick",
+      "object": "pick_bin_428",
+      "name": "pick_bin_428",
+      "description": "Pick bin (ID 428)"
+    },
+    "429": {
+      "type": "pick",
+      "object": "pick_bin_429",
+      "name": "pick_bin_429",
+      "description": "Pick bin (ID 429)"
+    },
+    "430": {
+      "type": "pick",
+      "object": "pick_bin_430",
+      "name": "pick_bin_430",
+      "description": "Pick bin (ID 430)"
+    },
+    "431": {
+      "type": "pick",
+      "object": "pick_bin_431",
+      "name": "pick_bin_431",
+      "description": "Pick bin (ID 431)"
+    },
+    "432": {
+      "type": "pick",
+      "object": "pick_bin_432",
+      "name": "pick_bin_432",
+      "description": "Pick bin (ID 432)"
+    },
+    "433": {
+      "type": "pick",
+      "object": "pick_bin_433",
+      "name": "pick_bin_433",
+      "description": "Pick bin (ID 433)"
+    },
+    "434": {
+      "type": "pick",
+      "object": "pick_bin_434",
+      "name": "pick_bin_434",
+      "description": "Pick bin (ID 434)"
+    },
+    "435": {
+      "type": "pick",
+      "object": "pick_bin_435",
+      "name": "pick_bin_435",
+      "description": "Pick bin (ID 435)"
+    },
+    "436": {
+      "type": "pick",
+      "object": "pick_bin_436",
+      "name": "pick_bin_436",
+      "description": "Pick bin (ID 436)"
+    },
+    "437": {
+      "type": "pick",
+      "object": "pick_bin_437",
+      "name": "pick_bin_437",
+      "description": "Pick bin (ID 437)"
+    },
+    "438": {
+      "type": "pick",
+      "object": "pick_bin_438",
+      "name": "pick_bin_438",
+      "description": "Pick bin (ID 438)"
+    },
+    "439": {
+      "type": "pick",
+      "object": "pick_bin_439",
+      "name": "pick_bin_439",
+      "description": "Pick bin (ID 439)"
+    },
+    "440": {
+      "type": "pick",
+      "object": "pick_bin_440",
+      "name": "pick_bin_440",
+      "description": "Pick bin (ID 440)"
+    },
+    "441": {
+      "type": "pick",
+      "object": "pick_bin_441",
+      "name": "pick_bin_441",
+      "description": "Pick bin (ID 441)"
+    },
+    "442": {
+      "type": "pick",
+      "object": "pick_bin_442",
+      "name": "pick_bin_442",
+      "description": "Pick bin (ID 442)"
+    },
+    "443": {
+      "type": "pick",
+      "object": "pick_bin_443",
+      "name": "pick_bin_443",
+      "description": "Pick bin (ID 443)"
+    },
+    "444": {
+      "type": "pick",
+      "object": "pick_bin_444",
+      "name": "pick_bin_444",
+      "description": "Pick bin (ID 444)"
+    },
+    "445": {
+      "type": "pick",
+      "object": "pick_bin_445",
+      "name": "pick_bin_445",
+      "description": "Pick bin (ID 445)"
+    },
+    "446": {
+      "type": "pick",
+      "object": "pick_bin_446",
+      "name": "pick_bin_446",
+      "description": "Pick bin (ID 446)"
+    },
+    "447": {
+      "type": "pick",
+      "object": "pick_bin_447",
+      "name": "pick_bin_447",
+      "description": "Pick bin (ID 447)"
+    },
+    "448": {
+      "type": "pick",
+      "object": "pick_bin_448",
+      "name": "pick_bin_448",
+      "description": "Pick bin (ID 448)"
+    },
+    "449": {
+      "type": "pick",
+      "object": "pick_bin_449",
+      "name": "pick_bin_449",
+      "description": "Pick bin (ID 449)"
+    },
+    "450": {
+      "type": "pick",
+      "object": "pick_bin_450",
+      "name": "pick_bin_450",
+      "description": "Pick bin (ID 450)"
+    },
+    "451": {
+      "type": "pick",
+      "object": "pick_bin_451",
+      "name": "pick_bin_451",
+      "description": "Pick bin (ID 451)"
+    },
+    "452": {
+      "type": "pick",
+      "object": "pick_bin_452",
+      "name": "pick_bin_452",
+      "description": "Pick bin (ID 452)"
+    },
+    "453": {
+      "type": "pick",
+      "object": "pick_bin_453",
+      "name": "pick_bin_453",
+      "description": "Pick bin (ID 453)"
+    },
+    "454": {
+      "type": "pick",
+      "object": "pick_bin_454",
+      "name": "pick_bin_454",
+      "description": "Pick bin (ID 454)"
+    },
+    "455": {
+      "type": "pick",
+      "object": "pick_bin_455",
+      "name": "pick_bin_455",
+      "description": "Pick bin (ID 455)"
+    },
+    "456": {
+      "type": "pick",
+      "object": "pick_bin_456",
+      "name": "pick_bin_456",
+      "description": "Pick bin (ID 456)"
+    },
+    "457": {
+      "type": "pick",
+      "object": "pick_bin_457",
+      "name": "pick_bin_457",
+      "description": "Pick bin (ID 457)"
+    },
+    "458": {
+      "type": "pick",
+      "object": "pick_bin_458",
+      "name": "pick_bin_458",
+      "description": "Pick bin (ID 458)"
+    },
+    "459": {
+      "type": "pick",
+      "object": "pick_bin_459",
+      "name": "pick_bin_459",
+      "description": "Pick bin (ID 459)"
+    },
+    "460": {
+      "type": "pick",
+      "object": "pick_bin_460",
+      "name": "pick_bin_460",
+      "description": "Pick bin (ID 460)"
+    },
+    "461": {
+      "type": "pick",
+      "object": "pick_bin_461",
+      "name": "pick_bin_461",
+      "description": "Pick bin (ID 461)"
+    },
+    "462": {
+      "type": "pick",
+      "object": "pick_bin_462",
+      "name": "pick_bin_462",
+      "description": "Pick bin (ID 462)"
+    },
+    "463": {
+      "type": "pick",
+      "object": "pick_bin_463",
+      "name": "pick_bin_463",
+      "description": "Pick bin (ID 463)"
+    },
+    "464": {
+      "type": "pick",
+      "object": "pick_bin_464",
+      "name": "pick_bin_464",
+      "description": "Pick bin (ID 464)"
+    },
+    "465": {
+      "type": "pick",
+      "object": "pick_bin_465",
+      "name": "pick_bin_465",
+      "description": "Pick bin (ID 465)"
+    },
+    "466": {
+      "type": "pick",
+      "object": "pick_bin_466",
+      "name": "pick_bin_466",
+      "description": "Pick bin (ID 466)"
+    },
+    "467": {
+      "type": "pick",
+      "object": "pick_bin_467",
+      "name": "pick_bin_467",
+      "description": "Pick bin (ID 467)"
+    },
+    "468": {
+      "type": "pick",
+      "object": "pick_bin_468",
+      "name": "pick_bin_468",
+      "description": "Pick bin (ID 468)"
+    },
+    "469": {
+      "type": "pick",
+      "object": "pick_bin_469",
+      "name": "pick_bin_469",
+      "description": "Pick bin (ID 469)"
+    },
+    "470": {
+      "type": "pick",
+      "object": "pick_bin_470",
+      "name": "pick_bin_470",
+      "description": "Pick bin (ID 470)"
+    },
+    "471": {
+      "type": "pick",
+      "object": "pick_bin_471",
+      "name": "pick_bin_471",
+      "description": "Pick bin (ID 471)"
+    },
+    "472": {
+      "type": "pick",
+      "object": "pick_bin_472",
+      "name": "pick_bin_472",
+      "description": "Pick bin (ID 472)"
+    },
+    "473": {
+      "type": "pick",
+      "object": "pick_bin_473",
+      "name": "pick_bin_473",
+      "description": "Pick bin (ID 473)"
+    },
+    "474": {
+      "type": "pick",
+      "object": "pick_bin_474",
+      "name": "pick_bin_474",
+      "description": "Pick bin (ID 474)"
+    },
+    "475": {
+      "type": "pick",
+      "object": "pick_bin_475",
+      "name": "pick_bin_475",
+      "description": "Pick bin (ID 475)"
+    },
+    "476": {
+      "type": "pick",
+      "object": "pick_bin_476",
+      "name": "pick_bin_476",
+      "description": "Pick bin (ID 476)"
+    },
+    "477": {
+      "type": "pick",
+      "object": "pick_bin_477",
+      "name": "pick_bin_477",
+      "description": "Pick bin (ID 477)"
+    },
+    "478": {
+      "type": "pick",
+      "object": "pick_bin_478",
+      "name": "pick_bin_478",
+      "description": "Pick bin (ID 478)"
+    },
+    "479": {
+      "type": "pick",
+      "object": "pick_bin_479",
+      "name": "pick_bin_479",
+      "description": "Pick bin (ID 479)"
+    },
+    "480": {
+      "type": "pick",
+      "object": "pick_bin_480",
+      "name": "pick_bin_480",
+      "description": "Pick bin (ID 480)"
+    },
+    "481": {
+      "type": "pick",
+      "object": "pick_bin_481",
+      "name": "pick_bin_481",
+      "description": "Pick bin (ID 481)"
+    },
+    "482": {
+      "type": "pick",
+      "object": "pick_bin_482",
+      "name": "pick_bin_482",
+      "description": "Pick bin (ID 482)"
+    },
+    "483": {
+      "type": "pick",
+      "object": "pick_bin_483",
+      "name": "pick_bin_483",
+      "description": "Pick bin (ID 483)"
+    },
+    "484": {
+      "type": "pick",
+      "object": "pick_bin_484",
+      "name": "pick_bin_484",
+      "description": "Pick bin (ID 484)"
+    },
+    "485": {
+      "type": "pick",
+      "object": "pick_bin_485",
+      "name": "pick_bin_485",
+      "description": "Pick bin (ID 485)"
+    },
+    "486": {
+      "type": "pick",
+      "object": "pick_bin_486",
+      "name": "pick_bin_486",
+      "description": "Pick bin (ID 486)"
+    },
+    "487": {
+      "type": "pick",
+      "object": "pick_bin_487",
+      "name": "pick_bin_487",
+      "description": "Pick bin (ID 487)"
+    },
+    "488": {
+      "type": "pick",
+      "object": "pick_bin_488",
+      "name": "pick_bin_488",
+      "description": "Pick bin (ID 488)"
+    },
+    "489": {
+      "type": "pick",
+      "object": "pick_bin_489",
+      "name": "pick_bin_489",
+      "description": "Pick bin (ID 489)"
+    },
+    "490": {
+      "type": "pick",
+      "object": "pick_bin_490",
+      "name": "pick_bin_490",
+      "description": "Pick bin (ID 490)"
+    },
+    "491": {
+      "type": "pick",
+      "object": "pick_bin_491",
+      "name": "pick_bin_491",
+      "description": "Pick bin (ID 491)"
+    },
+    "492": {
+      "type": "pick",
+      "object": "pick_bin_492",
+      "name": "pick_bin_492",
+      "description": "Pick bin (ID 492)"
+    },
+    "493": {
+      "type": "pick",
+      "object": "pick_bin_493",
+      "name": "pick_bin_493",
+      "description": "Pick bin (ID 493)"
+    },
+    "494": {
+      "type": "pick",
+      "object": "pick_bin_494",
+      "name": "pick_bin_494",
+      "description": "Pick bin (ID 494)"
+    },
+    "495": {
+      "type": "pick",
+      "object": "pick_bin_495",
+      "name": "pick_bin_495",
+      "description": "Pick bin (ID 495)"
+    },
+    "496": {
+      "type": "pick",
+      "object": "pick_bin_496",
+      "name": "pick_bin_496",
+      "description": "Pick bin (ID 496)"
+    },
+    "497": {
+      "type": "pick",
+      "object": "pick_bin_497",
+      "name": "pick_bin_497",
+      "description": "Pick bin (ID 497)"
+    },
+    "498": {
+      "type": "pick",
+      "object": "pick_bin_498",
+      "name": "pick_bin_498",
+      "description": "Pick bin (ID 498)"
+    },
+    "499": {
+      "type": "pick",
+      "object": "pick_bin_499",
+      "name": "pick_bin_499",
+      "description": "Pick bin (ID 499)"
+    },
+    "500": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_500",
+      "description": "Place bin (ID 500)"
+    },
+    "501": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_501",
+      "description": "Place bin (ID 501)"
+    },
+    "502": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_502",
+      "description": "Place bin (ID 502)"
+    },
+    "503": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_503",
+      "description": "Place bin (ID 503)"
+    },
+    "504": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_504",
+      "description": "Place bin (ID 504)"
+    },
+    "505": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_505",
+      "description": "Place bin (ID 505)"
+    },
+    "506": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_506",
+      "description": "Place bin (ID 506)"
+    },
+    "507": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_507",
+      "description": "Place bin (ID 507)"
+    },
+    "508": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_508",
+      "description": "Place bin (ID 508)"
+    },
+    "509": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_509",
+      "description": "Place bin (ID 509)"
+    },
+    "510": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_510",
+      "description": "Place bin (ID 510)"
+    },
+    "511": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_511",
+      "description": "Place bin (ID 511)"
+    },
+    "512": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_512",
+      "description": "Place bin (ID 512)"
+    },
+    "513": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_513",
+      "description": "Place bin (ID 513)"
+    },
+    "514": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_514",
+      "description": "Place bin (ID 514)"
+    },
+    "515": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_515",
+      "description": "Place bin (ID 515)"
+    },
+    "516": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_516",
+      "description": "Place bin (ID 516)"
+    },
+    "517": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_517",
+      "description": "Place bin (ID 517)"
+    },
+    "518": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_518",
+      "description": "Place bin (ID 518)"
+    },
+    "519": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_519",
+      "description": "Place bin (ID 519)"
+    },
+    "520": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_520",
+      "description": "Place bin (ID 520)"
+    },
+    "521": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_521",
+      "description": "Place bin (ID 521)"
+    },
+    "522": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_522",
+      "description": "Place bin (ID 522)"
+    },
+    "523": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_523",
+      "description": "Place bin (ID 523)"
+    },
+    "524": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_524",
+      "description": "Place bin (ID 524)"
+    },
+    "525": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_525",
+      "description": "Place bin (ID 525)"
+    },
+    "526": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_526",
+      "description": "Place bin (ID 526)"
+    },
+    "527": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_527",
+      "description": "Place bin (ID 527)"
+    },
+    "528": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_528",
+      "description": "Place bin (ID 528)"
+    },
+    "529": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_529",
+      "description": "Place bin (ID 529)"
+    },
+    "530": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_530",
+      "description": "Place bin (ID 530)"
+    },
+    "531": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_531",
+      "description": "Place bin (ID 531)"
+    },
+    "532": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_532",
+      "description": "Place bin (ID 532)"
+    },
+    "533": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_533",
+      "description": "Place bin (ID 533)"
+    },
+    "534": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_534",
+      "description": "Place bin (ID 534)"
+    },
+    "535": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_535",
+      "description": "Place bin (ID 535)"
+    },
+    "536": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_536",
+      "description": "Place bin (ID 536)"
+    },
+    "537": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_537",
+      "description": "Place bin (ID 537)"
+    },
+    "538": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_538",
+      "description": "Place bin (ID 538)"
+    },
+    "539": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_539",
+      "description": "Place bin (ID 539)"
+    },
+    "540": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_540",
+      "description": "Place bin (ID 540)"
+    },
+    "541": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_541",
+      "description": "Place bin (ID 541)"
+    },
+    "542": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_542",
+      "description": "Place bin (ID 542)"
+    },
+    "543": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_543",
+      "description": "Place bin (ID 543)"
+    },
+    "544": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_544",
+      "description": "Place bin (ID 544)"
+    },
+    "545": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_545",
+      "description": "Place bin (ID 545)"
+    },
+    "546": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_546",
+      "description": "Place bin (ID 546)"
+    },
+    "547": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_547",
+      "description": "Place bin (ID 547)"
+    },
+    "548": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_548",
+      "description": "Place bin (ID 548)"
+    },
+    "549": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_549",
+      "description": "Place bin (ID 549)"
+    },
+    "550": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_550",
+      "description": "Place bin (ID 550)"
+    },
+    "551": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_551",
+      "description": "Place bin (ID 551)"
+    },
+    "552": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_552",
+      "description": "Place bin (ID 552)"
+    },
+    "553": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_553",
+      "description": "Place bin (ID 553)"
+    },
+    "554": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_554",
+      "description": "Place bin (ID 554)"
+    },
+    "555": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_555",
+      "description": "Place bin (ID 555)"
+    },
+    "556": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_556",
+      "description": "Place bin (ID 556)"
+    },
+    "557": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_557",
+      "description": "Place bin (ID 557)"
+    },
+    "558": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_558",
+      "description": "Place bin (ID 558)"
+    },
+    "559": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_559",
+      "description": "Place bin (ID 559)"
+    },
+    "560": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_560",
+      "description": "Place bin (ID 560)"
+    },
+    "561": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_561",
+      "description": "Place bin (ID 561)"
+    },
+    "562": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_562",
+      "description": "Place bin (ID 562)"
+    },
+    "563": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_563",
+      "description": "Place bin (ID 563)"
+    },
+    "564": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_564",
+      "description": "Place bin (ID 564)"
+    },
+    "565": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_565",
+      "description": "Place bin (ID 565)"
+    },
+    "566": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_566",
+      "description": "Place bin (ID 566)"
+    },
+    "567": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_567",
+      "description": "Place bin (ID 567)"
+    },
+    "568": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_568",
+      "description": "Place bin (ID 568)"
+    },
+    "569": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_569",
+      "description": "Place bin (ID 569)"
+    },
+    "570": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_570",
+      "description": "Place bin (ID 570)"
+    },
+    "571": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_571",
+      "description": "Place bin (ID 571)"
+    },
+    "572": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_572",
+      "description": "Place bin (ID 572)"
+    },
+    "573": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_573",
+      "description": "Place bin (ID 573)"
+    },
+    "574": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_574",
+      "description": "Place bin (ID 574)"
+    },
+    "575": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_575",
+      "description": "Place bin (ID 575)"
+    },
+    "576": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_576",
+      "description": "Place bin (ID 576)"
+    },
+    "577": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_577",
+      "description": "Place bin (ID 577)"
+    },
+    "578": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_578",
+      "description": "Place bin (ID 578)"
+    },
+    "579": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_579",
+      "description": "Place bin (ID 579)"
+    },
+    "580": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_580",
+      "description": "Place bin (ID 580)"
+    },
+    "581": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_581",
+      "description": "Place bin (ID 581)"
+    },
+    "582": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_582",
+      "description": "Place bin (ID 582)"
+    },
+    "583": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_583",
+      "description": "Place bin (ID 583)"
+    },
+    "584": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_584",
+      "description": "Place bin (ID 584)"
+    },
+    "585": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_585",
+      "description": "Place bin (ID 585)"
+    },
+    "586": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_586",
+      "description": "Place bin (ID 586)"
+    },
+    "587": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_587",
+      "description": "Place bin (ID 587)"
+    },
+    "588": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_588",
+      "description": "Place bin (ID 588)"
+    },
+    "589": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_589",
+      "description": "Place bin (ID 589)"
+    },
+    "590": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_590",
+      "description": "Place bin (ID 590)"
+    },
+    "591": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_591",
+      "description": "Place bin (ID 591)"
+    },
+    "592": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_592",
+      "description": "Place bin (ID 592)"
+    },
+    "593": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_593",
+      "description": "Place bin (ID 593)"
+    },
+    "594": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_594",
+      "description": "Place bin (ID 594)"
+    },
+    "595": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_595",
+      "description": "Place bin (ID 595)"
+    },
+    "596": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_596",
+      "description": "Place bin (ID 596)"
+    },
+    "597": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_597",
+      "description": "Place bin (ID 597)"
+    },
+    "598": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_598",
+      "description": "Place bin (ID 598)"
+    },
+    "599": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_599",
+      "description": "Place bin (ID 599)"
+    },
+    "600": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_600",
+      "description": "Place bin (ID 600)"
+    },
+    "601": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_601",
+      "description": "Place bin (ID 601)"
+    },
+    "602": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_602",
+      "description": "Place bin (ID 602)"
+    },
+    "603": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_603",
+      "description": "Place bin (ID 603)"
+    },
+    "604": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_604",
+      "description": "Place bin (ID 604)"
+    },
+    "605": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_605",
+      "description": "Place bin (ID 605)"
+    },
+    "606": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_606",
+      "description": "Place bin (ID 606)"
+    },
+    "607": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_607",
+      "description": "Place bin (ID 607)"
+    },
+    "608": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_608",
+      "description": "Place bin (ID 608)"
+    },
+    "609": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_609",
+      "description": "Place bin (ID 609)"
+    },
+    "610": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_610",
+      "description": "Place bin (ID 610)"
+    },
+    "611": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_611",
+      "description": "Place bin (ID 611)"
+    },
+    "612": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_612",
+      "description": "Place bin (ID 612)"
+    },
+    "613": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_613",
+      "description": "Place bin (ID 613)"
+    },
+    "614": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_614",
+      "description": "Place bin (ID 614)"
+    },
+    "615": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_615",
+      "description": "Place bin (ID 615)"
+    },
+    "616": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_616",
+      "description": "Place bin (ID 616)"
+    },
+    "617": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_617",
+      "description": "Place bin (ID 617)"
+    },
+    "618": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_618",
+      "description": "Place bin (ID 618)"
+    },
+    "619": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_619",
+      "description": "Place bin (ID 619)"
+    },
+    "620": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_620",
+      "description": "Place bin (ID 620)"
+    },
+    "621": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_621",
+      "description": "Place bin (ID 621)"
+    },
+    "622": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_622",
+      "description": "Place bin (ID 622)"
+    },
+    "623": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_623",
+      "description": "Place bin (ID 623)"
+    },
+    "624": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_624",
+      "description": "Place bin (ID 624)"
+    },
+    "625": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_625",
+      "description": "Place bin (ID 625)"
+    },
+    "626": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_626",
+      "description": "Place bin (ID 626)"
+    },
+    "627": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_627",
+      "description": "Place bin (ID 627)"
+    },
+    "628": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_628",
+      "description": "Place bin (ID 628)"
+    },
+    "629": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_629",
+      "description": "Place bin (ID 629)"
+    },
+    "630": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_630",
+      "description": "Place bin (ID 630)"
+    },
+    "631": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_631",
+      "description": "Place bin (ID 631)"
+    },
+    "632": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_632",
+      "description": "Place bin (ID 632)"
+    },
+    "633": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_633",
+      "description": "Place bin (ID 633)"
+    },
+    "634": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_634",
+      "description": "Place bin (ID 634)"
+    },
+    "635": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_635",
+      "description": "Place bin (ID 635)"
+    },
+    "636": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_636",
+      "description": "Place bin (ID 636)"
+    },
+    "637": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_637",
+      "description": "Place bin (ID 637)"
+    },
+    "638": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_638",
+      "description": "Place bin (ID 638)"
+    },
+    "639": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_639",
+      "description": "Place bin (ID 639)"
+    },
+    "640": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_640",
+      "description": "Place bin (ID 640)"
+    },
+    "641": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_641",
+      "description": "Place bin (ID 641)"
+    },
+    "642": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_642",
+      "description": "Place bin (ID 642)"
+    },
+    "643": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_643",
+      "description": "Place bin (ID 643)"
+    },
+    "644": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_644",
+      "description": "Place bin (ID 644)"
+    },
+    "645": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_645",
+      "description": "Place bin (ID 645)"
+    },
+    "646": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_646",
+      "description": "Place bin (ID 646)"
+    },
+    "647": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_647",
+      "description": "Place bin (ID 647)"
+    },
+    "648": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_648",
+      "description": "Place bin (ID 648)"
+    },
+    "649": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_649",
+      "description": "Place bin (ID 649)"
+    },
+    "650": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_650",
+      "description": "Place bin (ID 650)"
+    },
+    "651": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_651",
+      "description": "Place bin (ID 651)"
+    },
+    "652": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_652",
+      "description": "Place bin (ID 652)"
+    },
+    "653": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_653",
+      "description": "Place bin (ID 653)"
+    },
+    "654": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_654",
+      "description": "Place bin (ID 654)"
+    },
+    "655": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_655",
+      "description": "Place bin (ID 655)"
+    },
+    "656": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_656",
+      "description": "Place bin (ID 656)"
+    },
+    "657": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_657",
+      "description": "Place bin (ID 657)"
+    },
+    "658": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_658",
+      "description": "Place bin (ID 658)"
+    },
+    "659": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_659",
+      "description": "Place bin (ID 659)"
+    },
+    "660": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_660",
+      "description": "Place bin (ID 660)"
+    },
+    "661": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_661",
+      "description": "Place bin (ID 661)"
+    },
+    "662": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_662",
+      "description": "Place bin (ID 662)"
+    },
+    "663": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_663",
+      "description": "Place bin (ID 663)"
+    },
+    "664": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_664",
+      "description": "Place bin (ID 664)"
+    },
+    "665": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_665",
+      "description": "Place bin (ID 665)"
+    },
+    "666": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_666",
+      "description": "Place bin (ID 666)"
+    },
+    "667": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_667",
+      "description": "Place bin (ID 667)"
+    },
+    "668": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_668",
+      "description": "Place bin (ID 668)"
+    },
+    "669": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_669",
+      "description": "Place bin (ID 669)"
+    },
+    "670": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_670",
+      "description": "Place bin (ID 670)"
+    },
+    "671": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_671",
+      "description": "Place bin (ID 671)"
+    },
+    "672": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_672",
+      "description": "Place bin (ID 672)"
+    },
+    "673": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_673",
+      "description": "Place bin (ID 673)"
+    },
+    "674": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_674",
+      "description": "Place bin (ID 674)"
+    },
+    "675": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_675",
+      "description": "Place bin (ID 675)"
+    },
+    "676": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_676",
+      "description": "Place bin (ID 676)"
+    },
+    "677": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_677",
+      "description": "Place bin (ID 677)"
+    },
+    "678": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_678",
+      "description": "Place bin (ID 678)"
+    },
+    "679": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_679",
+      "description": "Place bin (ID 679)"
+    },
+    "680": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_680",
+      "description": "Place bin (ID 680)"
+    },
+    "681": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_681",
+      "description": "Place bin (ID 681)"
+    },
+    "682": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_682",
+      "description": "Place bin (ID 682)"
+    },
+    "683": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_683",
+      "description": "Place bin (ID 683)"
+    },
+    "684": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_684",
+      "description": "Place bin (ID 684)"
+    },
+    "685": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_685",
+      "description": "Place bin (ID 685)"
+    },
+    "686": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_686",
+      "description": "Place bin (ID 686)"
+    },
+    "687": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_687",
+      "description": "Place bin (ID 687)"
+    },
+    "688": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_688",
+      "description": "Place bin (ID 688)"
+    },
+    "689": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_689",
+      "description": "Place bin (ID 689)"
+    },
+    "690": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_690",
+      "description": "Place bin (ID 690)"
+    },
+    "691": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_691",
+      "description": "Place bin (ID 691)"
+    },
+    "692": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_692",
+      "description": "Place bin (ID 692)"
+    },
+    "693": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_693",
+      "description": "Place bin (ID 693)"
+    },
+    "694": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_694",
+      "description": "Place bin (ID 694)"
+    },
+    "695": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_695",
+      "description": "Place bin (ID 695)"
+    },
+    "696": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_696",
+      "description": "Place bin (ID 696)"
+    },
+    "697": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_697",
+      "description": "Place bin (ID 697)"
+    },
+    "698": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_698",
+      "description": "Place bin (ID 698)"
+    },
+    "699": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_699",
+      "description": "Place bin (ID 699)"
+    },
+    "700": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_700",
+      "description": "Place bin (ID 700)"
+    },
+    "701": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_701",
+      "description": "Place bin (ID 701)"
+    },
+    "702": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_702",
+      "description": "Place bin (ID 702)"
+    },
+    "703": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_703",
+      "description": "Place bin (ID 703)"
+    },
+    "704": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_704",
+      "description": "Place bin (ID 704)"
+    },
+    "705": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_705",
+      "description": "Place bin (ID 705)"
+    },
+    "706": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_706",
+      "description": "Place bin (ID 706)"
+    },
+    "707": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_707",
+      "description": "Place bin (ID 707)"
+    },
+    "708": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_708",
+      "description": "Place bin (ID 708)"
+    },
+    "709": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_709",
+      "description": "Place bin (ID 709)"
+    },
+    "710": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_710",
+      "description": "Place bin (ID 710)"
+    },
+    "711": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_711",
+      "description": "Place bin (ID 711)"
+    },
+    "712": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_712",
+      "description": "Place bin (ID 712)"
+    },
+    "713": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_713",
+      "description": "Place bin (ID 713)"
+    },
+    "714": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_714",
+      "description": "Place bin (ID 714)"
+    },
+    "715": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_715",
+      "description": "Place bin (ID 715)"
+    },
+    "716": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_716",
+      "description": "Place bin (ID 716)"
+    },
+    "717": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_717",
+      "description": "Place bin (ID 717)"
+    },
+    "718": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_718",
+      "description": "Place bin (ID 718)"
+    },
+    "719": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_719",
+      "description": "Place bin (ID 719)"
+    },
+    "720": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_720",
+      "description": "Place bin (ID 720)"
+    },
+    "721": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_721",
+      "description": "Place bin (ID 721)"
+    },
+    "722": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_722",
+      "description": "Place bin (ID 722)"
+    },
+    "723": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_723",
+      "description": "Place bin (ID 723)"
+    },
+    "724": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_724",
+      "description": "Place bin (ID 724)"
+    },
+    "725": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_725",
+      "description": "Place bin (ID 725)"
+    },
+    "726": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_726",
+      "description": "Place bin (ID 726)"
+    },
+    "727": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_727",
+      "description": "Place bin (ID 727)"
+    },
+    "728": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_728",
+      "description": "Place bin (ID 728)"
+    },
+    "729": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_729",
+      "description": "Place bin (ID 729)"
+    },
+    "730": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_730",
+      "description": "Place bin (ID 730)"
+    },
+    "731": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_731",
+      "description": "Place bin (ID 731)"
+    },
+    "732": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_732",
+      "description": "Place bin (ID 732)"
+    },
+    "733": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_733",
+      "description": "Place bin (ID 733)"
+    },
+    "734": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_734",
+      "description": "Place bin (ID 734)"
+    },
+    "735": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_735",
+      "description": "Place bin (ID 735)"
+    },
+    "736": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_736",
+      "description": "Place bin (ID 736)"
+    },
+    "737": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_737",
+      "description": "Place bin (ID 737)"
+    },
+    "738": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_738",
+      "description": "Place bin (ID 738)"
+    },
+    "739": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_739",
+      "description": "Place bin (ID 739)"
+    },
+    "740": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_740",
+      "description": "Place bin (ID 740)"
+    },
+    "741": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_741",
+      "description": "Place bin (ID 741)"
+    },
+    "742": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_742",
+      "description": "Place bin (ID 742)"
+    },
+    "743": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_743",
+      "description": "Place bin (ID 743)"
+    },
+    "744": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_744",
+      "description": "Place bin (ID 744)"
+    },
+    "745": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_745",
+      "description": "Place bin (ID 745)"
+    },
+    "746": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_746",
+      "description": "Place bin (ID 746)"
+    },
+    "747": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_747",
+      "description": "Place bin (ID 747)"
+    },
+    "748": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_748",
+      "description": "Place bin (ID 748)"
+    },
+    "749": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_749",
+      "description": "Place bin (ID 749)"
+    },
+    "750": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_750",
+      "description": "Place bin (ID 750)"
+    },
+    "751": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_751",
+      "description": "Place bin (ID 751)"
+    },
+    "752": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_752",
+      "description": "Place bin (ID 752)"
+    },
+    "753": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_753",
+      "description": "Place bin (ID 753)"
+    },
+    "754": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_754",
+      "description": "Place bin (ID 754)"
+    },
+    "755": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_755",
+      "description": "Place bin (ID 755)"
+    },
+    "756": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_756",
+      "description": "Place bin (ID 756)"
+    },
+    "757": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_757",
+      "description": "Place bin (ID 757)"
+    },
+    "758": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_758",
+      "description": "Place bin (ID 758)"
+    },
+    "759": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_759",
+      "description": "Place bin (ID 759)"
+    },
+    "760": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_760",
+      "description": "Place bin (ID 760)"
+    },
+    "761": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_761",
+      "description": "Place bin (ID 761)"
+    },
+    "762": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_762",
+      "description": "Place bin (ID 762)"
+    },
+    "763": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_763",
+      "description": "Place bin (ID 763)"
+    },
+    "764": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_764",
+      "description": "Place bin (ID 764)"
+    },
+    "765": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_765",
+      "description": "Place bin (ID 765)"
+    },
+    "766": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_766",
+      "description": "Place bin (ID 766)"
+    },
+    "767": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_767",
+      "description": "Place bin (ID 767)"
+    },
+    "768": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_768",
+      "description": "Place bin (ID 768)"
+    },
+    "769": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_769",
+      "description": "Place bin (ID 769)"
+    },
+    "770": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_770",
+      "description": "Place bin (ID 770)"
+    },
+    "771": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_771",
+      "description": "Place bin (ID 771)"
+    },
+    "772": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_772",
+      "description": "Place bin (ID 772)"
+    },
+    "773": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_773",
+      "description": "Place bin (ID 773)"
+    },
+    "774": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_774",
+      "description": "Place bin (ID 774)"
+    },
+    "775": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_775",
+      "description": "Place bin (ID 775)"
+    },
+    "776": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_776",
+      "description": "Place bin (ID 776)"
+    },
+    "777": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_777",
+      "description": "Place bin (ID 777)"
+    },
+    "778": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_778",
+      "description": "Place bin (ID 778)"
+    },
+    "779": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_779",
+      "description": "Place bin (ID 779)"
+    },
+    "780": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_780",
+      "description": "Place bin (ID 780)"
+    },
+    "781": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_781",
+      "description": "Place bin (ID 781)"
+    },
+    "782": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_782",
+      "description": "Place bin (ID 782)"
+    },
+    "783": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_783",
+      "description": "Place bin (ID 783)"
+    },
+    "784": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_784",
+      "description": "Place bin (ID 784)"
+    },
+    "785": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_785",
+      "description": "Place bin (ID 785)"
+    },
+    "786": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_786",
+      "description": "Place bin (ID 786)"
+    },
+    "787": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_787",
+      "description": "Place bin (ID 787)"
+    },
+    "788": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_788",
+      "description": "Place bin (ID 788)"
+    },
+    "789": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_789",
+      "description": "Place bin (ID 789)"
+    },
+    "790": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_790",
+      "description": "Place bin (ID 790)"
+    },
+    "791": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_791",
+      "description": "Place bin (ID 791)"
+    },
+    "792": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_792",
+      "description": "Place bin (ID 792)"
+    },
+    "793": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_793",
+      "description": "Place bin (ID 793)"
+    },
+    "794": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_794",
+      "description": "Place bin (ID 794)"
+    },
+    "795": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_795",
+      "description": "Place bin (ID 795)"
+    },
+    "796": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_796",
+      "description": "Place bin (ID 796)"
+    },
+    "797": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_797",
+      "description": "Place bin (ID 797)"
+    },
+    "798": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_798",
+      "description": "Place bin (ID 798)"
+    },
+    "799": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_799",
+      "description": "Place bin (ID 799)"
+    },
+    "800": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_800",
+      "description": "Place bin (ID 800)"
+    },
+    "801": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_801",
+      "description": "Place bin (ID 801)"
+    },
+    "802": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_802",
+      "description": "Place bin (ID 802)"
+    },
+    "803": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_803",
+      "description": "Place bin (ID 803)"
+    },
+    "804": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_804",
+      "description": "Place bin (ID 804)"
+    },
+    "805": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_805",
+      "description": "Place bin (ID 805)"
+    },
+    "806": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_806",
+      "description": "Place bin (ID 806)"
+    },
+    "807": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_807",
+      "description": "Place bin (ID 807)"
+    },
+    "808": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_808",
+      "description": "Place bin (ID 808)"
+    },
+    "809": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_809",
+      "description": "Place bin (ID 809)"
+    },
+    "810": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_810",
+      "description": "Place bin (ID 810)"
+    },
+    "811": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_811",
+      "description": "Place bin (ID 811)"
+    },
+    "812": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_812",
+      "description": "Place bin (ID 812)"
+    },
+    "813": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_813",
+      "description": "Place bin (ID 813)"
+    },
+    "814": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_814",
+      "description": "Place bin (ID 814)"
+    },
+    "815": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_815",
+      "description": "Place bin (ID 815)"
+    },
+    "816": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_816",
+      "description": "Place bin (ID 816)"
+    },
+    "817": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_817",
+      "description": "Place bin (ID 817)"
+    },
+    "818": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_818",
+      "description": "Place bin (ID 818)"
+    },
+    "819": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_819",
+      "description": "Place bin (ID 819)"
+    },
+    "820": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_820",
+      "description": "Place bin (ID 820)"
+    },
+    "821": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_821",
+      "description": "Place bin (ID 821)"
+    },
+    "822": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_822",
+      "description": "Place bin (ID 822)"
+    },
+    "823": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_823",
+      "description": "Place bin (ID 823)"
+    },
+    "824": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_824",
+      "description": "Place bin (ID 824)"
+    },
+    "825": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_825",
+      "description": "Place bin (ID 825)"
+    },
+    "826": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_826",
+      "description": "Place bin (ID 826)"
+    },
+    "827": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_827",
+      "description": "Place bin (ID 827)"
+    },
+    "828": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_828",
+      "description": "Place bin (ID 828)"
+    },
+    "829": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_829",
+      "description": "Place bin (ID 829)"
+    },
+    "830": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_830",
+      "description": "Place bin (ID 830)"
+    },
+    "831": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_831",
+      "description": "Place bin (ID 831)"
+    },
+    "832": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_832",
+      "description": "Place bin (ID 832)"
+    },
+    "833": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_833",
+      "description": "Place bin (ID 833)"
+    },
+    "834": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_834",
+      "description": "Place bin (ID 834)"
+    },
+    "835": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_835",
+      "description": "Place bin (ID 835)"
+    },
+    "836": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_836",
+      "description": "Place bin (ID 836)"
+    },
+    "837": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_837",
+      "description": "Place bin (ID 837)"
+    },
+    "838": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_838",
+      "description": "Place bin (ID 838)"
+    },
+    "839": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_839",
+      "description": "Place bin (ID 839)"
+    },
+    "840": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_840",
+      "description": "Place bin (ID 840)"
+    },
+    "841": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_841",
+      "description": "Place bin (ID 841)"
+    },
+    "842": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_842",
+      "description": "Place bin (ID 842)"
+    },
+    "843": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_843",
+      "description": "Place bin (ID 843)"
+    },
+    "844": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_844",
+      "description": "Place bin (ID 844)"
+    },
+    "845": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_845",
+      "description": "Place bin (ID 845)"
+    },
+    "846": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_846",
+      "description": "Place bin (ID 846)"
+    },
+    "847": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_847",
+      "description": "Place bin (ID 847)"
+    },
+    "848": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_848",
+      "description": "Place bin (ID 848)"
+    },
+    "849": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_849",
+      "description": "Place bin (ID 849)"
+    },
+    "850": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_850",
+      "description": "Place bin (ID 850)"
+    },
+    "851": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_851",
+      "description": "Place bin (ID 851)"
+    },
+    "852": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_852",
+      "description": "Place bin (ID 852)"
+    },
+    "853": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_853",
+      "description": "Place bin (ID 853)"
+    },
+    "854": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_854",
+      "description": "Place bin (ID 854)"
+    },
+    "855": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_855",
+      "description": "Place bin (ID 855)"
+    },
+    "856": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_856",
+      "description": "Place bin (ID 856)"
+    },
+    "857": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_857",
+      "description": "Place bin (ID 857)"
+    },
+    "858": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_858",
+      "description": "Place bin (ID 858)"
+    },
+    "859": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_859",
+      "description": "Place bin (ID 859)"
+    },
+    "860": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_860",
+      "description": "Place bin (ID 860)"
+    },
+    "861": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_861",
+      "description": "Place bin (ID 861)"
+    },
+    "862": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_862",
+      "description": "Place bin (ID 862)"
+    },
+    "863": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_863",
+      "description": "Place bin (ID 863)"
+    },
+    "864": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_864",
+      "description": "Place bin (ID 864)"
+    },
+    "865": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_865",
+      "description": "Place bin (ID 865)"
+    },
+    "866": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_866",
+      "description": "Place bin (ID 866)"
+    },
+    "867": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_867",
+      "description": "Place bin (ID 867)"
+    },
+    "868": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_868",
+      "description": "Place bin (ID 868)"
+    },
+    "869": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_869",
+      "description": "Place bin (ID 869)"
+    },
+    "870": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_870",
+      "description": "Place bin (ID 870)"
+    },
+    "871": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_871",
+      "description": "Place bin (ID 871)"
+    },
+    "872": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_872",
+      "description": "Place bin (ID 872)"
+    },
+    "873": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_873",
+      "description": "Place bin (ID 873)"
+    },
+    "874": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_874",
+      "description": "Place bin (ID 874)"
+    },
+    "875": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_875",
+      "description": "Place bin (ID 875)"
+    },
+    "876": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_876",
+      "description": "Place bin (ID 876)"
+    },
+    "877": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_877",
+      "description": "Place bin (ID 877)"
+    },
+    "878": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_878",
+      "description": "Place bin (ID 878)"
+    },
+    "879": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_879",
+      "description": "Place bin (ID 879)"
+    },
+    "880": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_880",
+      "description": "Place bin (ID 880)"
+    },
+    "881": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_881",
+      "description": "Place bin (ID 881)"
+    },
+    "882": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_882",
+      "description": "Place bin (ID 882)"
+    },
+    "883": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_883",
+      "description": "Place bin (ID 883)"
+    },
+    "884": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_884",
+      "description": "Place bin (ID 884)"
+    },
+    "885": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_885",
+      "description": "Place bin (ID 885)"
+    },
+    "886": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_886",
+      "description": "Place bin (ID 886)"
+    },
+    "887": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_887",
+      "description": "Place bin (ID 887)"
+    },
+    "888": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_888",
+      "description": "Place bin (ID 888)"
+    },
+    "889": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_889",
+      "description": "Place bin (ID 889)"
+    },
+    "890": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_890",
+      "description": "Place bin (ID 890)"
+    },
+    "891": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_891",
+      "description": "Place bin (ID 891)"
+    },
+    "892": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_892",
+      "description": "Place bin (ID 892)"
+    },
+    "893": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_893",
+      "description": "Place bin (ID 893)"
+    },
+    "894": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_894",
+      "description": "Place bin (ID 894)"
+    },
+    "895": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_895",
+      "description": "Place bin (ID 895)"
+    },
+    "896": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_896",
+      "description": "Place bin (ID 896)"
+    },
+    "897": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_897",
+      "description": "Place bin (ID 897)"
+    },
+    "898": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_898",
+      "description": "Place bin (ID 898)"
+    },
+    "899": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_899",
+      "description": "Place bin (ID 899)"
+    },
+    "900": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_900",
+      "description": "Place bin (ID 900)"
+    },
+    "901": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_901",
+      "description": "Place bin (ID 901)"
+    },
+    "902": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_902",
+      "description": "Place bin (ID 902)"
+    },
+    "903": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_903",
+      "description": "Place bin (ID 903)"
+    },
+    "904": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_904",
+      "description": "Place bin (ID 904)"
+    },
+    "905": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_905",
+      "description": "Place bin (ID 905)"
+    },
+    "906": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_906",
+      "description": "Place bin (ID 906)"
+    },
+    "907": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_907",
+      "description": "Place bin (ID 907)"
+    },
+    "908": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_908",
+      "description": "Place bin (ID 908)"
+    },
+    "909": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_909",
+      "description": "Place bin (ID 909)"
+    },
+    "910": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_910",
+      "description": "Place bin (ID 910)"
+    },
+    "911": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_911",
+      "description": "Place bin (ID 911)"
+    },
+    "912": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_912",
+      "description": "Place bin (ID 912)"
+    },
+    "913": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_913",
+      "description": "Place bin (ID 913)"
+    },
+    "914": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_914",
+      "description": "Place bin (ID 914)"
+    },
+    "915": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_915",
+      "description": "Place bin (ID 915)"
+    },
+    "916": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_916",
+      "description": "Place bin (ID 916)"
+    },
+    "917": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_917",
+      "description": "Place bin (ID 917)"
+    },
+    "918": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_918",
+      "description": "Place bin (ID 918)"
+    },
+    "919": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_919",
+      "description": "Place bin (ID 919)"
+    },
+    "920": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_920",
+      "description": "Place bin (ID 920)"
+    },
+    "921": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_921",
+      "description": "Place bin (ID 921)"
+    },
+    "922": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_922",
+      "description": "Place bin (ID 922)"
+    },
+    "923": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_923",
+      "description": "Place bin (ID 923)"
+    },
+    "924": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_924",
+      "description": "Place bin (ID 924)"
+    },
+    "925": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_925",
+      "description": "Place bin (ID 925)"
+    },
+    "926": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_926",
+      "description": "Place bin (ID 926)"
+    },
+    "927": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_927",
+      "description": "Place bin (ID 927)"
+    },
+    "928": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_928",
+      "description": "Place bin (ID 928)"
+    },
+    "929": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_929",
+      "description": "Place bin (ID 929)"
+    },
+    "930": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_930",
+      "description": "Place bin (ID 930)"
+    },
+    "931": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_931",
+      "description": "Place bin (ID 931)"
+    },
+    "932": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_932",
+      "description": "Place bin (ID 932)"
+    },
+    "933": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_933",
+      "description": "Place bin (ID 933)"
+    },
+    "934": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_934",
+      "description": "Place bin (ID 934)"
+    },
+    "935": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_935",
+      "description": "Place bin (ID 935)"
+    },
+    "936": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_936",
+      "description": "Place bin (ID 936)"
+    },
+    "937": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_937",
+      "description": "Place bin (ID 937)"
+    },
+    "938": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_938",
+      "description": "Place bin (ID 938)"
+    },
+    "939": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_939",
+      "description": "Place bin (ID 939)"
+    },
+    "940": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_940",
+      "description": "Place bin (ID 940)"
+    },
+    "941": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_941",
+      "description": "Place bin (ID 941)"
+    },
+    "942": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_942",
+      "description": "Place bin (ID 942)"
+    },
+    "943": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_943",
+      "description": "Place bin (ID 943)"
+    },
+    "944": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_944",
+      "description": "Place bin (ID 944)"
+    },
+    "945": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_945",
+      "description": "Place bin (ID 945)"
+    },
+    "946": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_946",
+      "description": "Place bin (ID 946)"
+    },
+    "947": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_947",
+      "description": "Place bin (ID 947)"
+    },
+    "948": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_948",
+      "description": "Place bin (ID 948)"
+    },
+    "949": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_949",
+      "description": "Place bin (ID 949)"
+    },
+    "950": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_950",
+      "description": "Place bin (ID 950)"
+    },
+    "951": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_951",
+      "description": "Place bin (ID 951)"
+    },
+    "952": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_952",
+      "description": "Place bin (ID 952)"
+    },
+    "953": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_953",
+      "description": "Place bin (ID 953)"
+    },
+    "954": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_954",
+      "description": "Place bin (ID 954)"
+    },
+    "955": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_955",
+      "description": "Place bin (ID 955)"
+    },
+    "956": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_956",
+      "description": "Place bin (ID 956)"
+    },
+    "957": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_957",
+      "description": "Place bin (ID 957)"
+    },
+    "958": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_958",
+      "description": "Place bin (ID 958)"
+    },
+    "959": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_959",
+      "description": "Place bin (ID 959)"
+    },
+    "960": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_960",
+      "description": "Place bin (ID 960)"
+    },
+    "961": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_961",
+      "description": "Place bin (ID 961)"
+    },
+    "962": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_962",
+      "description": "Place bin (ID 962)"
+    },
+    "963": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_963",
+      "description": "Place bin (ID 963)"
+    },
+    "964": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_964",
+      "description": "Place bin (ID 964)"
+    },
+    "965": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_965",
+      "description": "Place bin (ID 965)"
+    },
+    "966": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_966",
+      "description": "Place bin (ID 966)"
+    },
+    "967": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_967",
+      "description": "Place bin (ID 967)"
+    },
+    "968": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_968",
+      "description": "Place bin (ID 968)"
+    },
+    "969": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_969",
+      "description": "Place bin (ID 969)"
+    },
+    "970": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_970",
+      "description": "Place bin (ID 970)"
+    },
+    "971": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_971",
+      "description": "Place bin (ID 971)"
+    },
+    "972": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_972",
+      "description": "Place bin (ID 972)"
+    },
+    "973": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_973",
+      "description": "Place bin (ID 973)"
+    },
+    "974": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_974",
+      "description": "Place bin (ID 974)"
+    },
+    "975": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_975",
+      "description": "Place bin (ID 975)"
+    },
+    "976": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_976",
+      "description": "Place bin (ID 976)"
+    },
+    "977": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_977",
+      "description": "Place bin (ID 977)"
+    },
+    "978": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_978",
+      "description": "Place bin (ID 978)"
+    },
+    "979": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_979",
+      "description": "Place bin (ID 979)"
+    },
+    "980": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_980",
+      "description": "Place bin (ID 980)"
+    },
+    "981": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_981",
+      "description": "Place bin (ID 981)"
+    },
+    "982": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_982",
+      "description": "Place bin (ID 982)"
+    },
+    "983": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_983",
+      "description": "Place bin (ID 983)"
+    },
+    "984": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_984",
+      "description": "Place bin (ID 984)"
+    },
+    "985": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_985",
+      "description": "Place bin (ID 985)"
+    },
+    "986": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_986",
+      "description": "Place bin (ID 986)"
+    },
+    "987": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_987",
+      "description": "Place bin (ID 987)"
+    },
+    "988": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_988",
+      "description": "Place bin (ID 988)"
+    },
+    "989": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_989",
+      "description": "Place bin (ID 989)"
+    },
+    "990": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_1",
+      "description": "Place bin 1"
+    },
+    "991": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_2",
+      "description": "Place bin 2"
+    },
+    "992": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_3",
+      "description": "Place bin 3"
+    },
+    "993": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_993",
+      "description": "Place bin (ID 993)"
+    },
+    "994": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_994",
+      "description": "Place bin (ID 994)"
+    },
+    "995": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_995",
+      "description": "Place bin (ID 995)"
+    },
+    "996": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_996",
+      "description": "Place bin (ID 996)"
+    },
+    "997": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_997",
+      "description": "Place bin (ID 997)"
+    },
+    "998": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_998",
+      "description": "Place bin (ID 998)"
+    },
+    "999": {
+      "type": "place",
+      "object": "N/A",
+      "name": "place_bin_999",
+      "description": "Place bin (ID 999)"
+    }
+  },
+  "distance_decay": 5.0
+}

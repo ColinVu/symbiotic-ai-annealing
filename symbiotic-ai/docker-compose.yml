@@ -1,0 +1,92 @@
+# Docker Compose file for Symbiotic AI
+# Simplifies running the container with proper volume mounts
+
+version: '3.8'
+
+services:
+  symbiotic-ai:
+    # Apple Silicon (arm64) often fails to install some ML/CV wheels (e.g. mediapipe).
+    # Building/running as amd64 is the most reliable default for this stack.
+    # If you're on Intel Mac/Linux, you can remove this.
+    platform: linux/arm64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: symbiotic-ai:latest
+    container_name: symbiotic-ai-container
+    
+    # Mount local directories into container
+    volumes:
+      # Live symbiote code — changes here take effect without a rebuild
+      - ./symbiote:/app/symbiote:ro
+      - ./symbiote_weak:/app/symbiote_weak:ro
+
+      # HMM training data (videos + labels/EAFs)
+      # rw so eaf_to_csv can write converted CSVs into picklist_labels/
+      - ./hmm-testing:/data/hmm-testing:rw
+
+      # Legacy videos directory
+      - ./videos:/data/videos:ro
+
+      # Images for CLIP classifier training
+      - ./images:/data/images:ro
+
+      # Legacy annotations directory
+      - ./annotations:/data/annotations:ro
+
+      # ARUCO configuration
+      - ./config:/data/aruco_config:ro
+
+      # Models output directory (read-write)
+      - ./models:/models:rw
+
+      # General outputs (read-write)
+      - ./outputs:/outputs:rw
+    
+    # Environment variables
+    environment:
+      - PYTHONUNBUFFERED=1
+    
+    # For GPU support (requires nvidia-docker)
+    # Uncomment these lines if you have NVIDIA GPU and nvidia-docker installed
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    
+    # Default command (can be overridden)
+    # command: python -m symbiote_weak.cli.main --help
+    
+    # Keep container running for interactive use
+    stdin_open: true
+    tty: true
+
+# Common commands:
+#
+# Train HMM (batch — uses hmm-testing/ dirs):
+#   docker-compose run --rm symbiotic-ai python -m symbiote.hmm_train \
+#       --video-dir /data/hmm-testing/picklist_videos \
+#       --label-dir /data/hmm-testing/picklist_labels \
+#       --output-dir /models/htk \
+#       --aruco-config /data/aruco_config/aruco_bins.json
+#
+# Run HMM inference on a new video:
+#   docker-compose run --rm symbiotic-ai python -m symbiote.hmm_infer \
+#       --video /data/videos/test.mp4 \
+#       --model-dir /models/htk \
+#       --output-csv /outputs/predicted_states.csv \
+#       --output-video /outputs/test_annotated.mp4 \
+#       --aruco-config /data/aruco_config/aruco_bins.json
+#
+# Train CLIP classifier (video):
+#   docker-compose run --rm symbiotic-ai python -m symbiote.cli.main train \
+#       --video /data/videos/video.mp4 --label "apple"
+#
+# Run CLIP inference:
+#   docker-compose run --rm symbiotic-ai python -m symbiote.cli.main infer \
+#       --video /data/videos/video.mp4 \
+#       --model-dir /models/classifier/video \
+#       --output /outputs/results.csv

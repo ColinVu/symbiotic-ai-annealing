@@ -1,0 +1,33 @@
+{
+  "dictionary": "DICT_5X5_1000",
+  "grid": {
+    "rows": 4,
+    "cols": 6
+  },
+  "bins": [
+    {"marker_id": 100, "sku": "c11", "row": 1, "col": 1},
+    {"marker_id": 101, "sku": "c12", "row": 1, "col": 2},
+    {"marker_id": 102, "sku": "c13", "row": 1, "col": 3},
+    {"marker_id": 103, "sku": "c14", "row": 1, "col": 4},
+    {"marker_id": 104, "sku": "c15", "row": 1, "col": 5},
+    {"marker_id": 105, "sku": "c16", "row": 1, "col": 6},
+    {"marker_id": 106, "sku": "c21", "row": 2, "col": 1},
+    {"marker_id": 107, "sku": "c22", "row": 2, "col": 2},
+    {"marker_id": 108, "sku": "c23", "row": 2, "col": 3},
+    {"marker_id": 109, "sku": "c24", "row": 2, "col": 4},
+    {"marker_id": 110, "sku": "c25", "row": 2, "col": 5},
+    {"marker_id": 111, "sku": "c26", "row": 2, "col": 6},
+    {"marker_id": 112, "sku": "c31", "row": 3, "col": 1},
+    {"marker_id": 113, "sku": "c32", "row": 3, "col": 2},
+    {"marker_id": 114, "sku": "c33", "row": 3, "col": 3},
+    {"marker_id": 115, "sku": "c34", "row": 3, "col": 4},
+    {"marker_id": 116, "sku": "c35", "row": 3, "col": 5},
+    {"marker_id": 117, "sku": "c36", "row": 3, "col": 6},
+    {"marker_id": 118, "sku": "c41", "row": 4, "col": 1},
+    {"marker_id": 119, "sku": "c42", "row": 4, "col": 2},
+    {"marker_id": 120, "sku": "c43", "row": 4, "col": 3},
+    {"marker_id": 121, "sku": "c44", "row": 4, "col": 4},
+    {"marker_id": 122, "sku": "c45", "row": 4, "col": 5},
+    {"marker_id": 123, "sku": "c46", "row": 4, "col": 6}
+  ]
+}

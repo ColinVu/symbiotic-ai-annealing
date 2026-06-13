@@ -1,0 +1,54 @@
+# Docker ignore file - exclude unnecessary files from build context
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data directories (mount these as volumes instead)
+videos/
+images/
+models/
+*.mp4
+*.mov
+*.avi
+
+# Old code
+old-symbiote/
+video_to_state/
+video_to_state_cponly/
+video_to_state_training/
+
+# Documentation (keep minimal docs in container)
+*.md
+!README.md
+!DOCKER_SETUP.md
+
+# Git
+.git/
+.gitignore
+
+# Jupyter
+*.ipynb
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
