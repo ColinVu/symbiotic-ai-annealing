@@ -1,6 +1,6 @@
 """Visualization utilities for training and evaluation results."""
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -15,37 +15,75 @@ def plot_confusion_matrix(
     cm: np.ndarray,
     cm_raw: np.ndarray,
     label_names: List[str],
-    output_path: str
+    output_path: str,
+    *,
+    show_labels: bool = True,
+    show_annotations: Optional[bool] = None,
 ):
     """Plot and save confusion matrix with both counts and row-normalized % (0-1)."""
-    # Build annotations: count on first line, percent on second
-    annot = np.empty(cm.shape, dtype=object)
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            annot[i, j] = f"{int(cm_raw[i, j])}\n({cm[i, j]:.2f})"
-    annot_flat = annot.ravel().tolist()
-    annot_2d = np.array(annot_flat).reshape(cm.shape)
-    plt.figure(figsize=(10, 8))
+    n = int(cm.shape[0])
+    if show_annotations is None:
+        show_annotations = show_labels and n <= 30
+
+    if show_labels:
+        x_labels = label_names
+        y_labels = label_names
+        figsize = (10, 8)
+    else:
+        x_labels = False
+        y_labels = False
+        figsize = (max(10, min(n * 0.12, 24)), max(8, min(n * 0.12, 24)))
+
+    annot_2d = None
+    if show_annotations:
+        annot = np.empty(cm.shape, dtype=object)
+        for i in range(cm.shape[0]):
+            for j in range(cm.shape[1]):
+                annot[i, j] = f"{int(cm_raw[i, j])}\n({cm[i, j]:.2f})"
+        annot_flat = annot.ravel().tolist()
+        annot_2d = np.array(annot_flat).reshape(cm.shape)
+
+    plt.figure(figsize=figsize)
     if HAS_SEABORN:
         sns.heatmap(
-            cm, annot=annot_2d, fmt='', cmap='Blues',
-            xticklabels=label_names, yticklabels=label_names,
-            vmin=0, vmax=1
+            cm,
+            annot=annot_2d,
+            fmt='' if show_annotations else '',
+            cmap='Blues',
+            xticklabels=x_labels,
+            yticklabels=y_labels,
+            vmin=0,
+            vmax=1,
+            cbar=True,
         )
+        if not show_labels:
+            plt.xlabel('Predicted class index')
+            plt.ylabel('True class index')
     else:
         plt.imshow(cm, interpolation='nearest', cmap='Blues', vmin=0, vmax=1)
         plt.colorbar()
-        plt.xticks(np.arange(len(label_names)), label_names)
-        plt.yticks(np.arange(len(label_names)), label_names)
-        plt.xlabel('Predicted')
-        plt.ylabel('True')
+        if show_labels:
+            plt.xticks(np.arange(len(label_names)), label_names)
+            plt.yticks(np.arange(len(label_names)), label_names)
+        else:
+            plt.xticks([])
+            plt.yticks([])
+            plt.xlabel('Predicted class index')
+            plt.ylabel('True class index')
         plt.title('Confusion Matrix (count and row-normalized %)')
-        for i in range(cm.shape[0]):
-            for j in range(cm.shape[1]):
-                plt.text(j, i, f'{int(cm_raw[i, j])}\n({cm[i, j]:.2f})',
-                         ha='center', va='center', color='black')
+        if show_annotations:
+            for i in range(cm.shape[0]):
+                for j in range(cm.shape[1]):
+                    plt.text(
+                        j,
+                        i,
+                        f'{int(cm_raw[i, j])}\n({cm[i, j]:.2f})',
+                        ha='center',
+                        va='center',
+                        color='black',
+                    )
     plt.tight_layout()
-    plt.savefig(output_path)
+    plt.savefig(output_path, dpi=150)
     plt.close()
     print(f"Confusion matrix saved to: {output_path}")
 

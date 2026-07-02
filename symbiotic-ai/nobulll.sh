@@ -405,3 +405,14 @@ triplet-margin	Required separation in adapted L2 space	0.1	â†‘ to push harder; â
 ilr_epochs	SA / refine_labels length	your 1000 default	main SA quality/time tradeoff
 sa_iters
 refinement-loops
+
+
+
+  python3 -m symbiote_weak_generalized.cli.main train \           
+  --videos ./hmm-testing/picklist_videos \
+  --picklist-json-dir ./hmm-testing/picklist_jsons \
+  --manual-labels-dir ./hmm-testing/picklist_labels \
+  --compact-frame-indexing opencv0 \
+  --output-dir ../models/classifier \
+  --frame-skip 5 \
+  --ilr-epochs 700
