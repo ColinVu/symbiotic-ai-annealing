@@ -37,7 +37,6 @@ frame_similarity_out_*/
 # =============================================================================
 # symbiotic-ai output folders (ignore entire contents)
 # =============================================================================
-symbiotic-ai/models/
 symbiotic-ai/quick_ablation_results/
 symbiotic-ai/bin_picking_verifier/out/
 
