@@ -3,6 +3,7 @@ Weakly supervised training (ILR) - Fast Epoch-Refreshed Logic.
 Uses once-per-epoch energy mapping for high performance.
 """
 
+
 from __future__ import annotations
 
 import itertools
@@ -15,6 +16,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 import torch
 from sklearn.cluster import KMeans
+from .clip_init import clip_initialization
 
 LabelKey = Tuple[str, int]
 EMPTY_HAND_LABEL = "empty_hand"
@@ -112,15 +114,13 @@ class WeakSupervisedTrainer:
     def compute_centroids(self, segments: List[Segment], labels: Dict[LabelKey, str]) -> Dict[str, np.ndarray]:
         label_frames = defaultdict(list)
         for seg in segments:
-            if not seg.is_placeholder:
-                label_frames[labels[seg.label_key]].append(seg.embeddings)
+            label_frames[labels[seg.label_key]].append(seg.embeddings)
         return {l: spherical_mean(np.vstack(b)) for l, b in label_frames.items() if b}
 
     def compute_total_cosine_cost(self, segments: List[Segment], labels: Dict[LabelKey, str], centroids: Dict[str, np.ndarray]) -> float:
         total = 0.0
         for seg in segments:
-            if not seg.is_placeholder:
-                total += seg.compute_frame_costs(centroids[labels[seg.label_key]], self.cosine_distance)
+            total += seg.compute_frame_costs(centroids[labels[seg.label_key]], self.cosine_distance)
         return float(total)
 
     def refine_labels(
@@ -130,7 +130,7 @@ class WeakSupervisedTrainer:
         verbose: bool = True,
     ) -> Dict[LabelKey, str]:
         labels = labels.copy()
-        real_segments = [seg for seg in segments if not seg.is_placeholder]
+        real_segments = [seg for seg in segments]
         videos = defaultdict(list)
         for seg in real_segments:
             videos[seg.video_id].append(seg)
@@ -244,7 +244,7 @@ class WeakSupervisedTrainer:
         triplet_margin = float(config.get("triplet_margin", 0.1))
 
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        real_segments = [seg for seg in all_segments if not seg.is_placeholder]
+        real_segments = [seg for seg in all_segments]
         refined: Dict[LabelKey, str] = dict(initial_labels)
 
         embed_dim = 512
@@ -360,19 +360,26 @@ class WeakSupervisedTrainer:
 
         return refined
 
-    def fit(self, video_segments, verbose: bool = True, skip_ilr: bool = False, use_cluster_voting: bool = False, initial_cluster_voting_csv: Optional[str] = None, **kwargs) -> "WeakSupervisedTrainer":
+    def fit(self, video_segments, verbose: bool = True, skip_ilr: bool = True, use_cluster_voting: bool = False, initial_cluster_voting_csv: Optional[str] = None, use_clip_init = True, **kwargs) -> "WeakSupervisedTrainer":
+        print(f'use clip: {use_clip_init}')
         all_segments = []
         unique_labels = set()
         for vid, (segs, picklist) in video_segments.items():
             for s in segs:
-                if not s.candidate_labels: s.candidate_labels = tuple(picklist)
+                # if not s.candidate_labels: s.candidate_labels = tuple(picklist)
+                em = np.asarray(s.embeddings, dtype=np.float64)
+                if em.ndim == 1:
+                    em = em.reshape(1, -1)
+                s.embeddings = self._l2_normalize(em)
                 all_segments.append(s)
                 unique_labels.update(s.candidate_labels)
         
         self.label_to_idx = {label: idx for idx, label in enumerate(sorted(unique_labels))}
         self.idx_to_label = {idx: label for label, idx in self.label_to_idx.items()}
         
-        if use_cluster_voting:
+        if use_clip_init:
+            labels = clip_initialization(all_segments, aggregation = 'max')
+        elif use_cluster_voting:
             from .cluster_voting import cluster_based_initialization_with_details
             labels, label_confidence = cluster_based_initialization_with_details(all_segments, None, verbose=verbose)
             if initial_cluster_voting_csv:
