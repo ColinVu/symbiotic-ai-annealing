@@ -22,28 +22,34 @@ class ObjectRecognizer:
         print(f"Predicted: {result['label']} (confidence: {result['confidence']:.2f})")
     """
     
-    def __init__(self, model_dir: str, device: str = None):
+    def __init__(self, model_dir: str, device: str = None, load_clip: bool = True):
         """
         Initialize the recognizer.
         
         Args:
             model_dir: Directory containing saved centroid model
             device: Device to use for CLIP (auto-detected if None)
+            load_clip: If False, skip CLIP load (cache-only evaluation).
         """
         if device is None:
             device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = device
         
         self.model, self.metadata = load_model(model_dir)
-        
-        print(f"Loading CLIP model ({self.metadata['clip_model']})...")
-        self.clip_model = AutoModel.from_pretrained(self.metadata['clip_model'])
-        self.clip_model.eval()
-        if device == "cuda":
-            self.clip_model = self.clip_model.to(device)
-        
-        self.processor = AutoProcessor.from_pretrained(self.metadata['clip_model'])
-        print(f"Ready for inference! ({self.model.num_classes} classes)")
+        self.clip_model = None
+        self.processor = None
+
+        if load_clip:
+            print(f"Loading CLIP model ({self.metadata['clip_model']})...")
+            self.clip_model = AutoModel.from_pretrained(self.metadata['clip_model'])
+            self.clip_model.eval()
+            if device == "cuda":
+                self.clip_model = self.clip_model.to(device)
+            
+            self.processor = AutoProcessor.from_pretrained(self.metadata['clip_model'])
+            print(f"Ready for inference! ({self.model.num_classes} classes)")
+        else:
+            print(f"Loaded centroids without CLIP ({self.model.num_classes} classes)")
 
         self._hand_neutralizer = None
         self._clip_adapter_nn = None

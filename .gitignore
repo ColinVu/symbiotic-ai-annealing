@@ -48,6 +48,23 @@ symbiotic-ai/bin_picking_verifier/out/
 symbiotic-ai/hmm-testing/picklist_videos/*
 !symbiotic-ai/hmm-testing/picklist_videos/README.md
 
+# Generated 3-D NN features (keep folder + README)
+symbiotic-ai/hmm-testing/processed_features_3d/*
+!symbiotic-ai/hmm-testing/processed_features_3d/README.md
+symbiotic-ai/hmm-testing/processed_features_3d_v2/*
+!symbiotic-ai/hmm-testing/processed_features_3d_v2/README.md
+symbiotic-ai/hmm-testing/processed_features_9d/*
+
+# Detector timeseries intermediates
+symbiotic-ai/objectdetector/csv_outputs/*
+!symbiotic-ai/objectdetector/csv_outputs/.gitkeep
+
+# NN checkpoints / extra prediction dumps
+symbiotic-ai/nn_model/checkpoints/*
+!symbiotic-ai/nn_model/checkpoints/.gitkeep
+symbiotic-ai/objectdetector/*.pt
+symbiotic-ai/objectdetector/*.task
+
 symbiotic-ai/hmm-testing/templ/*
 !symbiotic-ai/hmm-testing/templ/README.md
 
@@ -80,3 +97,6 @@ symbiotic-ai/images/testing-results/*
 # Generated outputs — keep folder, ignore contents
 symbiotic-ai/outputs/*
 !symbiotic-ai/outputs/README.md
+
+# K-fold CV results (models, labels, predictions, metrics)
+symbiotic-ai/cv_results/

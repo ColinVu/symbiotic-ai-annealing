@@ -4,7 +4,7 @@ import os
 import json
 import random
 import re
-from typing import Dict, Any, Optional, List, Tuple, AbstractSet
+from typing import Dict, Any, Optional, List, Tuple, AbstractSet, Iterable
 from pathlib import Path
 from collections import defaultdict
 import numpy as np
@@ -271,6 +271,7 @@ def _process_single_video_to_segments(
     htk_model_dir: Optional[str],
     aruco_config_path: Optional[str],
     verbose: bool,
+    coverage_out: Optional[List[Dict[str, Any]]] = None,
 ) -> Tuple[List[Segment], List[str], str]:
     """
     Embed one video, run state detection, and build carry segments aligned to the flat picklist.
@@ -295,6 +296,7 @@ def _process_single_video_to_segments(
     Path(cache_dir).mkdir(parents=True, exist_ok=True)
 
     carry_intervals = None
+    n_total = 0
     if annotation_path is not None and os.path.isfile(annotation_path):
         cap_i = cv2.VideoCapture(video_path)
         n_total = int(cap_i.get(cv2.CAP_PROP_FRAME_COUNT)) if cap_i.isOpened() else 0
@@ -340,6 +342,7 @@ def _process_single_video_to_segments(
     flat_picklist = [item for sublist in picklists_nested for item in sublist]
     first_label = flat_picklist[0] if flat_picklist else "unknown"
 
+    process_stats: Dict[str, Any] = {}
     video_embeddings, _, _, state_results, embedding_frame_indices = process_video_frames(
         video_path,
         first_label,
@@ -351,7 +354,29 @@ def _process_single_video_to_segments(
         state_detection_func=_state_detect,
         verbose=verbose,
         allowed_frame_intervals_1based=carry_intervals,
+        stats_out=process_stats,
     )
+
+    if coverage_out is not None:
+        candidate_frames = _candidate_frame_indices_carry_and_skip(
+            carry_intervals, n_total, frame_skip
+        )
+        coverage_out.append(
+            {
+                "video": video_name,
+                "candidate_frames": len(candidate_frames),
+                "cache_hits": int(process_stats.get("cache_hits", 0)),
+                "skipped_missing": 0,
+                "skipped_out_of_interval": 0,
+                "usable_frames": len(embedding_frame_indices),
+                "skipped_invalid": max(
+                    0,
+                    len(candidate_frames)
+                    - len(embedding_frame_indices)
+                ),
+                "failures": 0,
+            }
+        )
 
     if len(video_embeddings) == 0:
         raise SystemExit(f"Error: No valid frames extracted from video: {video_path}")
@@ -455,6 +480,31 @@ def _candidate_frame_indices_carry_and_skip(
     return out
 
 
+def _select_video_paths(
+    videos_dir: str,
+    include_stems: Optional[Iterable[str]] = None,
+    exclude_stems: Optional[AbstractSet[str]] = None,
+) -> List[str]:
+    """List videos, optionally keeping only ``include_stems`` and dropping excludes."""
+    video_paths = _list_videos_in_folder(videos_dir)
+    if include_stems is not None:
+        include = set(include_stems)
+        found = {Path(vp).stem for vp in video_paths}
+        missing = include - found
+        if missing:
+            raise SystemExit(
+                f"Error: include_stems not found in {videos_dir!r}: {sorted(missing)}"
+            )
+        video_paths = [vp for vp in video_paths if Path(vp).stem in include]
+    if exclude_stems:
+        video_paths = [vp for vp in video_paths if Path(vp).stem not in exclude_stems]
+    if not video_paths:
+        raise SystemExit(
+            f"Error: No videos left in {videos_dir!r} after include/exclude stem filters."
+        )
+    return video_paths
+
+
 def _process_single_video_from_cache(
     video_path: str,
     picklists_nested: List[List[str]],
@@ -464,6 +514,7 @@ def _process_single_video_from_cache(
     compact_frame_indexing: str,
     frame_skip: int,
     verbose: bool,
+    coverage_out: Optional[List[Dict[str, Any]]] = None,
 ) -> Tuple[List[Segment], List[str], str]:
     """
     Rebuild carry segments from disk cache only (no CLIP / no full-video decode).
@@ -594,6 +645,24 @@ def _process_single_video_from_cache(
                     )
                 break
 
+    if coverage_out is not None:
+        glob_set = set(glob_frames)
+        skipped_missing = len([t for t in candidate_frames if t not in glob_set])
+        skipped_out_of_interval = len([t for t in glob_frames if t not in candidate_set])
+        skipped_invalid = max(0, len(usable_frames) - len(embedding_frame_indices))
+        coverage_out.append(
+            {
+                "video": video_name,
+                "candidate_frames": len(candidate_frames),
+                "cache_hits": len(embedding_frame_indices),
+                "skipped_missing": skipped_missing,
+                "skipped_out_of_interval": skipped_out_of_interval,
+                "usable_frames": len(embedding_frame_indices),
+                "skipped_invalid": skipped_invalid,
+                "failures": 0,
+            }
+        )
+
     return segments, flat_picklist, video_name
 
 
@@ -608,6 +677,7 @@ def run_multi_video_training_from_cache(
     verbose: bool = True,
     compact_frame_indexing: str = "opencv0",
     exclude_stems: Optional[AbstractSet[str]] = None,
+    include_stems: Optional[Iterable[str]] = None,
 ) -> WeakSupervisedTrainer:
     """
     Same joint weak supervision as ``run_multi_video_training``, but segments are
@@ -615,6 +685,8 @@ def run_multi_video_training_from_cache(
 
     Does not load CLIP or decode video frames for embedding. Still opens each video
     briefly to read FPS and frame count for state timeline alignment.
+    Missing in-interval cache files are skipped (recorded in coverage); a video
+    with zero usable frames still fails.
     """
     random.seed(config.get("random_seed", 42))
     np.random.seed(config.get("random_seed", 42))
@@ -625,24 +697,12 @@ def run_multi_video_training_from_cache(
     if not os.path.isdir(manual_labels_dir):
         raise SystemExit(f"Error: manual labels directory not found: {manual_labels_dir}")
 
-    video_paths = _list_videos_in_folder(videos_dir)
-    if exclude_stems:
-        before = len(video_paths)
-        video_paths = [
-            vp for vp in video_paths if Path(vp).stem not in exclude_stems
-        ]
-        if not video_paths:
-            raise SystemExit(
-                f"Error: After exclude_stems={sorted(exclude_stems)!r}, no videos left in {videos_dir!r} "
-                f"(had {before} before filter)."
-            )
-        if verbose:
-            print(
-                f"Excluded stems {sorted(exclude_stems)!r} from training; "
-                f"{len(video_paths)} video(s) remain."
-            )
+    video_paths = _select_video_paths(
+        videos_dir, include_stems=include_stems, exclude_stems=exclude_stems
+    )
     Path(base_output_dir).mkdir(parents=True, exist_ok=True)
     cache_root = cache_dir if cache_dir else os.path.join(base_output_dir, ".cache")
+    coverage: List[Dict[str, Any]] = []
 
     if verbose:
         print("=" * 60)
@@ -680,6 +740,7 @@ def run_multi_video_training_from_cache(
             compact_frame_indexing=compact_frame_indexing,
             frame_skip=frame_skip,
             verbose=verbose,
+            coverage_out=coverage,
         )
         video_segments[video_name] = (segments, flat_picklist)
 
@@ -712,6 +773,7 @@ def run_multi_video_training_from_cache(
         skip_ilr=bool(config.get("skip_ilr", False)),
         initial_cluster_voting_csv=_init_vote_csv,
         use_cluster_voting=use_cv,
+        use_clip_init=bool(config.get("use_clip_init", True)),
         **_trainer_fit_kwargs_from_config(config),
     )
 
@@ -722,9 +784,14 @@ def run_multi_video_training_from_cache(
         base_output_dir,
         embedded_video_stems_override=stem_order,
     )
+    coverage_path = Path(base_output_dir) / "cache_coverage.json"
+    coverage_path.write_text(
+        json.dumps({"videos": coverage}, indent=2) + "\n", encoding="utf-8"
+    )
     if verbose:
         print(f"\n✓ Model saved to {base_output_dir}")
         print(f"  embedded_video_stems: {stem_order}")
+        print(f"  cache coverage: {coverage_path}")
 
     return trainer
 
@@ -755,12 +822,17 @@ def run_multi_video_training(
     htk_model_dir: Optional[str] = None,
     aruco_config_path: Optional[str] = None,
     compact_frame_indexing: str = "opencv0",
+    include_stems: Optional[Iterable[str]] = None,
+    exclude_stems: Optional[AbstractSet[str]] = None,
+    cache_dir: Optional[str] = None,
 ) -> WeakSupervisedTrainer:
     """
     Joint weak supervision training on every video in *videos_dir*.
 
     For each ``picklist_<stem>.MP4``, requires ``picklist_<stem>.json`` under
     *picklist_json_dir* and ``picklist_<stem>.csv`` under *manual_labels_dir*.
+    Pass ``cache_dir`` to reuse a shared per-video embedding cache (outside the
+    output tree). ``include_stems`` limits which videos are trained.
     """
     random.seed(config.get("random_seed", 42))
     np.random.seed(config.get("random_seed", 42))
@@ -771,9 +843,12 @@ def run_multi_video_training(
     if not os.path.isdir(manual_labels_dir):
         raise SystemExit(f"Error: manual labels directory not found: {manual_labels_dir}")
 
-    video_paths = _list_videos_in_folder(videos_dir)
+    video_paths = _select_video_paths(
+        videos_dir, include_stems=include_stems, exclude_stems=exclude_stems
+    )
     Path(base_output_dir).mkdir(parents=True, exist_ok=True)
-    base_cache = os.path.join(base_output_dir, ".cache")
+    base_cache = cache_dir if cache_dir else os.path.join(base_output_dir, ".cache")
+    coverage: List[Dict[str, Any]] = []
 
     if verbose:
         print("=" * 60)
@@ -819,6 +894,7 @@ def run_multi_video_training(
             htk_model_dir=htk_model_dir,
             aruco_config_path=aruco_config_path,
             verbose=verbose,
+            coverage_out=coverage,
         )
         video_segments[video_name] = (segments, flat_picklist)
 
@@ -860,6 +936,10 @@ def run_multi_video_training(
         config,
         base_output_dir,
         embedded_video_stems_override=stem_order,
+    )
+    (Path(base_output_dir) / "cache_coverage.json").write_text(
+        json.dumps({"videos": coverage}, indent=2) + "\n",
+        encoding="utf-8",
     )
     if verbose:
         print(f"\n✓ Model saved to {base_output_dir}")

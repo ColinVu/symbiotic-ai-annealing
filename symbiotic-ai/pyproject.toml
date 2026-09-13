@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "symbiosis-nn-model"
+version = "0.1.0"
+description = "Neural state classifier for pick/carry/place/empty prediction (Viterbi alignment)"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "torch",
+]
+
+[project.scripts]
+nn-train = "nn_model.train:main"
+nn-predict = "nn_model.predict:main"
+nn-annotate = "nn_model.annotate:main"
+nn-bulk-predict = "nn_model.bulk_predict:main"
+nn-create-labels = "nn_model.create_labels:main"
+nn-eval-labels = "nn_model.eval_labeled_picklists:main"
+cv-test = "cross_validation.test:main"
+
+[tool.setuptools.packages.find]
+include = ["nn_model*", "cross_validation*"]

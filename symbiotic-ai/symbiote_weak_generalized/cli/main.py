@@ -122,6 +122,35 @@ Examples:
         help="Base directory to save model and results (subfolder will be created for video)"
     )
     train_parser.add_argument(
+        "--cache-dir",
+        type=str,
+        default=None,
+        help="Shared per-video embedding cache root (default: <output-dir>/.cache). Required with --k-fold.",
+    )
+    train_parser.add_argument(
+        "--ground-truth-csv",
+        type=str,
+        default=None,
+        help="Optional ground_truth.csv for training-assignment scoring (written next to the model)",
+    )
+    train_parser.add_argument(
+        "--k-fold",
+        type=int,
+        default=None,
+        help="Run K-fold CV annealing over all folds in --cv-results-dir",
+    )
+    train_parser.add_argument(
+        "--cv-results-dir",
+        type=str,
+        default=None,
+        help="Global CV results directory (must be paired with --k-fold)",
+    )
+    train_parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Redo completed K-fold annealing stages",
+    )
+    train_parser.add_argument(
         "--threshold",
         type=float,
         default=50.0,
@@ -449,6 +478,29 @@ Examples:
             type=float,
             default=DEFAULT_CONFIG.get("min_temp", 0.05),
             help="Floor temperature for cosine / annealing schedules (default: 0.05)",
+        )
+        p.add_argument(
+            "--ground-truth-csv",
+            type=str,
+            default=None,
+            help="Optional ground_truth.csv for training-assignment scoring",
+        )
+        p.add_argument(
+            "--k-fold",
+            type=int,
+            default=None,
+            help="Run K-fold CV annealing over all folds in --cv-results-dir",
+        )
+        p.add_argument(
+            "--cv-results-dir",
+            type=str,
+            default=None,
+            help="Global CV results directory (must be paired with --k-fold)",
+        )
+        p.add_argument(
+            "--overwrite",
+            action="store_true",
+            help="Redo completed K-fold annealing stages",
         )
         return p
 
@@ -785,7 +837,53 @@ Examples:
             if not os.path.isabs(aruco_config):
                 aruco_config = os.path.normpath(os.path.join(script_dir, aruco_config))
 
-        if getattr(args, "videos", None):
+        gt_csv = getattr(args, "ground_truth_csv", None)
+        if gt_csv:
+            if not os.path.isabs(gt_csv):
+                gt_csv = os.path.normpath(os.path.join(script_dir, gt_csv))
+            config["ground_truth_csv"] = gt_csv
+
+        k_fold = getattr(args, "k_fold", None)
+        cv_results_dir = getattr(args, "cv_results_dir", None)
+        if k_fold is not None or cv_results_dir is not None:
+            from cross_validation.annealing import run_kfold_annealing
+            from cross_validation.manifests import require_cv_pair
+
+            require_cv_pair(k_fold, cv_results_dir)
+            if not getattr(args, "videos", None) or not args.picklist_json_dir:
+                print("Error: --k-fold train requires --videos and --picklist-json-dir")
+                sys.exit(1)
+            videos_dir = args.videos
+            if not os.path.isabs(videos_dir):
+                videos_dir = os.path.normpath(os.path.join(script_dir, videos_dir))
+            picklist_json_dir = args.picklist_json_dir
+            if not os.path.isabs(picklist_json_dir):
+                picklist_json_dir = os.path.normpath(os.path.join(script_dir, picklist_json_dir))
+            cache_dir = getattr(args, "cache_dir", None)
+            if not cache_dir:
+                print("Error: --k-fold train requires --cache-dir (shared classifier .cache)")
+                sys.exit(1)
+            if not os.path.isabs(cache_dir):
+                cache_dir = os.path.normpath(os.path.join(script_dir, cache_dir))
+            if not os.path.isabs(cv_results_dir):
+                cv_results_dir = os.path.normpath(os.path.join(script_dir, cv_results_dir))
+            run_kfold_annealing(
+                cv_root=cv_results_dir,
+                k_fold=int(k_fold),
+                videos_dir=videos_dir,
+                picklist_json_dir=picklist_json_dir,
+                cache_dir=cache_dir,
+                config=config,
+                frame_skip=args.frame_skip,
+                verbose=args.verbose,
+                compact_frame_indexing=args.compact_frame_indexing,
+                from_cache=False,
+                threshold=args.threshold,
+                htk_model_dir=htk_model_dir,
+                aruco_config_path=aruco_config,
+                overwrite=bool(getattr(args, "overwrite", False)),
+            )
+        elif getattr(args, "videos", None):
             if not args.picklist_json_dir:
                 print("Error: --picklist-json-dir is required with --videos")
                 sys.exit(1)
@@ -894,34 +992,62 @@ Examples:
             print("Error: --apply-hand-pca requires --hand-embeddings-dir")
             sys.exit(1)
 
-        manual_labels_dir = args.manual_labels_dir
-        if not os.path.isabs(manual_labels_dir):
-            manual_labels_dir = os.path.normpath(os.path.join(script_dir, manual_labels_dir))
+        gt_csv = getattr(args, "ground_truth_csv", None)
+        if gt_csv:
+            if not os.path.isabs(gt_csv):
+                gt_csv = os.path.normpath(os.path.join(script_dir, gt_csv))
+            config["ground_truth_csv"] = gt_csv
 
+        k_fold = getattr(args, "k_fold", None)
+        cv_results_dir = getattr(args, "cv_results_dir", None)
         videos_dir = args.videos
         if not os.path.isabs(videos_dir):
             videos_dir = os.path.normpath(os.path.join(script_dir, videos_dir))
-
         picklist_json_dir = args.picklist_json_dir
         if not os.path.isabs(picklist_json_dir):
             picklist_json_dir = os.path.normpath(os.path.join(script_dir, picklist_json_dir))
-
         cache_dir = getattr(args, "cache_dir", None)
-        if cache_dir:
-            if not os.path.isabs(cache_dir):
-                cache_dir = os.path.normpath(os.path.join(script_dir, cache_dir))
+        if cache_dir and not os.path.isabs(cache_dir):
+            cache_dir = os.path.normpath(os.path.join(script_dir, cache_dir))
 
-        run_multi_video_training_from_cache(
-            videos_dir=videos_dir,
-            picklist_json_dir=picklist_json_dir,
-            manual_labels_dir=manual_labels_dir,
-            base_output_dir=base_output_dir,
-            config=config,
-            cache_dir=cache_dir,
-            frame_skip=args.frame_skip,
-            verbose=args.verbose,
-            compact_frame_indexing=args.compact_frame_indexing,
-        )
+        if k_fold is not None or cv_results_dir is not None:
+            from cross_validation.annealing import run_kfold_annealing
+            from cross_validation.manifests import require_cv_pair
+
+            require_cv_pair(k_fold, cv_results_dir)
+            if not cache_dir:
+                print("Error: --k-fold train-from-cache requires --cache-dir")
+                sys.exit(1)
+            if not os.path.isabs(cv_results_dir):
+                cv_results_dir = os.path.normpath(os.path.join(script_dir, cv_results_dir))
+            run_kfold_annealing(
+                cv_root=cv_results_dir,
+                k_fold=int(k_fold),
+                videos_dir=videos_dir,
+                picklist_json_dir=picklist_json_dir,
+                cache_dir=cache_dir,
+                config=config,
+                frame_skip=args.frame_skip,
+                verbose=args.verbose,
+                compact_frame_indexing=args.compact_frame_indexing,
+                from_cache=True,
+                overwrite=bool(getattr(args, "overwrite", False)),
+            )
+        else:
+            manual_labels_dir = args.manual_labels_dir
+            if not os.path.isabs(manual_labels_dir):
+                manual_labels_dir = os.path.normpath(os.path.join(script_dir, manual_labels_dir))
+            run_multi_video_training_from_cache(
+                videos_dir=videos_dir,
+                picklist_json_dir=picklist_json_dir,
+                manual_labels_dir=manual_labels_dir,
+                base_output_dir=base_output_dir,
+                config=config,
+                cache_dir=cache_dir,
+                frame_skip=args.frame_skip,
+                verbose=args.verbose,
+                compact_frame_indexing=args.compact_frame_indexing,
+            )
 
     elif args.command == "sweep":
         import csv

@@ -167,6 +167,8 @@ def evaluate_model(
     threshold: float = SWEEP_FIXED_THRESHOLD,
     verbose: bool = False,
     eval_cache_dir: Optional[str] = None,
+    cache_label: str = "sweep_eval",
+    embed_missing: bool = True,
 ) -> Dict[str, Any]:
     """
     Segment-level Top-1 accuracy and Top-3 hit rate on CARRY_WITH frames.
@@ -182,6 +184,10 @@ def evaluate_model(
         verbose: Forwarded to ``process_video_frames``.
         eval_cache_dir: Optional directory for eval-time frame cache; default
             ``<model_dir>/../.sweep_eval_cache_<stem>`` under the parent of model_dir.
+        cache_label: Cache key prefix. Training uses the first picklist SKU;
+            pass that here to reuse the shared cache. Default ``sweep_eval``
+            preserves the previous evaluator key.
+        embed_missing: If False, never call CLIP; skip frames absent from cache.
     """
     video_p = Path(video_path).resolve()
     model_p = Path(model_dir).resolve()
@@ -207,16 +213,17 @@ def evaluate_model(
         frame_indexing=compact_frame_indexing,
     )
 
-    recognizer = ObjectRecognizer(str(model_p))
+    recognizer = ObjectRecognizer(str(model_p), load_clip=bool(embed_missing))
 
     if eval_cache_dir:
         cache_dir = str(Path(eval_cache_dir).resolve())
     else:
         cache_dir = str(model_p.parent / f".sweep_eval_cache_{video_p.stem}")
 
+    proc_stats: Dict[str, Any] = {}
     embeddings, _labels, _syn, _states, frame_indices = process_video_frames(
         video_path=str(video_p),
-        label="sweep_eval",
+        label=str(cache_label),
         model=recognizer.clip_model,
         processor=recognizer.processor,
         cache_dir=cache_dir,
@@ -225,6 +232,8 @@ def evaluate_model(
         state_detection_func=None,
         verbose=verbose,
         allowed_frame_intervals_1based=intervals,
+        embed_missing=bool(embed_missing),
+        stats_out=proc_stats,
     )
 
     infer_rows = _predict_rows_from_embeddings(recognizer, embeddings, frame_indices)
@@ -249,6 +258,9 @@ def evaluate_model(
         "frame_skip": int(frame_skip),
         "threshold": float(threshold),
         "compact_frame_indexing": compact_frame_indexing,
+        "cache_label": str(cache_label),
+        "cache_hits": int(proc_stats.get("cache_hits") or 0),
+        "embed_missing": bool(embed_missing),
         "metrics": {
             "carry_segments_used": n,
             "segments_with_predictions": with_preds,

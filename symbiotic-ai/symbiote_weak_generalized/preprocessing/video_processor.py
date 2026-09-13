@@ -48,6 +48,8 @@ def process_video_frames(
     state_detection_func: Optional[Callable] = None,
     verbose: bool = True,
     allowed_frame_intervals_1based: Optional[List[Tuple[int, int]]] = None,
+    embed_missing: bool = True,
+    stats_out: Optional[dict] = None,
 ) -> Tuple[List[np.ndarray], List[str], List[str], pd.DataFrame, List[int]]:
     """
     Extract non-blurry frames from video and embed them directly.
@@ -94,13 +96,15 @@ def process_video_frames(
     
     video_name = os.path.splitext(os.path.basename(video_path))[0]
     
-    # Create MediaPipe Hands detector ONCE for the entire video
+    # Create MediaPipe Hands detector ONCE for the entire video (only if we may embed)
     mp_hands = mp.solutions.hands
-    hands_detector = mp_hands.Hands(
-        min_detection_confidence=0.5,
-        min_tracking_confidence=0.3,
-        max_num_hands=2
-    )
+    hands_detector = None
+    if embed_missing:
+        hands_detector = mp_hands.Hands(
+            min_detection_confidence=0.5,
+            min_tracking_confidence=0.3,
+            max_num_hands=2
+        )
     
     try:
         # Open video
@@ -166,6 +170,9 @@ def process_video_frames(
                 embedded_count += 1
                 if verbose and embedded_count % 20 == 0:
                     print(f"  Frame {frame_count}: ✓ CACHED ({cache_hits} cached, {embedded_count - cache_hits} new)")
+                continue
+
+            if not embed_missing:
                 continue
             
             # Convert to RGB; detect/blur on downscaled copy, embed full-res crop
@@ -299,12 +306,18 @@ def process_video_frames(
         
         if len(embeddings) == 0:
             raise ValueError(f"No frames could be cached from video {video_path}!")
+
+        if stats_out is not None:
+            stats_out["cache_hits"] = int(cache_hits)
+            stats_out["embedded_count"] = int(embedded_count)
+            stats_out["newly_cached"] = int(newly_cached)
         
         return embeddings, labels, synthetic_paths, state_results, embedding_frame_indices
     
     finally:
         # Always close the MediaPipe detector to release resources
-        hands_detector.close()
+        if hands_detector is not None:
+            hands_detector.close()
 
 
 __all__ = ['process_video_frames']
