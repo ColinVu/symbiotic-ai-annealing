@@ -70,11 +70,86 @@
       ]
     },
     "annealing_test": {
+      "frame_hits": 432,
+      "frame_count": 782,
+      "frame_accuracy": 0.5524296675191815,
       "segment_top1_hits": 63,
-      "segment_top3_hits": 86,
+      "segment_top3_hits": 83,
       "carry_segments_used": 112,
       "segment_top1_accuracy": 0.5625,
-      "segment_top3_hit_rate": 0.7678571428571429,
+      "segment_top3_hit_rate": 0.7410714285714286,
+      "shelf_constrained_segment_top1_hits": 72,
+      "shelf_constrained_segment_top1_accuracy": 0.6428571428571429,
+      "by_shelf": {
+        "d": {
+          "frame": {
+            "hits": 44,
+            "count": 126,
+            "accuracy": 0.3492063492063492
+          },
+          "segment_top1": {
+            "hits": 12,
+            "count": 41,
+            "accuracy": 0.2926829268292683
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 18,
+            "count": 41,
+            "accuracy": 0.43902439024390244
+          }
+        },
+        "e": {
+          "frame": {
+            "hits": 90,
+            "count": 188,
+            "accuracy": 0.4787234042553192
+          },
+          "segment_top1": {
+            "hits": 19,
+            "count": 27,
+            "accuracy": 0.7037037037037037
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 19,
+            "count": 27,
+            "accuracy": 0.7037037037037037
+          }
+        },
+        "f": {
+          "frame": {
+            "hits": 221,
+            "count": 378,
+            "accuracy": 0.5846560846560847
+          },
+          "segment_top1": {
+            "hits": 21,
+            "count": 32,
+            "accuracy": 0.65625
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 24,
+            "count": 32,
+            "accuracy": 0.75
+          }
+        },
+        "g": {
+          "frame": {
+            "hits": 77,
+            "count": 90,
+            "accuracy": 0.8555555555555555
+          },
+          "segment_top1": {
+            "hits": 11,
+            "count": 12,
+            "accuracy": 0.9166666666666666
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 11,
+            "count": 12,
+            "accuracy": 0.9166666666666666
+          }
+        }
+      },
       "n_videos_scored": 10,
       "n_skipped": 0,
       "n_failures": 0
@@ -555,11 +630,103 @@
       ]
     },
     "annealing_test": {
+      "frame_hits": 730,
+      "frame_count": 1077,
+      "frame_accuracy": 0.6778087279480037,
       "segment_top1_hits": 77,
       "segment_top3_hits": 102,
       "carry_segments_used": 108,
       "segment_top1_accuracy": 0.7129629629629629,
       "segment_top3_hit_rate": 0.9444444444444444,
+      "shelf_constrained_segment_top1_hits": 91,
+      "shelf_constrained_segment_top1_accuracy": 0.8425925925925926,
+      "by_shelf": {
+        "e": {
+          "frame": {
+            "hits": 232,
+            "count": 381,
+            "accuracy": 0.6089238845144357
+          },
+          "segment_top1": {
+            "hits": 30,
+            "count": 45,
+            "accuracy": 0.6666666666666666
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 38,
+            "count": 45,
+            "accuracy": 0.8444444444444444
+          }
+        },
+        "c": {
+          "frame": {
+            "hits": 333,
+            "count": 419,
+            "accuracy": 0.7947494033412887
+          },
+          "segment_top1": {
+            "hits": 25,
+            "count": 28,
+            "accuracy": 0.8928571428571429
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 25,
+            "count": 28,
+            "accuracy": 0.8928571428571429
+          }
+        },
+        "f": {
+          "frame": {
+            "hits": 99,
+            "count": 159,
+            "accuracy": 0.6226415094339622
+          },
+          "segment_top1": {
+            "hits": 9,
+            "count": 13,
+            "accuracy": 0.6923076923076923
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 11,
+            "count": 13,
+            "accuracy": 0.8461538461538461
+          }
+        },
+        "d": {
+          "frame": {
+            "hits": 15,
+            "count": 41,
+            "accuracy": 0.36585365853658536
+          },
+          "segment_top1": {
+            "hits": 4,
+            "count": 10,
+            "accuracy": 0.4
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 7,
+            "count": 10,
+            "accuracy": 0.7
+          }
+        },
+        "g": {
+          "frame": {
+            "hits": 51,
+            "count": 77,
+            "accuracy": 0.6623376623376623
+          },
+          "segment_top1": {
+            "hits": 9,
+            "count": 12,
+            "accuracy": 0.75
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 10,
+            "count": 12,
+            "accuracy": 0.8333333333333334
+          }
+        }
+      },
       "n_videos_scored": 10,
       "n_skipped": 0,
       "n_failures": 0
@@ -1040,11 +1207,103 @@
       ]
     },
     "annealing_test": {
+      "frame_hits": 611,
+      "frame_count": 957,
+      "frame_accuracy": 0.6384535005224661,
       "segment_top1_hits": 58,
       "segment_top3_hits": 84,
       "carry_segments_used": 102,
       "segment_top1_accuracy": 0.5686274509803921,
       "segment_top3_hit_rate": 0.8235294117647058,
+      "shelf_constrained_segment_top1_hits": 66,
+      "shelf_constrained_segment_top1_accuracy": 0.6470588235294118,
+      "by_shelf": {
+        "c": {
+          "frame": {
+            "hits": 433,
+            "count": 535,
+            "accuracy": 0.8093457943925234
+          },
+          "segment_top1": {
+            "hits": 31,
+            "count": 35,
+            "accuracy": 0.8857142857142857
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 31,
+            "count": 35,
+            "accuracy": 0.8857142857142857
+          }
+        },
+        "d": {
+          "frame": {
+            "hits": 22,
+            "count": 94,
+            "accuracy": 0.23404255319148937
+          },
+          "segment_top1": {
+            "hits": 5,
+            "count": 28,
+            "accuracy": 0.17857142857142858
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 7,
+            "count": 28,
+            "accuracy": 0.25
+          }
+        },
+        "g": {
+          "frame": {
+            "hits": 69,
+            "count": 110,
+            "accuracy": 0.6272727272727273
+          },
+          "segment_top1": {
+            "hits": 11,
+            "count": 19,
+            "accuracy": 0.5789473684210527
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 13,
+            "count": 19,
+            "accuracy": 0.6842105263157895
+          }
+        },
+        "f": {
+          "frame": {
+            "hits": 36,
+            "count": 135,
+            "accuracy": 0.26666666666666666
+          },
+          "segment_top1": {
+            "hits": 4,
+            "count": 10,
+            "accuracy": 0.4
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 7,
+            "count": 10,
+            "accuracy": 0.7
+          }
+        },
+        "e": {
+          "frame": {
+            "hits": 51,
+            "count": 83,
+            "accuracy": 0.6144578313253012
+          },
+          "segment_top1": {
+            "hits": 7,
+            "count": 10,
+            "accuracy": 0.7
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 8,
+            "count": 10,
+            "accuracy": 0.8
+          }
+        }
+      },
       "n_videos_scored": 10,
       "n_skipped": 0,
       "n_failures": 0
@@ -1525,11 +1784,86 @@
       ]
     },
     "annealing_test": {
+      "frame_hits": 528,
+      "frame_count": 869,
+      "frame_accuracy": 0.6075949367088608,
       "segment_top1_hits": 67,
       "segment_top3_hits": 80,
       "carry_segments_used": 103,
       "segment_top1_accuracy": 0.6504854368932039,
       "segment_top3_hit_rate": 0.7766990291262136,
+      "shelf_constrained_segment_top1_hits": 74,
+      "shelf_constrained_segment_top1_accuracy": 0.7184466019417476,
+      "by_shelf": {
+        "f": {
+          "frame": {
+            "hits": 180,
+            "count": 341,
+            "accuracy": 0.5278592375366569
+          },
+          "segment_top1": {
+            "hits": 18,
+            "count": 29,
+            "accuracy": 0.6206896551724138
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 24,
+            "count": 29,
+            "accuracy": 0.8275862068965517
+          }
+        },
+        "g": {
+          "frame": {
+            "hits": 118,
+            "count": 249,
+            "accuracy": 0.4738955823293173
+          },
+          "segment_top1": {
+            "hits": 23,
+            "count": 41,
+            "accuracy": 0.5609756097560976
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 24,
+            "count": 41,
+            "accuracy": 0.5853658536585366
+          }
+        },
+        "c": {
+          "frame": {
+            "hits": 139,
+            "count": 143,
+            "accuracy": 0.972027972027972
+          },
+          "segment_top1": {
+            "hits": 9,
+            "count": 9,
+            "accuracy": 1.0
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 9,
+            "count": 9,
+            "accuracy": 1.0
+          }
+        },
+        "e": {
+          "frame": {
+            "hits": 91,
+            "count": 136,
+            "accuracy": 0.6691176470588235
+          },
+          "segment_top1": {
+            "hits": 17,
+            "count": 24,
+            "accuracy": 0.7083333333333334
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 17,
+            "count": 24,
+            "accuracy": 0.7083333333333334
+          }
+        }
+      },
       "n_videos_scored": 10,
       "n_skipped": 0,
       "n_failures": 0
@@ -2010,11 +2344,103 @@
       ]
     },
     "annealing_test": {
+      "frame_hits": 762,
+      "frame_count": 1064,
+      "frame_accuracy": 0.7161654135338346,
       "segment_top1_hits": 87,
       "segment_top3_hits": 101,
       "carry_segments_used": 113,
       "segment_top1_accuracy": 0.7699115044247787,
       "segment_top3_hit_rate": 0.8938053097345132,
+      "shelf_constrained_segment_top1_hits": 94,
+      "shelf_constrained_segment_top1_accuracy": 0.831858407079646,
+      "by_shelf": {
+        "f": {
+          "frame": {
+            "hits": 191,
+            "count": 316,
+            "accuracy": 0.6044303797468354
+          },
+          "segment_top1": {
+            "hits": 20,
+            "count": 24,
+            "accuracy": 0.8333333333333334
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 20,
+            "count": 24,
+            "accuracy": 0.8333333333333334
+          }
+        },
+        "c": {
+          "frame": {
+            "hits": 354,
+            "count": 425,
+            "accuracy": 0.8329411764705882
+          },
+          "segment_top1": {
+            "hits": 29,
+            "count": 32,
+            "accuracy": 0.90625
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 29,
+            "count": 32,
+            "accuracy": 0.90625
+          }
+        },
+        "d": {
+          "frame": {
+            "hits": 37,
+            "count": 78,
+            "accuracy": 0.47435897435897434
+          },
+          "segment_top1": {
+            "hits": 11,
+            "count": 21,
+            "accuracy": 0.5238095238095238
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 11,
+            "count": 21,
+            "accuracy": 0.5238095238095238
+          }
+        },
+        "e": {
+          "frame": {
+            "hits": 72,
+            "count": 88,
+            "accuracy": 0.8181818181818182
+          },
+          "segment_top1": {
+            "hits": 11,
+            "count": 12,
+            "accuracy": 0.9166666666666666
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 12,
+            "count": 12,
+            "accuracy": 1.0
+          }
+        },
+        "g": {
+          "frame": {
+            "hits": 108,
+            "count": 157,
+            "accuracy": 0.6878980891719745
+          },
+          "segment_top1": {
+            "hits": 16,
+            "count": 24,
+            "accuracy": 0.6666666666666666
+          },
+          "shelf_constrained_segment_top1": {
+            "hits": 22,
+            "count": 24,
+            "accuracy": 0.9166666666666666
+          }
+        }
+      },
       "n_videos_scored": 10,
       "n_skipped": 0,
       "n_failures": 0

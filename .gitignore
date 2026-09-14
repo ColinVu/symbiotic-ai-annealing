@@ -48,9 +48,7 @@ symbiotic-ai/bin_picking_verifier/out/
 symbiotic-ai/hmm-testing/picklist_videos/*
 !symbiotic-ai/hmm-testing/picklist_videos/README.md
 
-# Generated 3-D NN features (keep folder + README)
-symbiotic-ai/hmm-testing/processed_features_3d/*
-!symbiotic-ai/hmm-testing/processed_features_3d/README.md
+# Generated 3-D NN features
 symbiotic-ai/hmm-testing/processed_features_3d_v2/*
 !symbiotic-ai/hmm-testing/processed_features_3d_v2/README.md
 symbiotic-ai/hmm-testing/processed_features_9d/*

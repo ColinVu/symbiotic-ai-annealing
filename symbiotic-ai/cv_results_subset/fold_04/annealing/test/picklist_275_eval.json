@@ -11,12 +11,51 @@
   "cache_hits": 72,
   "embed_missing": false,
   "metrics": {
+    "frame": {
+      "hits": 31,
+      "count": 72,
+      "accuracy": 0.4305555555555556
+    },
+    "segment_top1": {
+      "hits": 6,
+      "count": 11,
+      "accuracy": 0.5454545454545454
+    },
+    "shelf_constrained_segment_top1": {
+      "hits": 6,
+      "count": 11,
+      "accuracy": 0.5454545454545454
+    },
+    "frame_hits": 31,
+    "frames_with_predictions": 72,
+    "frame_accuracy": 0.4305555555555556,
     "carry_segments_used": 11,
     "segments_with_predictions": 11,
     "segment_top1_hits": 6,
     "segment_top1_accuracy": 0.5454545454545454,
     "segment_top3_hits": 7,
     "segment_top3_hit_rate": 0.6363636363636364,
+    "shelf_constrained_segment_top1_hits": 6,
+    "shelf_constrained_segment_top1_accuracy": 0.5454545454545454,
+    "by_shelf": {
+      "g": {
+        "frame": {
+          "hits": 31,
+          "count": 72,
+          "accuracy": 0.4305555555555556
+        },
+        "segment_top1": {
+          "hits": 6,
+          "count": 11,
+          "accuracy": 0.5454545454545454
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 6,
+          "count": 11,
+          "accuracy": 0.5454545454545454
+        }
+      }
+    },
     "mean_segment_top1_confidence": 0.009893830710449782
   },
   "segments": [
@@ -29,6 +68,8 @@
       "predicted_top1_label": "g31",
       "top1_hit": false,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g31",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009492509615718117
     },
     {
@@ -40,6 +81,8 @@
       "predicted_top1_label": "g35",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g35",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009838742414478418
     },
     {
@@ -51,6 +94,8 @@
       "predicted_top1_label": "f44",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g46",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009718340783194192
     },
     {
@@ -62,6 +107,8 @@
       "predicted_top1_label": "g44",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g44",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.010043343546332814
     },
     {
@@ -73,6 +120,8 @@
       "predicted_top1_label": "g22",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g22",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009983787534015867
     },
     {
@@ -84,6 +133,8 @@
       "predicted_top1_label": "g35",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g35",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.010096151565499869
     },
     {
@@ -95,6 +146,8 @@
       "predicted_top1_label": "g33",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g33",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.01006625273615062
     },
     {
@@ -106,6 +159,8 @@
       "predicted_top1_label": "d35",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g12",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.00960961196974255
     },
     {
@@ -117,6 +172,8 @@
       "predicted_top1_label": "g35",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g35",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.010253961939791398
     },
     {
@@ -128,6 +185,8 @@
       "predicted_top1_label": "g42",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g42",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.010006025106147952
     },
     {
@@ -139,6 +198,8 @@
       "predicted_top1_label": "e41",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g14",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009723410603875793
     }
   ]

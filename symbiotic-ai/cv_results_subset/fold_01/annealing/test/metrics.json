@@ -1,10 +1,85 @@
 {
   "metrics": {
+    "frame_hits": 432,
+    "frame_count": 782,
+    "frame_accuracy": 0.5524296675191815,
     "segment_top1_hits": 63,
-    "segment_top3_hits": 86,
+    "segment_top3_hits": 83,
     "carry_segments_used": 112,
     "segment_top1_accuracy": 0.5625,
-    "segment_top3_hit_rate": 0.7678571428571429,
+    "segment_top3_hit_rate": 0.7410714285714286,
+    "shelf_constrained_segment_top1_hits": 72,
+    "shelf_constrained_segment_top1_accuracy": 0.6428571428571429,
+    "by_shelf": {
+      "d": {
+        "frame": {
+          "hits": 44,
+          "count": 126,
+          "accuracy": 0.3492063492063492
+        },
+        "segment_top1": {
+          "hits": 12,
+          "count": 41,
+          "accuracy": 0.2926829268292683
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 18,
+          "count": 41,
+          "accuracy": 0.43902439024390244
+        }
+      },
+      "e": {
+        "frame": {
+          "hits": 90,
+          "count": 188,
+          "accuracy": 0.4787234042553192
+        },
+        "segment_top1": {
+          "hits": 19,
+          "count": 27,
+          "accuracy": 0.7037037037037037
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 19,
+          "count": 27,
+          "accuracy": 0.7037037037037037
+        }
+      },
+      "f": {
+        "frame": {
+          "hits": 221,
+          "count": 378,
+          "accuracy": 0.5846560846560847
+        },
+        "segment_top1": {
+          "hits": 21,
+          "count": 32,
+          "accuracy": 0.65625
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 24,
+          "count": 32,
+          "accuracy": 0.75
+        }
+      },
+      "g": {
+        "frame": {
+          "hits": 77,
+          "count": 90,
+          "accuracy": 0.8555555555555555
+        },
+        "segment_top1": {
+          "hits": 11,
+          "count": 12,
+          "accuracy": 0.9166666666666666
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 11,
+          "count": 12,
+          "accuracy": 0.9166666666666666
+        }
+      }
+    },
     "n_videos_scored": 10,
     "n_skipped": 0,
     "n_failures": 0

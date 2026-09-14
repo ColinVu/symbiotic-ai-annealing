@@ -1,10 +1,102 @@
 {
   "metrics": {
+    "frame_hits": 611,
+    "frame_count": 957,
+    "frame_accuracy": 0.6384535005224661,
     "segment_top1_hits": 58,
     "segment_top3_hits": 84,
     "carry_segments_used": 102,
     "segment_top1_accuracy": 0.5686274509803921,
     "segment_top3_hit_rate": 0.8235294117647058,
+    "shelf_constrained_segment_top1_hits": 66,
+    "shelf_constrained_segment_top1_accuracy": 0.6470588235294118,
+    "by_shelf": {
+      "c": {
+        "frame": {
+          "hits": 433,
+          "count": 535,
+          "accuracy": 0.8093457943925234
+        },
+        "segment_top1": {
+          "hits": 31,
+          "count": 35,
+          "accuracy": 0.8857142857142857
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 31,
+          "count": 35,
+          "accuracy": 0.8857142857142857
+        }
+      },
+      "d": {
+        "frame": {
+          "hits": 22,
+          "count": 94,
+          "accuracy": 0.23404255319148937
+        },
+        "segment_top1": {
+          "hits": 5,
+          "count": 28,
+          "accuracy": 0.17857142857142858
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 7,
+          "count": 28,
+          "accuracy": 0.25
+        }
+      },
+      "g": {
+        "frame": {
+          "hits": 69,
+          "count": 110,
+          "accuracy": 0.6272727272727273
+        },
+        "segment_top1": {
+          "hits": 11,
+          "count": 19,
+          "accuracy": 0.5789473684210527
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 13,
+          "count": 19,
+          "accuracy": 0.6842105263157895
+        }
+      },
+      "f": {
+        "frame": {
+          "hits": 36,
+          "count": 135,
+          "accuracy": 0.26666666666666666
+        },
+        "segment_top1": {
+          "hits": 4,
+          "count": 10,
+          "accuracy": 0.4
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 7,
+          "count": 10,
+          "accuracy": 0.7
+        }
+      },
+      "e": {
+        "frame": {
+          "hits": 51,
+          "count": 83,
+          "accuracy": 0.6144578313253012
+        },
+        "segment_top1": {
+          "hits": 7,
+          "count": 10,
+          "accuracy": 0.7
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 8,
+          "count": 10,
+          "accuracy": 0.8
+        }
+      }
+    },
     "n_videos_scored": 10,
     "n_skipped": 0,
     "n_failures": 0

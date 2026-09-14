@@ -11,12 +11,51 @@
   "cache_hits": 77,
   "embed_missing": false,
   "metrics": {
+    "frame": {
+      "hits": 56,
+      "count": 77,
+      "accuracy": 0.7272727272727273
+    },
+    "segment_top1": {
+      "hits": 9,
+      "count": 13,
+      "accuracy": 0.6923076923076923
+    },
+    "shelf_constrained_segment_top1": {
+      "hits": 9,
+      "count": 13,
+      "accuracy": 0.6923076923076923
+    },
+    "frame_hits": 56,
+    "frames_with_predictions": 77,
+    "frame_accuracy": 0.7272727272727273,
     "carry_segments_used": 13,
     "segments_with_predictions": 12,
     "segment_top1_hits": 9,
     "segment_top1_accuracy": 0.6923076923076923,
     "segment_top3_hits": 11,
     "segment_top3_hit_rate": 0.8461538461538461,
+    "shelf_constrained_segment_top1_hits": 9,
+    "shelf_constrained_segment_top1_accuracy": 0.6923076923076923,
+    "by_shelf": {
+      "e": {
+        "frame": {
+          "hits": 56,
+          "count": 77,
+          "accuracy": 0.7272727272727273
+        },
+        "segment_top1": {
+          "hits": 9,
+          "count": 13,
+          "accuracy": 0.6923076923076923
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 9,
+          "count": 13,
+          "accuracy": 0.6923076923076923
+        }
+      }
+    },
     "mean_segment_top1_confidence": 0.009024707259070995
   },
   "segments": [
@@ -29,6 +68,8 @@
       "predicted_top1_label": "e11",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e11",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009659387588737451
     },
     {
@@ -40,6 +81,8 @@
       "predicted_top1_label": "e35",
       "top1_hit": false,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e35",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009709243562326981
     },
     {
@@ -51,6 +94,8 @@
       "predicted_top1_label": "e15",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e15",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009713677153166015
     },
     {
@@ -62,6 +107,8 @@
       "predicted_top1_label": "e44",
       "top1_hit": false,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e44",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009750974768987914
     },
     {
@@ -73,6 +120,8 @@
       "predicted_top1_label": "e45",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e45",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009768691194251333
     },
     {
@@ -84,6 +133,8 @@
       "predicted_top1_label": "e12",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e12",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009856294283955612
     },
     {
@@ -95,6 +146,8 @@
       "predicted_top1_label": "e15",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e15",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.00975402171063947
     },
     {
@@ -106,6 +159,8 @@
       "predicted_top1_label": "e42",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "e42",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.00964002838896382
     },
     {
@@ -117,6 +172,8 @@
       "predicted_top1_label": "e14",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e14",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009670293587487978
     },
     {
@@ -128,6 +185,8 @@
       "predicted_top1_label": "e16",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e16",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009965897707602703
     },
     {
@@ -139,6 +198,8 @@
       "predicted_top1_label": "e41",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e41",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009749913382167266
     },
     {
@@ -150,6 +211,8 @@
       "predicted_top1_label": "",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.0
     },
     {
@@ -161,6 +224,8 @@
       "predicted_top1_label": "e43",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e43",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.010082771039636411
     }
   ]

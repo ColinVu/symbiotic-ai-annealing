@@ -8,16 +8,55 @@
   "threshold": 50.0,
   "compact_frame_indexing": "opencv0",
   "cache_label": "e13",
-  "cache_hits": 66,
-  "embed_missing": true,
+  "cache_hits": 86,
+  "embed_missing": false,
   "metrics": {
+    "frame": {
+      "hits": 43,
+      "count": 86,
+      "accuracy": 0.5
+    },
+    "segment_top1": {
+      "hits": 10,
+      "count": 14,
+      "accuracy": 0.7142857142857143
+    },
+    "shelf_constrained_segment_top1": {
+      "hits": 10,
+      "count": 14,
+      "accuracy": 0.7142857142857143
+    },
+    "frame_hits": 43,
+    "frames_with_predictions": 86,
+    "frame_accuracy": 0.5,
     "carry_segments_used": 14,
     "segments_with_predictions": 13,
     "segment_top1_hits": 10,
     "segment_top1_accuracy": 0.7142857142857143,
     "segment_top3_hits": 10,
     "segment_top3_hit_rate": 0.7142857142857143,
-    "mean_segment_top1_confidence": 0.00872143484010618
+    "shelf_constrained_segment_top1_hits": 10,
+    "shelf_constrained_segment_top1_accuracy": 0.7142857142857143,
+    "by_shelf": {
+      "e": {
+        "frame": {
+          "hits": 43,
+          "count": 86,
+          "accuracy": 0.5
+        },
+        "segment_top1": {
+          "hits": 10,
+          "count": 14,
+          "accuracy": 0.7142857142857143
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 10,
+          "count": 14,
+          "accuracy": 0.7142857142857143
+        }
+      }
+    },
+    "mean_segment_top1_confidence": 0.008720741141301783
   },
   "segments": [
     {
@@ -25,22 +64,26 @@
       "start_frame_1based": 55,
       "end_frame_1based": 124,
       "expected_label": "e13",
-      "num_predicted_frames": 9,
+      "num_predicted_frames": 8,
       "predicted_top1_label": "e13",
       "top1_hit": true,
       "top3_hit": true,
-      "mean_top1_confidence": 0.00937313317268182
+      "shelf_predicted_top1_label": "e13",
+      "shelf_top1_hit": true,
+      "mean_top1_confidence": 0.009372784663420324
     },
     {
       "segment_idx": 1,
       "start_frame_1based": 287,
       "end_frame_1based": 405,
       "expected_label": "e43",
-      "num_predicted_frames": 14,
+      "num_predicted_frames": 10,
       "predicted_top1_label": "e43",
       "top1_hit": true,
       "top3_hit": true,
-      "mean_top1_confidence": 0.009408694970882875
+      "shelf_predicted_top1_label": "e43",
+      "shelf_top1_hit": true,
+      "mean_top1_confidence": 0.009408595421412763
     },
     {
       "segment_idx": 2,
@@ -51,6 +94,8 @@
       "predicted_top1_label": "f31",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "e24",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009383469092783533
     },
     {
@@ -62,6 +107,8 @@
       "predicted_top1_label": "e46",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e46",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009280253003738545
     },
     {
@@ -73,6 +120,8 @@
       "predicted_top1_label": "e11",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e11",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009433253975977168
     },
     {
@@ -84,6 +133,8 @@
       "predicted_top1_label": "e15",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e15",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009464472865501172
     },
     {
@@ -95,6 +146,8 @@
       "predicted_top1_label": "e36",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "e36",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009262442673952018
     },
     {
@@ -106,6 +159,8 @@
       "predicted_top1_label": "e31",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e31",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.00940947428833077
     },
     {
@@ -117,6 +172,8 @@
       "predicted_top1_label": "e41",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e41",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009354682399334527
     },
     {
@@ -124,11 +181,13 @@
       "start_frame_1based": 2212,
       "end_frame_1based": 2254,
       "expected_label": "e16",
-      "num_predicted_frames": 4,
+      "num_predicted_frames": 3,
       "predicted_top1_label": "e16",
       "top1_hit": true,
       "top3_hit": true,
-      "mean_top1_confidence": 0.00949824545146052
+      "shelf_predicted_top1_label": "e16",
+      "shelf_top1_hit": true,
+      "mean_top1_confidence": 0.009533013583806276
     },
     {
       "segment_idx": 10,
@@ -139,6 +198,8 @@
       "predicted_top1_label": "f23",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "e32",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.00955966063796391
     },
     {
@@ -150,6 +211,8 @@
       "predicted_top1_label": "",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.0
     },
     {
@@ -157,22 +220,26 @@
       "start_frame_1based": 2865,
       "end_frame_1based": 2930,
       "expected_label": "e45",
-      "num_predicted_frames": 8,
+      "num_predicted_frames": 7,
       "predicted_top1_label": "e45",
       "top1_hit": true,
       "top3_hit": true,
-      "mean_top1_confidence": 0.009421372563502142
+      "shelf_predicted_top1_label": "e45",
+      "shelf_top1_hit": true,
+      "mean_top1_confidence": 0.009378543227310522
     },
     {
       "segment_idx": 13,
       "start_frame_1based": 3099,
       "end_frame_1based": 3166,
       "expected_label": "e46",
-      "num_predicted_frames": 10,
+      "num_predicted_frames": 8,
       "predicted_top1_label": "e46",
       "top1_hit": true,
       "top3_hit": true,
-      "mean_top1_confidence": 0.009250932665377494
+      "shelf_predicted_top1_label": "e46",
+      "shelf_top1_hit": true,
+      "mean_top1_confidence": 0.00924973014469345
     }
   ]
 }

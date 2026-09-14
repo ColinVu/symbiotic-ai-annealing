@@ -11,12 +11,51 @@
   "cache_hits": 75,
   "embed_missing": false,
   "metrics": {
+    "frame": {
+      "hits": 35,
+      "count": 75,
+      "accuracy": 0.4666666666666667
+    },
+    "segment_top1": {
+      "hits": 6,
+      "count": 11,
+      "accuracy": 0.5454545454545454
+    },
+    "shelf_constrained_segment_top1": {
+      "hits": 6,
+      "count": 11,
+      "accuracy": 0.5454545454545454
+    },
+    "frame_hits": 35,
+    "frames_with_predictions": 75,
+    "frame_accuracy": 0.4666666666666667,
     "carry_segments_used": 11,
     "segments_with_predictions": 11,
     "segment_top1_hits": 6,
     "segment_top1_accuracy": 0.5454545454545454,
     "segment_top3_hits": 6,
     "segment_top3_hit_rate": 0.5454545454545454,
+    "shelf_constrained_segment_top1_hits": 6,
+    "shelf_constrained_segment_top1_accuracy": 0.5454545454545454,
+    "by_shelf": {
+      "g": {
+        "frame": {
+          "hits": 35,
+          "count": 75,
+          "accuracy": 0.4666666666666667
+        },
+        "segment_top1": {
+          "hits": 6,
+          "count": 11,
+          "accuracy": 0.5454545454545454
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 6,
+          "count": 11,
+          "accuracy": 0.5454545454545454
+        }
+      }
+    },
     "mean_segment_top1_confidence": 0.009787834639566943
   },
   "segments": [
@@ -29,6 +68,8 @@
       "predicted_top1_label": "f16",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g12",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009578654987752377
     },
     {
@@ -40,6 +81,8 @@
       "predicted_top1_label": "g35",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g35",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.010246229377641594
     },
     {
@@ -51,6 +94,8 @@
       "predicted_top1_label": "g41",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g41",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009739809696662473
     },
     {
@@ -62,6 +107,8 @@
       "predicted_top1_label": "e41",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g14",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.00962938832697712
     },
     {
@@ -73,6 +120,8 @@
       "predicted_top1_label": "g33",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g33",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009863141365724776
     },
     {
@@ -84,6 +133,8 @@
       "predicted_top1_label": "f46",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g32",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009647195694055274
     },
     {
@@ -95,6 +146,8 @@
       "predicted_top1_label": "g36",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g36",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.010014330325396554
     },
     {
@@ -106,6 +159,8 @@
       "predicted_top1_label": "g42",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g42",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.00974782947727852
     },
     {
@@ -117,6 +172,8 @@
       "predicted_top1_label": "g16",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "g16",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009434092183897354
     },
     {
@@ -128,6 +185,8 @@
       "predicted_top1_label": "g24",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g24",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009738755977089607
     },
     {
@@ -139,6 +198,8 @@
       "predicted_top1_label": "g44",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "g44",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.010026753622760731
     }
   ]

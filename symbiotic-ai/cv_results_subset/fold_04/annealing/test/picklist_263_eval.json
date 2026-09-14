@@ -11,12 +11,51 @@
   "cache_hits": 59,
   "embed_missing": false,
   "metrics": {
+    "frame": {
+      "hits": 35,
+      "count": 59,
+      "accuracy": 0.5932203389830508
+    },
+    "segment_top1": {
+      "hits": 8,
+      "count": 11,
+      "accuracy": 0.7272727272727273
+    },
+    "shelf_constrained_segment_top1": {
+      "hits": 8,
+      "count": 11,
+      "accuracy": 0.7272727272727273
+    },
+    "frame_hits": 35,
+    "frames_with_predictions": 59,
+    "frame_accuracy": 0.5932203389830508,
     "carry_segments_used": 11,
     "segments_with_predictions": 11,
     "segment_top1_hits": 8,
     "segment_top1_accuracy": 0.7272727272727273,
     "segment_top3_hits": 9,
     "segment_top3_hit_rate": 0.8181818181818182,
+    "shelf_constrained_segment_top1_hits": 8,
+    "shelf_constrained_segment_top1_accuracy": 0.7272727272727273,
+    "by_shelf": {
+      "e": {
+        "frame": {
+          "hits": 35,
+          "count": 59,
+          "accuracy": 0.5932203389830508
+        },
+        "segment_top1": {
+          "hits": 8,
+          "count": 11,
+          "accuracy": 0.7272727272727273
+        },
+        "shelf_constrained_segment_top1": {
+          "hits": 8,
+          "count": 11,
+          "accuracy": 0.7272727272727273
+        }
+      }
+    },
     "mean_segment_top1_confidence": 0.009725150814891231
   },
   "segments": [
@@ -29,6 +68,8 @@
       "predicted_top1_label": "e11",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e11",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009830217853577985
     },
     {
@@ -40,6 +81,8 @@
       "predicted_top1_label": "e12",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e12",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009622808293051205
     },
     {
@@ -51,6 +94,8 @@
       "predicted_top1_label": "e14",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e14",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009697680079954476
     },
     {
@@ -62,6 +107,8 @@
       "predicted_top1_label": "e23",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e23",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009713189723769873
     },
     {
@@ -73,6 +120,8 @@
       "predicted_top1_label": "e22",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e22",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009780272134936707
     },
     {
@@ -84,6 +133,8 @@
       "predicted_top1_label": "f46",
       "top1_hit": false,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e14",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009740259812607593
     },
     {
@@ -95,6 +146,8 @@
       "predicted_top1_label": "d32",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "e42",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009789328661868933
     },
     {
@@ -106,6 +159,8 @@
       "predicted_top1_label": "e42",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e42",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009707506720236453
     },
     {
@@ -117,6 +172,8 @@
       "predicted_top1_label": "d13",
       "top1_hit": false,
       "top3_hit": false,
+      "shelf_predicted_top1_label": "e14",
+      "shelf_top1_hit": false,
       "mean_top1_confidence": 0.009396721408694967
     },
     {
@@ -128,6 +185,8 @@
       "predicted_top1_label": "e22",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e22",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.0098847502649774
     },
     {
@@ -139,6 +198,8 @@
       "predicted_top1_label": "e45",
       "top1_hit": true,
       "top3_hit": true,
+      "shelf_predicted_top1_label": "e45",
+      "shelf_top1_hit": true,
       "mean_top1_confidence": 0.009813924010127949
     }
   ]
