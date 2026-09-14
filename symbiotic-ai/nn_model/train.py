@@ -27,7 +27,6 @@ from .data import (
     DEFAULT_GROUND_TRUTH,
     DEFAULT_LABELS,
     DEFAULT_PICKLIST_JSONS,
-    DEFAULT_PICKLIST_LABELS,
     DEFAULT_VIDEO_DIR,
     NUM_STATES,
     FeatureSource,
@@ -307,7 +306,6 @@ def _run_kfold_train(args, feature_source: FeatureSource, features_dir: Path) ->
         cv_root=args.cv_results_dir,
         k_fold=int(args.k_fold),
         seed=int(args.seed),
-        annealing_labels_dir=args.annealing_labels_dir,
         segmentation_labels_dir=args.labels_dir,
         videos_dir=args.videos_dir,
         json_dir=args.picklist_jsons,
@@ -383,7 +381,6 @@ def main() -> None:
     ap.add_argument("--overwrite", action="store_true", help="Redo completed CV folds / resplit")
     ap.add_argument("--videos-dir", type=Path, default=DEFAULT_VIDEO_DIR)
     ap.add_argument("--picklist-jsons", type=Path, default=DEFAULT_PICKLIST_JSONS)
-    ap.add_argument("--annealing-labels-dir", type=Path, default=DEFAULT_PICKLIST_LABELS)
     args = ap.parse_args()
 
     feature_source: FeatureSource = args.feature_source

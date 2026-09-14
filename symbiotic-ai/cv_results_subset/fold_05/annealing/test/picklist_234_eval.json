@@ -1,0 +1,134 @@
+{
+  "video": "/Users/colinhvu/Documents/coding/symbai-segmentation-final/symbiotic-ai-annealing/symbiotic-ai/hmm-testing/picklist_videos/picklist_234.MP4",
+  "model_dir": "/Users/colinhvu/Documents/coding/symbai-segmentation-final/symbiotic-ai-annealing/symbiotic-ai/cv_results_subset/fold_05/annealing/model",
+  "ground_truth_csv": "/Users/colinhvu/Documents/coding/symbai-segmentation-final/symbiotic-ai-annealing/symbiotic-ai/ground_truth.csv",
+  "video_stem": "picklist_234",
+  "state_label_csv": "/Users/colinhvu/Documents/coding/symbai-segmentation-final/symbiotic-ai-annealing/symbiotic-ai/cv_results_subset/fold_05/nn_model/labels/test/picklist_234.csv",
+  "frame_skip": 5,
+  "threshold": 50.0,
+  "compact_frame_indexing": "opencv0",
+  "cache_label": "f13",
+  "cache_hits": 143,
+  "embed_missing": false,
+  "metrics": {
+    "carry_segments_used": 10,
+    "segments_with_predictions": 10,
+    "segment_top1_hits": 8,
+    "segment_top1_accuracy": 0.8,
+    "segment_top3_hits": 9,
+    "segment_top3_hit_rate": 0.9,
+    "mean_segment_top1_confidence": 0.009464687980151302
+  },
+  "segments": [
+    {
+      "segment_idx": 0,
+      "start_frame_1based": 114,
+      "end_frame_1based": 223,
+      "expected_label": "f13",
+      "num_predicted_frames": 18,
+      "predicted_top1_label": "f16",
+      "top1_hit": false,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.00947813878469248
+    },
+    {
+      "segment_idx": 1,
+      "start_frame_1based": 436,
+      "end_frame_1based": 559,
+      "expected_label": "f42",
+      "num_predicted_frames": 17,
+      "predicted_top1_label": "f42",
+      "top1_hit": true,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.009452171338636649
+    },
+    {
+      "segment_idx": 2,
+      "start_frame_1based": 731,
+      "end_frame_1based": 846,
+      "expected_label": "f35",
+      "num_predicted_frames": 15,
+      "predicted_top1_label": "f35",
+      "top1_hit": true,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.00942262761973373
+    },
+    {
+      "segment_idx": 3,
+      "start_frame_1based": 1037,
+      "end_frame_1based": 1144,
+      "expected_label": "f36",
+      "num_predicted_frames": 16,
+      "predicted_top1_label": "f36",
+      "top1_hit": true,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.009452748119353836
+    },
+    {
+      "segment_idx": 4,
+      "start_frame_1based": 1330,
+      "end_frame_1based": 1433,
+      "expected_label": "f44",
+      "num_predicted_frames": 14,
+      "predicted_top1_label": "f44",
+      "top1_hit": true,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.009503748822619205
+    },
+    {
+      "segment_idx": 5,
+      "start_frame_1based": 1610,
+      "end_frame_1based": 1705,
+      "expected_label": "f21",
+      "num_predicted_frames": 13,
+      "predicted_top1_label": "f21",
+      "top1_hit": true,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.009496215864778588
+    },
+    {
+      "segment_idx": 6,
+      "start_frame_1based": 1884,
+      "end_frame_1based": 1980,
+      "expected_label": "f25",
+      "num_predicted_frames": 16,
+      "predicted_top1_label": "f13",
+      "top1_hit": false,
+      "top3_hit": false,
+      "mean_top1_confidence": 0.009375667032130563
+    },
+    {
+      "segment_idx": 7,
+      "start_frame_1based": 2155,
+      "end_frame_1based": 2260,
+      "expected_label": "f32",
+      "num_predicted_frames": 11,
+      "predicted_top1_label": "f32",
+      "top1_hit": true,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.009499957046390894
+    },
+    {
+      "segment_idx": 8,
+      "start_frame_1based": 2456,
+      "end_frame_1based": 2553,
+      "expected_label": "f42",
+      "num_predicted_frames": 12,
+      "predicted_top1_label": "f42",
+      "top1_hit": true,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.009462997203474186
+    },
+    {
+      "segment_idx": 9,
+      "start_frame_1based": 2769,
+      "end_frame_1based": 2847,
+      "expected_label": "f44",
+      "num_predicted_frames": 11,
+      "predicted_top1_label": "f44",
+      "top1_hit": true,
+      "top3_hit": true,
+      "mean_top1_confidence": 0.009502607969702887
+    }
+  ]
+}

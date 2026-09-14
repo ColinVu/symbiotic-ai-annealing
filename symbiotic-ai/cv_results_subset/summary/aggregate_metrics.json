@@ -1,0 +1,29 @@
+{
+  "n_folds": 5,
+  "segmentation": {
+    "micro_frame_accuracy": 0.9001242621932277,
+    "macro_frame_accuracy": 0.8989860725758373
+  },
+  "annealing_test": {
+    "micro_segment_top1_accuracy": 0.654275092936803,
+    "micro_segment_top3_hit_rate": 0.8420074349442379,
+    "macro_segment_top1_accuracy": 0.6528974710522675,
+    "macro_segment_top3_hit_rate": 0.8412670675854041,
+    "segment_top1_hits": 352,
+    "segment_top3_hits": 453,
+    "carry_segments_used": 538
+  },
+  "cache_coverage": {
+    "candidate_frames": 27895,
+    "cache_hits": 18483,
+    "skipped_missing": 9412,
+    "skipped_out_of_interval": 961,
+    "usable_frames": 18483,
+    "skipped_invalid": 0,
+    "failures": 0
+  },
+  "skips_failures": {
+    "skipped_missing": 9412,
+    "failures": 0
+  }
+}

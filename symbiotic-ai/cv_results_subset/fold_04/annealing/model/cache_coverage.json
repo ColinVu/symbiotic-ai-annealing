@@ -1,0 +1,404 @@
+{
+  "videos": [
+    {
+      "video": "picklist_201",
+      "candidate_frames": 173,
+      "cache_hits": 161,
+      "skipped_missing": 12,
+      "skipped_out_of_interval": 57,
+      "usable_frames": 161,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_202",
+      "candidate_frames": 41,
+      "cache_hits": 30,
+      "skipped_missing": 11,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 30,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_203",
+      "candidate_frames": 126,
+      "cache_hits": 76,
+      "skipped_missing": 50,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 76,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_211",
+      "candidate_frames": 167,
+      "cache_hits": 154,
+      "skipped_missing": 13,
+      "skipped_out_of_interval": 7,
+      "usable_frames": 154,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_212",
+      "candidate_frames": 69,
+      "cache_hits": 34,
+      "skipped_missing": 35,
+      "skipped_out_of_interval": 0,
+      "usable_frames": 34,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_213",
+      "candidate_frames": 178,
+      "cache_hits": 87,
+      "skipped_missing": 91,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 87,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_214",
+      "candidate_frames": 275,
+      "cache_hits": 151,
+      "skipped_missing": 124,
+      "skipped_out_of_interval": 0,
+      "usable_frames": 151,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_215",
+      "candidate_frames": 81,
+      "cache_hits": 61,
+      "skipped_missing": 20,
+      "skipped_out_of_interval": 0,
+      "usable_frames": 61,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_221",
+      "candidate_frames": 260,
+      "cache_hits": 241,
+      "skipped_missing": 19,
+      "skipped_out_of_interval": 12,
+      "usable_frames": 241,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_222",
+      "candidate_frames": 58,
+      "cache_hits": 22,
+      "skipped_missing": 36,
+      "skipped_out_of_interval": 0,
+      "usable_frames": 22,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_223",
+      "candidate_frames": 198,
+      "cache_hits": 122,
+      "skipped_missing": 76,
+      "skipped_out_of_interval": 3,
+      "usable_frames": 122,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_224",
+      "candidate_frames": 249,
+      "cache_hits": 162,
+      "skipped_missing": 87,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 162,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_232",
+      "candidate_frames": 49,
+      "cache_hits": 13,
+      "skipped_missing": 36,
+      "skipped_out_of_interval": 0,
+      "usable_frames": 13,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_233",
+      "candidate_frames": 192,
+      "cache_hits": 95,
+      "skipped_missing": 97,
+      "skipped_out_of_interval": 3,
+      "usable_frames": 95,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_234",
+      "candidate_frames": 204,
+      "cache_hits": 141,
+      "skipped_missing": 63,
+      "skipped_out_of_interval": 2,
+      "usable_frames": 141,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_241",
+      "candidate_frames": 129,
+      "cache_hits": 116,
+      "skipped_missing": 13,
+      "skipped_out_of_interval": 12,
+      "usable_frames": 116,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_242",
+      "candidate_frames": 74,
+      "cache_hits": 40,
+      "skipped_missing": 34,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 40,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_243",
+      "candidate_frames": 157,
+      "cache_hits": 79,
+      "skipped_missing": 78,
+      "skipped_out_of_interval": 12,
+      "usable_frames": 79,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_244",
+      "candidate_frames": 273,
+      "cache_hits": 150,
+      "skipped_missing": 123,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 150,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_245",
+      "candidate_frames": 98,
+      "cache_hits": 74,
+      "skipped_missing": 24,
+      "skipped_out_of_interval": 2,
+      "usable_frames": 74,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_251",
+      "candidate_frames": 140,
+      "cache_hits": 127,
+      "skipped_missing": 13,
+      "skipped_out_of_interval": 9,
+      "usable_frames": 127,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_252",
+      "candidate_frames": 86,
+      "cache_hits": 41,
+      "skipped_missing": 45,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 41,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_253",
+      "candidate_frames": 161,
+      "cache_hits": 66,
+      "skipped_missing": 95,
+      "skipped_out_of_interval": 3,
+      "usable_frames": 66,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_254",
+      "candidate_frames": 178,
+      "cache_hits": 75,
+      "skipped_missing": 103,
+      "skipped_out_of_interval": 0,
+      "usable_frames": 75,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_255",
+      "candidate_frames": 66,
+      "cache_hits": 46,
+      "skipped_missing": 20,
+      "skipped_out_of_interval": 4,
+      "usable_frames": 46,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_261",
+      "candidate_frames": 135,
+      "cache_hits": 115,
+      "skipped_missing": 20,
+      "skipped_out_of_interval": 5,
+      "usable_frames": 115,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_262",
+      "candidate_frames": 67,
+      "cache_hits": 37,
+      "skipped_missing": 30,
+      "skipped_out_of_interval": 4,
+      "usable_frames": 37,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_265",
+      "candidate_frames": 96,
+      "cache_hits": 74,
+      "skipped_missing": 22,
+      "skipped_out_of_interval": 2,
+      "usable_frames": 74,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_271",
+      "candidate_frames": 201,
+      "cache_hits": 151,
+      "skipped_missing": 50,
+      "skipped_out_of_interval": 4,
+      "usable_frames": 151,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_272",
+      "candidate_frames": 70,
+      "cache_hits": 34,
+      "skipped_missing": 36,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 34,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_273",
+      "candidate_frames": 108,
+      "cache_hits": 63,
+      "skipped_missing": 45,
+      "skipped_out_of_interval": 4,
+      "usable_frames": 63,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_274",
+      "candidate_frames": 228,
+      "cache_hits": 107,
+      "skipped_missing": 121,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 107,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_281",
+      "candidate_frames": 193,
+      "cache_hits": 168,
+      "skipped_missing": 25,
+      "skipped_out_of_interval": 17,
+      "usable_frames": 168,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_282",
+      "candidate_frames": 58,
+      "cache_hits": 31,
+      "skipped_missing": 27,
+      "skipped_out_of_interval": 3,
+      "usable_frames": 31,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_284",
+      "candidate_frames": 259,
+      "cache_hits": 171,
+      "skipped_missing": 88,
+      "skipped_out_of_interval": 3,
+      "usable_frames": 171,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_285",
+      "candidate_frames": 109,
+      "cache_hits": 81,
+      "skipped_missing": 28,
+      "skipped_out_of_interval": 4,
+      "usable_frames": 81,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_291",
+      "candidate_frames": 171,
+      "cache_hits": 150,
+      "skipped_missing": 21,
+      "skipped_out_of_interval": 9,
+      "usable_frames": 150,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_292",
+      "candidate_frames": 68,
+      "cache_hits": 39,
+      "skipped_missing": 29,
+      "skipped_out_of_interval": 1,
+      "usable_frames": 39,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_293",
+      "candidate_frames": 135,
+      "cache_hits": 84,
+      "skipped_missing": 51,
+      "skipped_out_of_interval": 4,
+      "usable_frames": 84,
+      "skipped_invalid": 0,
+      "failures": 0
+    },
+    {
+      "video": "picklist_295",
+      "candidate_frames": 116,
+      "cache_hits": 88,
+      "skipped_missing": 28,
+      "skipped_out_of_interval": 5,
+      "usable_frames": 88,
+      "skipped_invalid": 0,
+      "failures": 0
+    }
+  ]
+}

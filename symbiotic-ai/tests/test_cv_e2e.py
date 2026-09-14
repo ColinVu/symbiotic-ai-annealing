@@ -34,7 +34,6 @@ class TestCvE2E(unittest.TestCase):
                 cv_root=cv_root,
                 k_fold=2,
                 seed=3,
-                annealing_labels_dir=paths["picklist_labels"],
                 segmentation_labels_dir=paths["csv_labels"],
                 videos_dir=paths["videos"],
                 json_dir=paths["jsons"],
@@ -158,6 +157,13 @@ class TestCvE2E(unittest.TestCase):
                     )
                     self.assertNotEqual(ev["cache_label"], "sweep_eval")
                     self.assertGreater(ev["cache_hits"], 0)
+                    self.assertIn("frame_accuracy", ev["metrics"])
+                    self.assertIn("segment_top1_accuracy", ev["metrics"])
+                    self.assertIn(
+                        "shelf_constrained_segment_top1_accuracy",
+                        ev["metrics"],
+                    )
+                    self.assertIn("by_shelf", ev["metrics"])
                     per_video.append(ev)
                     (fl.annealing_test).mkdir(parents=True, exist_ok=True)
                     (fl.annealing_test / f"{stem}_eval.json").write_text(

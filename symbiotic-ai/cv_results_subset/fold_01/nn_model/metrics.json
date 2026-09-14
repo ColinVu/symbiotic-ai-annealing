@@ -1,0 +1,68 @@
+{
+  "fold": 1,
+  "checkpoint": "cv_results_subset/fold_01/nn_model/best_model.pt",
+  "segmentation": {
+    "frame_accuracy": 0.8907032083367523,
+    "macro_f1": 0.8875510026753451,
+    "per_class": {
+      "CARRY_EMPTY": {
+        "precision": 0.964021164021164,
+        "recall": 0.8757510213890891,
+        "f1": 0.9177685430046594
+      },
+      "PICK": {
+        "precision": 0.8150479616306955,
+        "recall": 0.9330816746739876,
+        "f1": 0.87008
+      },
+      "CARRY_WITH": {
+        "precision": 0.9552452559971357,
+        "recall": 0.8280571073867163,
+        "f1": 0.887115544472153
+      },
+      "PLACE": {
+        "precision": 0.800702370500439,
+        "recall": 0.9650793650793651,
+        "f1": 0.8752399232245681
+      }
+    },
+    "confusion_matrix": [
+      [
+        3644,
+        348,
+        0,
+        169
+      ],
+      [
+        102,
+        2719,
+        93,
+        0
+      ],
+      [
+        0,
+        269,
+        2668,
+        285
+      ],
+      [
+        34,
+        0,
+        32,
+        1824
+      ]
+    ],
+    "carry_count_accuracy": 1.0,
+    "carry_count_correct": 5,
+    "carry_count_total": 5,
+    "n_frames": 12187,
+    "n_picklists": 5,
+    "picklist_ids": [
+      "212",
+      "213",
+      "222",
+      "224",
+      "232"
+    ]
+  }
+}

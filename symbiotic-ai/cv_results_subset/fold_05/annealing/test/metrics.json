@@ -1,0 +1,14 @@
+{
+  "metrics": {
+    "segment_top1_hits": 87,
+    "segment_top3_hits": 101,
+    "carry_segments_used": 113,
+    "segment_top1_accuracy": 0.7699115044247787,
+    "segment_top3_hit_rate": 0.8938053097345132,
+    "n_videos_scored": 10,
+    "n_skipped": 0,
+    "n_failures": 0
+  },
+  "skipped": [],
+  "failures": []
+}

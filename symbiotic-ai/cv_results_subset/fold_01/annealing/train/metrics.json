@@ -1,0 +1,13 @@
+{
+  "run_dir": "/Users/colinhvu/Documents/coding/symbai-segmentation-final/symbiotic-ai-annealing/symbiotic-ai/cv_results_subset/fold_01/annealing/model/final_assignments.csv",
+  "scoring_mode": "final_assignments_csv_hit_rate",
+  "metrics": {
+    "assignment_hit_rate": 0.9154929577464789,
+    "assignment_hits": 390,
+    "assignment_compared": 426,
+    "segment_top1_hits": 390,
+    "segment_top1_accuracy": 0.9154929577464789,
+    "carry_segments_used": 426,
+    "segments_with_predictions": 426
+  }
+}

@@ -21,6 +21,8 @@ from ..state_detection.compact_timeline import carry_with_pipeline_frame_interva
 
 from .sweep_config import SWEEP_FIXED_THRESHOLD
 
+SHELF_DIGIT_MAP = {"1": "c", "2": "d", "3": "e", "4": "f", "5": "g"}
+
 
 @dataclass
 class SegmentEval:
@@ -32,7 +34,36 @@ class SegmentEval:
     predicted_top1_label: str
     top1_hit: bool
     top3_hit: bool
+    shelf_predicted_top1_label: str
+    shelf_top1_hit: bool
     mean_top1_confidence: float
+
+
+def shelf_for_video_stem(video_stem: str) -> Optional[str]:
+    """Map picklist suffixes 1..5 to shelves c..g."""
+    return SHELF_DIGIT_MAP.get(str(video_stem)[-1:])
+
+
+def _predict_shelf_label(
+    recognizer: ObjectRecognizer,
+    processed_embedding: np.ndarray,
+    shelf_prefix: Optional[str],
+) -> Optional[str]:
+    """Predict using only centroids belonging to the video's shelf."""
+    if shelf_prefix is None:
+        return None
+    candidates = {
+        label: centroid
+        for label, centroid in recognizer.model.centroids.items()
+        if str(label).lower().startswith(shelf_prefix)
+    }
+    if not candidates:
+        return None
+    x = recognizer.model._l2_normalize(processed_embedding.reshape(-1))
+    return min(
+        candidates,
+        key=lambda label: recognizer.model.cosine_distance(x, candidates[label]),
+    )
 
 
 def _load_ground_truth_labels(ground_truth_csv: str, video_stem: str) -> List[str]:
@@ -80,6 +111,7 @@ def _predict_rows_from_embeddings(
     recognizer: ObjectRecognizer,
     embeddings: List[np.ndarray],
     frame_numbers: List[int],
+    shelf_prefix: Optional[str] = None,
 ) -> List[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
     for emb, fn in zip(embeddings, frame_numbers):
@@ -94,6 +126,9 @@ def _predict_rows_from_embeddings(
                 "predicted_label": str(top3[0][0]),
                 "confidence": float(top3[0][1]),
                 "top3_labels": [str(lbl) for lbl, _ in top3],
+                "shelf_predicted_label": _predict_shelf_label(
+                    recognizer, processed, shelf_prefix
+                ),
             }
         )
     return rows
@@ -123,6 +158,8 @@ def _evaluate_segments(
                     predicted_top1_label="",
                     top1_hit=False,
                     top3_hit=False,
+                    shelf_predicted_top1_label="",
+                    shelf_top1_hit=False,
                     mean_top1_confidence=0.0,
                 )
             )
@@ -131,6 +168,13 @@ def _evaluate_segments(
         top1_votes = Counter(str(r["predicted_label"]) for r in seg_rows)
         top1_label = top1_votes.most_common(1)[0][0]
         top1_hit = top1_label == expected
+
+        shelf_votes = Counter(
+            str(r["shelf_predicted_label"])
+            for r in seg_rows
+            if r.get("shelf_predicted_label")
+        )
+        shelf_label = shelf_votes.most_common(1)[0][0] if shelf_votes else ""
 
         top3_hit = False
         for r in seg_rows:
@@ -150,10 +194,65 @@ def _evaluate_segments(
                 predicted_top1_label=top1_label,
                 top1_hit=top1_hit,
                 top3_hit=top3_hit,
+                shelf_predicted_top1_label=shelf_label,
+                shelf_top1_hit=shelf_label == expected,
                 mean_top1_confidence=mean_conf,
             )
         )
     return out
+
+
+def _metric_block(hits: int, count: int) -> Dict[str, Any]:
+    return {
+        "hits": int(hits),
+        "count": int(count),
+        "accuracy": (float(hits) / float(count)) if count else None,
+    }
+
+
+def _extended_metrics(
+    *,
+    video_stem: str,
+    intervals: List[Tuple[int, int]],
+    expected_labels: List[str],
+    inference_rows: List[Dict[str, Any]],
+    segment_evals: List[SegmentEval],
+) -> Dict[str, Any]:
+    """Compute frame, segment, and shelf-constrained metrics for one video."""
+    by_frame: Dict[int, Dict[str, Any]] = {
+        int(r["frame_number"]): r for r in inference_rows
+    }
+    frame_hits = 0
+    frame_count = 0
+    for (start_f, end_f), expected in zip(intervals, expected_labels):
+        rows = [by_frame[f] for f in range(start_f, end_f + 1) if f in by_frame]
+        frame_count += len(rows)
+        frame_hits += sum(
+            1 for row in rows if row.get("predicted_label") == expected
+        )
+
+    segment_top1_hits = sum(1 for item in segment_evals if item.top1_hit)
+    shelf_segment_hits = sum(1 for item in segment_evals if item.shelf_top1_hit)
+    segment_count = len(segment_evals)
+    frame_block = _metric_block(frame_hits, frame_count)
+    segment_block = _metric_block(segment_top1_hits, segment_count)
+    shelf_segment_block = _metric_block(shelf_segment_hits, segment_count)
+
+    shelf = shelf_for_video_stem(video_stem)
+    by_shelf: Dict[str, Any] = {}
+    if shelf is not None:
+        by_shelf[shelf] = {
+            "frame": frame_block,
+            "segment_top1": segment_block,
+            "shelf_constrained_segment_top1": shelf_segment_block,
+        }
+
+    return {
+        "frame": frame_block,
+        "segment_top1": segment_block,
+        "shelf_constrained_segment_top1": shelf_segment_block,
+        "by_shelf": by_shelf,
+    }
 
 
 def evaluate_model(
@@ -236,9 +335,23 @@ def evaluate_model(
         stats_out=proc_stats,
     )
 
-    infer_rows = _predict_rows_from_embeddings(recognizer, embeddings, frame_indices)
+    video_stem = video_p.stem
+    shelf_prefix = shelf_for_video_stem(video_stem)
+    infer_rows = _predict_rows_from_embeddings(
+        recognizer,
+        embeddings,
+        frame_indices,
+        shelf_prefix=shelf_prefix,
+    )
     expected_labels = _load_ground_truth_labels(str(gt_csv_p), video_p.stem)
     seg_evals = _evaluate_segments(intervals, expected_labels, infer_rows)
+    extended = _extended_metrics(
+        video_stem=video_stem,
+        intervals=intervals,
+        expected_labels=expected_labels,
+        inference_rows=infer_rows,
+        segment_evals=seg_evals,
+    )
 
     n = len(seg_evals)
     if n == 0:
@@ -262,12 +375,27 @@ def evaluate_model(
         "cache_hits": int(proc_stats.get("cache_hits") or 0),
         "embed_missing": bool(embed_missing),
         "metrics": {
+            "frame": extended["frame"],
+            "segment_top1": extended["segment_top1"],
+            "shelf_constrained_segment_top1": extended[
+                "shelf_constrained_segment_top1"
+            ],
+            "frame_hits": extended["frame"]["hits"],
+            "frames_with_predictions": extended["frame"]["count"],
+            "frame_accuracy": extended["frame"]["accuracy"],
             "carry_segments_used": n,
             "segments_with_predictions": with_preds,
             "segment_top1_hits": top1_hits,
             "segment_top1_accuracy": top1_hits / n,
             "segment_top3_hits": top3_hits,
             "segment_top3_hit_rate": top3_hits / n,
+            "shelf_constrained_segment_top1_hits": extended[
+                "shelf_constrained_segment_top1"
+            ]["hits"],
+            "shelf_constrained_segment_top1_accuracy": extended[
+                "shelf_constrained_segment_top1"
+            ]["accuracy"],
+            "by_shelf": extended["by_shelf"],
             "mean_segment_top1_confidence": mean_conf,
         },
         "segments": [asdict(s) for s in seg_evals],

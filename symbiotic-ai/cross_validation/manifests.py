@@ -115,28 +115,18 @@ def _fingerprint(
 
 def discover_dataset_ids(
     *,
-    annealing_labels_dir: Union[str, Path],
     segmentation_labels_dir: Union[str, Path],
-    videos_dir: Optional[Union[str, Path]] = None,
-    json_dir: Optional[Union[str, Path]] = None,
+    videos_dir: Union[str, Path],
+    json_dir: Union[str, Path],
     features_dir: Optional[Union[str, Path]] = None,
 ) -> Dict[str, List[str]]:
     """IDs used to build folds. ``ground_truth.csv`` is not consulted."""
-    label_stems = _discover_label_stems(annealing_labels_dir)
-    json_stems = _discover_stems(json_dir, [".json"]) if json_dir else []
-    video_stems = _discover_stems(videos_dir, list(_VIDEO_EXTS)) if videos_dir else []
-
-    annealing = set(label_stems)
-    if json_stems:
-        annealing &= set(json_stems)
-    if video_stems:
-        annealing &= set(video_stems)
+    json_stems = _discover_stems(json_dir, [".json"])
+    video_stems = _discover_stems(videos_dir, list(_VIDEO_EXTS))
+    annealing = set(json_stems) & set(video_stems)
     if not annealing:
         raise ValueError(
-            "No shared annealing IDs found. Need matching picklist_labels"
-            + (" + picklist JSONs" if json_dir else "")
-            + (" + videos" if videos_dir else "")
-            + "."
+            "No shared annealing IDs found. Need matching picklist JSONs and videos."
         )
 
     annealing_ids = sorted(annealing, key=lambda s: int(id_from_stem(s)))
@@ -164,10 +154,9 @@ def create_or_load_dataset(
     cv_root: Union[str, Path],
     k_fold: int,
     seed: int,
-    annealing_labels_dir: Union[str, Path],
     segmentation_labels_dir: Union[str, Path],
-    videos_dir: Optional[Union[str, Path]] = None,
-    json_dir: Optional[Union[str, Path]] = None,
+    videos_dir: Union[str, Path],
+    json_dir: Union[str, Path],
     features_dir: Optional[Union[str, Path]] = None,
     overwrite: bool = False,
 ) -> Dict[str, Any]:
@@ -181,7 +170,6 @@ def create_or_load_dataset(
     layout.root.mkdir(parents=True, exist_ok=True)
 
     discovered = discover_dataset_ids(
-        annealing_labels_dir=annealing_labels_dir,
         segmentation_labels_dir=segmentation_labels_dir,
         videos_dir=videos_dir,
         json_dir=json_dir,
@@ -190,7 +178,6 @@ def create_or_load_dataset(
     annealing_ids = discovered["annealing_ids"]
     segmentation_ids = discovered["segmentation_ids"]
     paths = {
-        "annealing_labels_dir": _resolved(annealing_labels_dir),
         "segmentation_labels_dir": _resolved(segmentation_labels_dir),
         "videos_dir": _resolved(videos_dir),
         "json_dir": _resolved(json_dir),

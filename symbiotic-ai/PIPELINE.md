@@ -37,6 +37,10 @@ python -m symbiote_weak_generalized.cli.main train-from-cache \
 
 Same pipeline, with one immutable split shared by every stage. First `nn_model.train --k-fold` writes `dataset_manifest.json` and `fold_NN/fold_manifest.json` under `--cv-results-dir`. Later stages reuse those manifests; they do not resplit. The shared CLIP cache stays in the existing classifier `.cache/` (outside the CV tree). Fold checkpoints, generated labels, annealing models, predictions, and metrics all live under `--cv-results-dir`.
 
+CV dataset discovery uses matching video and picklist JSON stems. It does not
+read the legacy `hmm-testing/picklist_labels/` directory; fold-specific
+annealing labels are generated in Stage 2.
+
 ```bash
 # 1. Train one NN per fold (creates the CV manifests)
 python3 -m nn_model.train --k-fold 5 --cv-results-dir cv_results --epochs 50
@@ -50,7 +54,6 @@ python -m symbiote_weak_generalized.cli.main train-from-cache \
   --k-fold 5 --cv-results-dir cv_results \
   --videos hmm-testing/picklist_videos \
   --picklist-json-dir hmm-testing/picklist_jsons \
-  --manual-labels-dir hmm-testing/picklist_labels \
   --cache-dir models/classifier/my_run/.cache \
   --ground-truth-csv ground_truth.csv
 
@@ -62,6 +65,12 @@ python3 -m cross_validation.test --k-fold 5 --cv-results-dir cv_results \
 ```
 
 Interrupted stages resume completed folds unless you pass `--overwrite`. Summaries are written to `cv_results/summary/` (`fold_metrics.csv`, `fold_metrics.json`, `aggregate_metrics.json`) and never mix training-fit assignment scores with held-out top-1/top-3.
+
+The held-out annealing summary also reports frame-level accuracy, the existing
+segment Top-1 accuracy, and segment Top-1 accuracy with predictions restricted
+to the video's shelf. `aggregate_metrics.json` includes all three metrics
+overall and separately for shelves `c` through `g`; shelf selection maps
+picklist suffixes `1` through `5` to `c` through `g`.
 
 Full `train` also accepts `--k-fold` / `--cv-results-dir` / `--cache-dir`: it reuses cached embeddings and only embeds missing in-interval frames.
 

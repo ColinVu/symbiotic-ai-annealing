@@ -159,13 +159,12 @@ def build_synthetic_dataset(
     videos = root / "videos"
     jsons = root / "jsons"
     csv_labels = root / "csv_labels"
-    picklist_labels = root / "picklist_labels"
     features = root / "features"
     cache = root / "cache"
     cv_root = root / "cv_results"
     ground_truth = root / "ground_truth.csv"
 
-    for d in (videos, jsons, csv_labels, picklist_labels, features, cache, cv_root):
+    for d in (videos, jsons, csv_labels, features, cache, cv_root):
         d.mkdir(parents=True, exist_ok=True)
 
     stems = [f"picklist_{i:03d}" for i in range(1, n + 1)]
@@ -175,7 +174,6 @@ def build_synthetic_dataset(
         stem_to_skus[stem] = [sku]
         write_dummy_video(videos / f"{stem}.mp4")
         write_picklist_json(jsons / f"{stem}.json", sku)
-        write_compact_labels(picklist_labels / f"{stem}.csv")
         write_features_3d(features / stem)
         if i <= n_segmentation:
             write_htk_labels(csv_labels / f"{stem}.csv")
@@ -193,7 +191,6 @@ def build_synthetic_dataset(
         "videos": videos,
         "jsons": jsons,
         "csv_labels": csv_labels,
-        "picklist_labels": picklist_labels,
         "features": features,
         "cache": cache,
         "cv_root": cv_root,

@@ -45,6 +45,43 @@ def _first_sku(fold: Dict[str, Any], stem: str, json_dir: Optional[str]) -> Opti
     return None
 
 
+def _metric_totals(
+    per_video: List[Dict[str, Any]],
+    metric_key: str,
+) -> Dict[str, Any]:
+    """Sum a nested evaluator metric across videos."""
+    hits = 0
+    count = 0
+    for evaluation in per_video:
+        block = (evaluation.get("metrics") or {}).get(metric_key) or {}
+        hits += int(block.get("hits") or 0)
+        count += int(block.get("count") or 0)
+    return {
+        "hits": hits,
+        "count": count,
+        "accuracy": (hits / count) if count else None,
+    }
+
+
+def _shelf_metric_totals(per_video: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Sum the three requested metric families separately for each shelf."""
+    totals: Dict[str, Dict[str, Dict[str, Any]]] = {}
+    for evaluation in per_video:
+        by_shelf = (evaluation.get("metrics") or {}).get("by_shelf") or {}
+        for shelf, shelf_metrics in by_shelf.items():
+            shelf_total = totals.setdefault(shelf, {})
+            for metric_key, block in shelf_metrics.items():
+                current = shelf_total.setdefault(metric_key, {"hits": 0, "count": 0})
+                current["hits"] += int((block or {}).get("hits") or 0)
+                current["count"] += int((block or {}).get("count") or 0)
+    for shelf_metrics in totals.values():
+        for block in shelf_metrics.values():
+            block["accuracy"] = (
+                block["hits"] / block["count"] if block["count"] else None
+            )
+    return totals
+
+
 def run_kfold_test(
     *,
     cv_root: Union[str, Path],
@@ -86,29 +123,39 @@ def run_kfold_test(
         fold_n = int(fold["fold"])
         fl = layout.fold(fold_n)
         if stage_completed(cv_root, fold_n, "annealing_test") and not overwrite:
-            print(f"Fold {fold_n}: annealing_test already complete, loading metrics")
             metrics_path = fl.annealing_test / "metrics.json"
             test_metrics = {}
             if metrics_path.is_file():
                 test_metrics = (json.loads(metrics_path.read_text()) or {}).get("metrics") or {}
-            nn = json.loads(fl.nn_metrics.read_text()) if fl.nn_metrics.is_file() else {}
-            cov = {}
-            cov_path = fl.annealing_model / "cache_coverage.json"
-            if cov_path.is_file():
-                cov = json.loads(cov_path.read_text(encoding="utf-8"))
-            fold_records.append(
-                {
-                    "fold": fold_n,
-                    "n_train": len(fold["annealing_train_ids"]),
-                    "n_test": len(fold["annealing_test_ids"]),
-                    "n_segmentation_train": len(fold["segmentation_train_ids"]),
-                    "n_segmentation_test": len(fold["segmentation_test_ids"]),
-                    "segmentation": nn.get("segmentation"),
-                    "annealing_test": test_metrics,
-                    "cache_coverage": cov,
-                }
+            has_extended_metrics = (
+                "frame_accuracy" in test_metrics
+                and "by_shelf" in test_metrics
             )
-            continue
+            if not has_extended_metrics:
+                print(
+                    f"Fold {fold_n}: existing metrics lack extended accuracy fields, "
+                    "recomputing"
+                )
+            else:
+                print(f"Fold {fold_n}: annealing_test already complete, loading metrics")
+                nn = json.loads(fl.nn_metrics.read_text()) if fl.nn_metrics.is_file() else {}
+                cov = {}
+                cov_path = fl.annealing_model / "cache_coverage.json"
+                if cov_path.is_file():
+                    cov = json.loads(cov_path.read_text(encoding="utf-8"))
+                fold_records.append(
+                    {
+                        "fold": fold_n,
+                        "n_train": len(fold["annealing_train_ids"]),
+                        "n_test": len(fold["annealing_test_ids"]),
+                        "n_segmentation_train": len(fold["segmentation_train_ids"]),
+                        "n_segmentation_test": len(fold["segmentation_test_ids"]),
+                        "segmentation": nn.get("segmentation"),
+                        "annealing_test": test_metrics,
+                        "cache_coverage": cov,
+                    }
+                )
+                continue
 
         if not fl.annealing_model.is_dir():
             raise SystemExit(f"Fold {fold_n} is missing annealing model at {fl.annealing_model}")
@@ -155,12 +202,24 @@ def run_kfold_test(
         top1 = sum(int(e["metrics"]["segment_top1_hits"]) for e in per_video)
         top3 = sum(int(e["metrics"]["segment_top3_hits"]) for e in per_video)
         segs = sum(int(e["metrics"]["carry_segments_used"]) for e in per_video)
+        frame = _metric_totals(per_video, "frame")
+        shelf_segment_top1 = _metric_totals(
+            per_video, "shelf_constrained_segment_top1"
+        )
         test_metrics = {
+            "frame_hits": frame["hits"],
+            "frame_count": frame["count"],
+            "frame_accuracy": frame["accuracy"],
             "segment_top1_hits": top1,
             "segment_top3_hits": top3,
             "carry_segments_used": segs,
             "segment_top1_accuracy": (top1 / segs) if segs else None,
             "segment_top3_hit_rate": (top3 / segs) if segs else None,
+            "shelf_constrained_segment_top1_hits": shelf_segment_top1["hits"],
+            "shelf_constrained_segment_top1_accuracy": shelf_segment_top1[
+                "accuracy"
+            ],
+            "by_shelf": _shelf_metric_totals(per_video),
             "n_videos_scored": len(per_video),
             "n_skipped": len(skips),
             "n_failures": len(failures),
