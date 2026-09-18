@@ -96,8 +96,14 @@ def clip_initialization(
     device: Optional[str] = None,
     xlsx_path: str = DEFAULT_XLSX_PATH,
     aggregation: str = "max",
+    video_picklists: Optional[Dict[str, List[str]]] = None,
 ) -> Dict:
     """Per-video CLIP init + Hungarian assignment.
+
+    When ``video_picklists`` is supplied, its explicit flat JSON picklist is
+    used as the candidate-slot multiset. This preserves duplicate SKUs and
+    repeated identical subsets. Without it, the historical candidate-pool
+    construction is retained for backward compatibility.
 
     ``aggregation`` controls how frame-level comparisons become one cost per
     segment/candidate pair:
@@ -105,8 +111,9 @@ def clip_initialization(
       - ``"mean"``: average all frame-to-candidate cosine distances
       - ``"max"``: use maximum cosine similarity (the closest frame)
 
-    Raises ValueError if a video's segment count doesn't match its
-    candidate-label count.
+    Raises ValueError if a video's segment count doesn't match its candidate
+    slot count or if an explicit ``video_picklists`` mapping is missing an
+    entry.
     """
     if text_embeddings is None:
         label_descriptions = load_label_descriptions(xlsx_path)
@@ -123,17 +130,22 @@ def clip_initialization(
     for vid_id, segs in groups.items():
         segs = sorted(segs, key=lambda x: x.segment_id)
 
-        # Build candidate pool: merge candidate multisets across segments.
-        unique_multisets = {s.candidate_labels for s in segs}
-        if len(unique_multisets) == 1:
-            cand = list(next(iter(unique_multisets)))
+        if video_picklists is not None:
+            if vid_id not in video_picklists:
+                raise ValueError(f"video={vid_id}: missing flat picklist in video_picklists")
+            cand = [str(x) for x in video_picklists[vid_id]]
         else:
-            merged = Counter()
-            for ms in unique_multisets:
-                merged += Counter(ms)
-            cand = list(merged.elements())
+            # Historical behavior: merge the candidate multisets associated
+            # with this video's segments into one global candidate pool.
+            unique_multisets = {s.candidate_labels for s in segs}
+            if len(unique_multisets) == 1:
+                cand = list(next(iter(unique_multisets)))
+            else:
+                merged = Counter()
+                for ms in unique_multisets:
+                    merged += Counter(ms)
+                cand = list(merged.elements())
 
-        # return error if segment not there
         if len(segs) != len(cand):
             raise ValueError(
                 f"video={vid_id}: {len(segs)} segments but {len(cand)} "
@@ -144,7 +156,6 @@ def clip_initialization(
         cost = np.stack(
             [_segment_cost_row(s, T_matrix, aggregation=aggregation) for s in segs]
         )
-
         row_ind, col_ind = linear_sum_assignment(cost)
         for i, j in zip(row_ind, col_ind):
             labels[segs[i].label_key] = cand[j]

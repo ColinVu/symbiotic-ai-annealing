@@ -181,9 +181,8 @@ Examples:
     train_parser.add_argument(
         "--ilr-allow-cross-round-swaps",
         action="store_true",
-        help="ILR may swap labels between carry segments from different picklist rounds "
-        "in the same video, if each post-swap label is still in that segment's candidate multiset. "
-        "Default: same picklist round only (omit this flag).",
+        help="Legacy no-op. ILR already swaps across the full per-video flat picklist "
+        "while preserving its SKU multiplicities.",
     )
     train_parser.add_argument(
         "--initial-temp",

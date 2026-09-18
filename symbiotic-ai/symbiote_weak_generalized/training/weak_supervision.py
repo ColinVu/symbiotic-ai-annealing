@@ -70,7 +70,7 @@ class WeakSupervisedTrainer:
         bad_swap_cool_divisor: float = 750.0,
         detect_empty: bool = False,
         min_frames_per_cluster: int = 3,
-        ilr_allow_cross_round_swaps: bool = False,
+        ilr_allow_cross_round_swaps: bool = False,  # legacy; full-video picklist swaps are always used
         min_temp: float = 0.05,
     ):
         self.ilr_epochs = ilr_epochs
@@ -364,21 +364,29 @@ class WeakSupervisedTrainer:
         print(f'use clip: {use_clip_init}')
         all_segments = []
         unique_labels = set()
+        video_picklists: Dict[str, List[str]] = {}
         for vid, (segs, picklist) in video_segments.items():
+            flat_picklist = [str(x) for x in picklist]
+            video_picklists[vid] = flat_picklist
+            full_candidates = tuple(flat_picklist)
             for s in segs:
-                # if not s.candidate_labels: s.candidate_labels = tuple(picklist)
+                s.candidate_labels = full_candidates
                 em = np.asarray(s.embeddings, dtype=np.float64)
                 if em.ndim == 1:
                     em = em.reshape(1, -1)
                 s.embeddings = self._l2_normalize(em)
                 all_segments.append(s)
-                unique_labels.update(s.candidate_labels)
+                unique_labels.update(full_candidates)
         
         self.label_to_idx = {label: idx for idx, label in enumerate(sorted(unique_labels))}
         self.idx_to_label = {idx: label for label, idx in self.label_to_idx.items()}
         
         if use_clip_init:
-            labels = clip_initialization(all_segments, aggregation = 'max')
+            labels = clip_initialization(
+                all_segments,
+                video_picklists=video_picklists,
+                aggregation="max",
+            )
         elif use_cluster_voting:
             from .cluster_voting import cluster_based_initialization_with_details
             labels, label_confidence = cluster_based_initialization_with_details(all_segments, None, verbose=verbose)
@@ -387,12 +395,11 @@ class WeakSupervisedTrainer:
                 write_initial_cluster_voting_matrix_csv(initial_cluster_voting_csv, labels, label_confidence, video_segments)
         else:
             labels = {}
-            groups = defaultdict(list)
-            for s in all_segments: groups[(s.video_id, s.candidate_labels)].append(s)
-            for (_, multiset), segs in groups.items():
-                draw = list(multiset)
+            for vid, (segs, picklist) in video_segments.items():
+                draw = list(picklist)
                 random.shuffle(draw)
-                for s, l in zip(sorted(segs, key=lambda x: x.segment_id), draw): labels[s.label_key] = l
+                for s, l in zip(sorted(segs, key=lambda x: x.segment_id), draw):
+                    labels[s.label_key] = l
 
         if not skip_ilr:
             if bool(kwargs.get("use_iterated_model", False)):
