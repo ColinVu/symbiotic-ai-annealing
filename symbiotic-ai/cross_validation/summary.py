@@ -35,6 +35,19 @@ def _test_metric_acc(test: Dict[str, Any], hits_key: str, count_key: str) -> Opt
     return _ratio(hits, count)
 
 
+def _by_shelf_metric_totals(
+    test: Dict[str, Any],
+    metric_key: str,
+) -> Dict[str, int]:
+    hits = 0
+    count = 0
+    for shelf_metrics in (test.get("by_shelf") or {}).values():
+        block = (shelf_metrics or {}).get(metric_key) or {}
+        hits += int(block.get("hits") or 0)
+        count += int(block.get("count") or 0)
+    return {"hits": hits, "count": count}
+
+
 def _coverage_totals(records: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
     keys = (
         "candidate_frames",
@@ -82,12 +95,15 @@ def write_summary(
     per_fold_seg: List[Optional[float]] = []
     per_fold_frame: List[Optional[float]] = []
     per_fold_shelf_segment: List[Optional[float]] = []
+    per_fold_weighted_shelf_segment: List[Optional[float]] = []
     seg_correct = 0.0
     seg_total = 0.0
     frame_hits = 0
     frame_count = 0
     shelf_segment_hits = 0
     shelf_segment_count = 0
+    weighted_shelf_segment_hits = 0
+    weighted_shelf_segment_count = 0
     shelf_totals: Dict[str, Dict[str, Dict[str, int]]] = {}
 
     for rec in fold_records:
@@ -106,6 +122,17 @@ def write_summary(
             test.get("shelf_constrained_segment_top1_hits") or 0
         )
         shelf_segment_count += n
+        weighted_shelf_totals = _by_shelf_metric_totals(
+            test, "weighted_shelf_constrained_segment_top1"
+        )
+        if "weighted_shelf_constrained_segment_top1_hits" in test:
+            weighted_shelf_segment_hits += int(
+                test.get("weighted_shelf_constrained_segment_top1_hits") or 0
+            )
+            weighted_shelf_segment_count += n
+        else:
+            weighted_shelf_segment_hits += weighted_shelf_totals["hits"]
+            weighted_shelf_segment_count += weighted_shelf_totals["count"]
         per_fold_frame.append(
             _test_metric_acc(test, "frame_hits", "frame_count")
         )
@@ -116,6 +143,21 @@ def write_summary(
                 "carry_segments_used",
             )
         )
+        if "weighted_shelf_constrained_segment_top1_hits" in test:
+            per_fold_weighted_shelf_segment.append(
+                _test_metric_acc(
+                    test,
+                    "weighted_shelf_constrained_segment_top1_hits",
+                    "carry_segments_used",
+                )
+            )
+        else:
+            per_fold_weighted_shelf_segment.append(
+                _ratio(
+                    weighted_shelf_totals["hits"],
+                    weighted_shelf_totals["count"],
+                )
+            )
         for shelf, metrics in (test.get("by_shelf") or {}).items():
             shelf_total = shelf_totals.setdefault(shelf, {})
             for metric_name, block in metrics.items():
@@ -172,6 +214,16 @@ def write_summary(
             "macro_shelf_constrained_segment_top1_accuracy": _mean(
                 per_fold_shelf_segment
             ),
+            "weighted_shelf_constrained_segment_top1_hits": weighted_shelf_segment_hits,
+            "weighted_shelf_constrained_segment_top1_accuracy": _ratio(
+                weighted_shelf_segment_hits, weighted_shelf_segment_count
+            ),
+            "micro_weighted_shelf_constrained_segment_top1_accuracy": _ratio(
+                weighted_shelf_segment_hits, weighted_shelf_segment_count
+            ),
+            "macro_weighted_shelf_constrained_segment_top1_accuracy": _mean(
+                per_fold_weighted_shelf_segment
+            ),
             "by_shelf": aggregate_by_shelf,
             "segment_top1_hits": top1_hits,
             "segment_top3_hits": top3_hits,
@@ -202,8 +254,11 @@ def write_summary(
         "segment_top1_accuracy",
         "segment_top3_hit_rate",
         "shelf_constrained_segment_top1_accuracy",
+        "weighted_shelf_constrained_segment_top1_accuracy",
         "segment_top1_hits",
         "segment_top3_hits",
+        "shelf_constrained_segment_top1_hits",
+        "weighted_shelf_constrained_segment_top1_hits",
         "carry_segments_used",
     ]
     for shelf in ("c", "d", "e", "f", "g"):
@@ -232,8 +287,17 @@ def write_summary(
                 "shelf_constrained_segment_top1_accuracy": test.get(
                     "shelf_constrained_segment_top1_accuracy"
                 ),
+                "weighted_shelf_constrained_segment_top1_accuracy": test.get(
+                    "weighted_shelf_constrained_segment_top1_accuracy"
+                ),
                 "segment_top1_hits": test.get("segment_top1_hits"),
                 "segment_top3_hits": test.get("segment_top3_hits"),
+                "shelf_constrained_segment_top1_hits": test.get(
+                    "shelf_constrained_segment_top1_hits"
+                ),
+                "weighted_shelf_constrained_segment_top1_hits": test.get(
+                    "weighted_shelf_constrained_segment_top1_hits"
+                ),
                 "carry_segments_used": test.get("carry_segments_used"),
             }
             for shelf in ("c", "d", "e", "f", "g"):

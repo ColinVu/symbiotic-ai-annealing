@@ -63,6 +63,24 @@ def _metric_totals(
     }
 
 
+def _metric_from_shelves(
+    test_metrics: Dict[str, Any],
+    metric_key: str,
+) -> Dict[str, Any]:
+    """Recover a metric total from an already-written by-shelf summary."""
+    hits = 0
+    count = 0
+    for shelf_metrics in (test_metrics.get("by_shelf") or {}).values():
+        block = (shelf_metrics or {}).get(metric_key) or {}
+        hits += int(block.get("hits") or 0)
+        count += int(block.get("count") or 0)
+    return {
+        "hits": hits,
+        "count": count,
+        "accuracy": (hits / count) if count else None,
+    }
+
+
 def _shelf_metric_totals(per_video: List[Dict[str, Any]]) -> Dict[str, Any]:
     """Sum the three requested metric families separately for each shelf."""
     totals: Dict[str, Dict[str, Dict[str, Any]]] = {}
@@ -127,9 +145,30 @@ def run_kfold_test(
             test_metrics = {}
             if metrics_path.is_file():
                 test_metrics = (json.loads(metrics_path.read_text()) or {}).get("metrics") or {}
+            weighted_shelf = _metric_from_shelves(
+                test_metrics, "weighted_shelf_constrained_segment_top1"
+            )
+            if (
+                "weighted_shelf_constrained_segment_top1_accuracy" not in test_metrics
+                and weighted_shelf["count"]
+            ):
+                test_metrics["weighted_shelf_constrained_segment_top1_hits"] = (
+                    weighted_shelf["hits"]
+                )
+                test_metrics["weighted_shelf_constrained_segment_top1_accuracy"] = (
+                    weighted_shelf["accuracy"]
+                )
+                metrics_payload = json.loads(metrics_path.read_text())
+                metrics_payload["metrics"] = test_metrics
+                metrics_path.write_text(
+                    json.dumps(metrics_payload, indent=2) + "\n",
+                    encoding="utf-8",
+                )
             has_extended_metrics = (
                 "frame_accuracy" in test_metrics
                 and "by_shelf" in test_metrics
+                and "weighted_shelf_constrained_segment_top1_accuracy"
+                in test_metrics
             )
             if not has_extended_metrics:
                 print(
@@ -206,6 +245,9 @@ def run_kfold_test(
         shelf_segment_top1 = _metric_totals(
             per_video, "shelf_constrained_segment_top1"
         )
+        weighted_shelf_segment_top1 = _metric_totals(
+            per_video, "weighted_shelf_constrained_segment_top1"
+        )
         test_metrics = {
             "frame_hits": frame["hits"],
             "frame_count": frame["count"],
@@ -217,6 +259,12 @@ def run_kfold_test(
             "segment_top3_hit_rate": (top3 / segs) if segs else None,
             "shelf_constrained_segment_top1_hits": shelf_segment_top1["hits"],
             "shelf_constrained_segment_top1_accuracy": shelf_segment_top1[
+                "accuracy"
+            ],
+            "weighted_shelf_constrained_segment_top1_hits": weighted_shelf_segment_top1[
+                "hits"
+            ],
+            "weighted_shelf_constrained_segment_top1_accuracy": weighted_shelf_segment_top1[
                 "accuracy"
             ],
             "by_shelf": _shelf_metric_totals(per_video),

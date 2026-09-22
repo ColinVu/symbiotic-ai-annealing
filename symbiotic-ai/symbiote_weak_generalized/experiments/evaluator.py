@@ -7,7 +7,7 @@ labels. Blur threshold defaults to 50 (sweep constant) for alignment with traini
 from __future__ import annotations
 
 import csv
-from collections import Counter
+from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -36,7 +36,11 @@ class SegmentEval:
     top3_hit: bool
     shelf_predicted_top1_label: str
     shelf_top1_hit: bool
+    weighted_shelf_predicted_top1_label: str
+    weighted_shelf_top1_hit: bool
     mean_top1_confidence: float
+    mean_shelf_frame_weight: float
+    weighted_shelf_vote_totals: Dict[str, float]
 
 
 def shelf_for_video_stem(video_stem: str) -> Optional[str]:
@@ -44,26 +48,60 @@ def shelf_for_video_stem(video_stem: str) -> Optional[str]:
     return SHELF_DIGIT_MAP.get(str(video_stem)[-1:])
 
 
-def _predict_shelf_label(
+def _shelf_centroid_rankings(
     recognizer: ObjectRecognizer,
     processed_embedding: np.ndarray,
     shelf_prefix: Optional[str],
-) -> Optional[str]:
-    """Predict using only centroids belonging to the video's shelf."""
+) -> Tuple[Optional[str], List[float]]:
+    """Return nearest shelf label and ascending cosine distances to top-3 shelf centroids."""
     if shelf_prefix is None:
-        return None
+        return None, []
     candidates = {
         label: centroid
         for label, centroid in recognizer.model.centroids.items()
         if str(label).lower().startswith(shelf_prefix)
     }
     if not candidates:
-        return None
+        return None, []
     x = recognizer.model._l2_normalize(processed_embedding.reshape(-1))
-    return min(
-        candidates,
-        key=lambda label: recognizer.model.cosine_distance(x, candidates[label]),
+    ranked = sorted(
+        (
+            (label, recognizer.model.cosine_distance(x, centroid))
+            for label, centroid in candidates.items()
+        ),
+        key=lambda item: (item[1], item[0]),
     )
+    nearest = ranked[0][0]
+    top_distances = [dist for _, dist in ranked[:3]]
+    return nearest, top_distances
+
+
+def _harmonic_three_centroid_margin(distances: List[float]) -> float:
+    """Harmonic mean of (d2-d1) and (d3-d1) for shelf-local top-3 distances."""
+    if not distances:
+        return 0.0
+    d1 = float(distances[0])
+    if len(distances) < 2:
+        return 0.0
+    m12 = max(0.0, float(distances[1]) - d1)
+    if len(distances) < 3:
+        return m12
+    m13 = max(0.0, float(distances[2]) - d1)
+    if m12 <= 0.0 and m13 <= 0.0:
+        return 0.0
+    if m12 <= 0.0:
+        return m13
+    if m13 <= 0.0:
+        return m12
+    return (2.0 * m12 * m13) / (m12 + m13)
+
+
+def _weighted_shelf_label(vote_totals: Dict[str, float]) -> str:
+    if not vote_totals:
+        return ""
+    max_weight = max(vote_totals.values())
+    tied = sorted(label for label, weight in vote_totals.items() if weight == max_weight)
+    return tied[0]
 
 
 def _load_ground_truth_labels(ground_truth_csv: str, video_stem: str) -> List[str]:
@@ -120,18 +158,83 @@ def _predict_rows_from_embeddings(
         top3 = recognizer.model.predict_top_k(processed, k=3)
         if not top3:
             continue
+        shelf_label, shelf_distances = _shelf_centroid_rankings(
+            recognizer, processed, shelf_prefix
+        )
         rows.append(
             {
                 "frame_number": int(fn),
                 "predicted_label": str(top3[0][0]),
                 "confidence": float(top3[0][1]),
                 "top3_labels": [str(lbl) for lbl, _ in top3],
-                "shelf_predicted_label": _predict_shelf_label(
-                    recognizer, processed, shelf_prefix
-                ),
+                "shelf_predicted_label": shelf_label,
+                "shelf_top3_distances": shelf_distances,
+                "shelf_frame_weight": _harmonic_three_centroid_margin(shelf_distances),
             }
         )
     return rows
+
+
+def _empty_segment_eval(
+    *,
+    segment_idx: int,
+    start_f: int,
+    end_f: int,
+    expected: str,
+) -> SegmentEval:
+    return SegmentEval(
+        segment_idx=segment_idx,
+        start_frame_1based=start_f,
+        end_frame_1based=end_f,
+        expected_label=expected,
+        num_predicted_frames=0,
+        predicted_top1_label="",
+        top1_hit=False,
+        top3_hit=False,
+        shelf_predicted_top1_label="",
+        shelf_top1_hit=False,
+        weighted_shelf_predicted_top1_label="",
+        weighted_shelf_top1_hit=False,
+        mean_top1_confidence=0.0,
+        mean_shelf_frame_weight=0.0,
+        weighted_shelf_vote_totals={},
+    )
+
+
+def _segment_frame_rows(
+    seg_rows: List[Dict[str, Any]],
+) -> Tuple[str, str, str, float, float, Dict[str, float]]:
+    """Legacy plurality shelf vote plus harmonic-margin weighted shelf vote."""
+    top1_votes = Counter(str(r["predicted_label"]) for r in seg_rows)
+    top1_label = top1_votes.most_common(1)[0][0]
+
+    shelf_votes = Counter(
+        str(r["shelf_predicted_label"])
+        for r in seg_rows
+        if r.get("shelf_predicted_label")
+    )
+    shelf_label = shelf_votes.most_common(1)[0][0] if shelf_votes else ""
+
+    weighted_totals: Dict[str, float] = defaultdict(float)
+    for row in seg_rows:
+        label = row.get("shelf_predicted_label")
+        if not label:
+            continue
+        weighted_totals[str(label)] += float(row.get("shelf_frame_weight") or 0.0)
+    weighted_shelf_label = _weighted_shelf_label(dict(weighted_totals))
+
+    mean_conf = sum(float(r["confidence"]) for r in seg_rows) / len(seg_rows)
+    mean_weight = sum(float(r.get("shelf_frame_weight") or 0.0) for r in seg_rows) / len(
+        seg_rows
+    )
+    return (
+        top1_label,
+        shelf_label,
+        weighted_shelf_label,
+        mean_conf,
+        mean_weight,
+        dict(weighted_totals),
+    )
 
 
 def _evaluate_segments(
@@ -149,40 +252,30 @@ def _evaluate_segments(
         seg_rows = [by_frame[f] for f in range(start_f, end_f + 1) if f in by_frame]
         if not seg_rows:
             out.append(
-                SegmentEval(
+                _empty_segment_eval(
                     segment_idx=i,
-                    start_frame_1based=start_f,
-                    end_frame_1based=end_f,
-                    expected_label=expected,
-                    num_predicted_frames=0,
-                    predicted_top1_label="",
-                    top1_hit=False,
-                    top3_hit=False,
-                    shelf_predicted_top1_label="",
-                    shelf_top1_hit=False,
-                    mean_top1_confidence=0.0,
+                    start_f=start_f,
+                    end_f=end_f,
+                    expected=expected,
                 )
             )
             continue
 
-        top1_votes = Counter(str(r["predicted_label"]) for r in seg_rows)
-        top1_label = top1_votes.most_common(1)[0][0]
+        (
+            top1_label,
+            shelf_label,
+            weighted_shelf_label,
+            mean_conf,
+            mean_weight,
+            weighted_totals,
+        ) = _segment_frame_rows(seg_rows)
         top1_hit = top1_label == expected
-
-        shelf_votes = Counter(
-            str(r["shelf_predicted_label"])
-            for r in seg_rows
-            if r.get("shelf_predicted_label")
-        )
-        shelf_label = shelf_votes.most_common(1)[0][0] if shelf_votes else ""
 
         top3_hit = False
         for r in seg_rows:
             if expected in r["top3_labels"]:
                 top3_hit = True
                 break
-
-        mean_conf = sum(float(r["confidence"]) for r in seg_rows) / len(seg_rows)
 
         out.append(
             SegmentEval(
@@ -196,7 +289,11 @@ def _evaluate_segments(
                 top3_hit=top3_hit,
                 shelf_predicted_top1_label=shelf_label,
                 shelf_top1_hit=shelf_label == expected,
+                weighted_shelf_predicted_top1_label=weighted_shelf_label,
+                weighted_shelf_top1_hit=weighted_shelf_label == expected,
                 mean_top1_confidence=mean_conf,
+                mean_shelf_frame_weight=mean_weight,
+                weighted_shelf_vote_totals=weighted_totals,
             )
         )
     return out
@@ -233,10 +330,16 @@ def _extended_metrics(
 
     segment_top1_hits = sum(1 for item in segment_evals if item.top1_hit)
     shelf_segment_hits = sum(1 for item in segment_evals if item.shelf_top1_hit)
+    weighted_shelf_segment_hits = sum(
+        1 for item in segment_evals if item.weighted_shelf_top1_hit
+    )
     segment_count = len(segment_evals)
     frame_block = _metric_block(frame_hits, frame_count)
     segment_block = _metric_block(segment_top1_hits, segment_count)
     shelf_segment_block = _metric_block(shelf_segment_hits, segment_count)
+    weighted_shelf_segment_block = _metric_block(
+        weighted_shelf_segment_hits, segment_count
+    )
 
     shelf = shelf_for_video_stem(video_stem)
     by_shelf: Dict[str, Any] = {}
@@ -245,14 +348,28 @@ def _extended_metrics(
             "frame": frame_block,
             "segment_top1": segment_block,
             "shelf_constrained_segment_top1": shelf_segment_block,
+            "weighted_shelf_constrained_segment_top1": weighted_shelf_segment_block,
         }
 
     return {
         "frame": frame_block,
         "segment_top1": segment_block,
         "shelf_constrained_segment_top1": shelf_segment_block,
+        "weighted_shelf_constrained_segment_top1": weighted_shelf_segment_block,
         "by_shelf": by_shelf,
     }
+
+
+def _empty_segment_intervals(
+    intervals_1based: List[Tuple[int, int]],
+    inference_rows: List[Dict[str, Any]],
+) -> List[Tuple[int, int]]:
+    by_frame = {int(row["frame_number"]) for row in inference_rows}
+    empty: List[Tuple[int, int]] = []
+    for start_f, end_f in intervals_1based:
+        if not any(start_f <= frame <= end_f for frame in by_frame):
+            empty.append((start_f, end_f))
+    return empty
 
 
 def evaluate_model(
@@ -286,7 +403,8 @@ def evaluate_model(
         cache_label: Cache key prefix. Training uses the first picklist SKU;
             pass that here to reuse the shared cache. Default ``sweep_eval``
             preserves the previous evaluator key.
-        embed_missing: If False, never call CLIP; skip frames absent from cache.
+        embed_missing: If False, use cache-only processing first, then embed only
+            intervals with no cached predictions as a fallback.
     """
     video_p = Path(video_path).resolve()
     model_p = Path(model_dir).resolve()
@@ -320,20 +438,25 @@ def evaluate_model(
         cache_dir = str(model_p.parent / f".sweep_eval_cache_{video_p.stem}")
 
     proc_stats: Dict[str, Any] = {}
-    embeddings, _labels, _syn, _states, frame_indices = process_video_frames(
-        video_path=str(video_p),
-        label=str(cache_label),
-        model=recognizer.clip_model,
-        processor=recognizer.processor,
-        cache_dir=cache_dir,
-        threshold=float(threshold),
-        frame_skip=int(frame_skip),
-        state_detection_func=None,
-        verbose=verbose,
-        allowed_frame_intervals_1based=intervals,
-        embed_missing=bool(embed_missing),
-        stats_out=proc_stats,
-    )
+    try:
+        embeddings, _labels, _syn, _states, frame_indices = process_video_frames(
+            video_path=str(video_p),
+            label=str(cache_label),
+            model=recognizer.clip_model,
+            processor=recognizer.processor,
+            cache_dir=cache_dir,
+            threshold=float(threshold),
+            frame_skip=int(frame_skip),
+            state_detection_func=None,
+            verbose=verbose,
+            allowed_frame_intervals_1based=intervals,
+            embed_missing=bool(embed_missing),
+            stats_out=proc_stats,
+        )
+    except ValueError:
+        if embed_missing:
+            raise
+        embeddings, frame_indices = [], []
 
     video_stem = video_p.stem
     shelf_prefix = shelf_for_video_stem(video_stem)
@@ -343,6 +466,49 @@ def evaluate_model(
         frame_indices,
         shelf_prefix=shelf_prefix,
     )
+
+    fallback_stats = {
+        "segments_requested": 0,
+        "intervals_requested": 0,
+        "frames_embedded": 0,
+    }
+    if not embed_missing:
+        empty_intervals = _empty_segment_intervals(intervals, infer_rows)
+        if empty_intervals:
+            fallback_stats["segments_requested"] = len(empty_intervals)
+            fallback_stats["intervals_requested"] = len(empty_intervals)
+            fallback_recognizer = ObjectRecognizer(str(model_p), load_clip=True)
+            fallback_stats_out: Dict[str, Any] = {}
+            fallback_embeddings, _labels, _syn, _states, fallback_indices = process_video_frames(
+                video_path=str(video_p),
+                label=str(cache_label),
+                cache_dir=cache_dir,
+                threshold=float(threshold),
+                frame_skip=int(frame_skip),
+                verbose=verbose,
+                allowed_frame_intervals_1based=empty_intervals,
+                embed_missing=True,
+                model=fallback_recognizer.clip_model,
+                processor=fallback_recognizer.processor,
+                state_detection_func=None,
+                stats_out=fallback_stats_out,
+            )
+            fallback_stats["frames_embedded"] = len(fallback_indices)
+            proc_stats["clip_fallback_newly_cached"] = int(
+                fallback_stats_out.get("newly_cached") or 0
+            )
+            proc_stats["clip_fallback_cache_hits"] = int(
+                fallback_stats_out.get("cache_hits") or 0
+            )
+            fallback_rows = _predict_rows_from_embeddings(
+                fallback_recognizer,
+                fallback_embeddings,
+                fallback_indices,
+                shelf_prefix=shelf_prefix,
+            )
+            infer_rows.extend(fallback_rows)
+            infer_rows.sort(key=lambda row: int(row["frame_number"]))
+
     expected_labels = _load_ground_truth_labels(str(gt_csv_p), video_p.stem)
     seg_evals = _evaluate_segments(intervals, expected_labels, infer_rows)
     extended = _extended_metrics(
@@ -360,6 +526,7 @@ def evaluate_model(
     with_preds = sum(1 for s in seg_evals if s.num_predicted_frames > 0)
     top1_hits = sum(1 for s in seg_evals if s.top1_hit)
     top3_hits = sum(1 for s in seg_evals if s.top3_hit)
+    weighted_shelf_hits = sum(1 for s in seg_evals if s.weighted_shelf_top1_hit)
     mean_conf = sum(s.mean_top1_confidence for s in seg_evals) / n
 
     return {
@@ -374,11 +541,15 @@ def evaluate_model(
         "cache_label": str(cache_label),
         "cache_hits": int(proc_stats.get("cache_hits") or 0),
         "embed_missing": bool(embed_missing),
+        "clip_fallback": fallback_stats,
         "metrics": {
             "frame": extended["frame"],
             "segment_top1": extended["segment_top1"],
             "shelf_constrained_segment_top1": extended[
                 "shelf_constrained_segment_top1"
+            ],
+            "weighted_shelf_constrained_segment_top1": extended[
+                "weighted_shelf_constrained_segment_top1"
             ],
             "frame_hits": extended["frame"]["hits"],
             "frames_with_predictions": extended["frame"]["count"],
@@ -394,6 +565,12 @@ def evaluate_model(
             ]["hits"],
             "shelf_constrained_segment_top1_accuracy": extended[
                 "shelf_constrained_segment_top1"
+            ]["accuracy"],
+            "weighted_shelf_constrained_segment_top1_hits": extended[
+                "weighted_shelf_constrained_segment_top1"
+            ]["hits"],
+            "weighted_shelf_constrained_segment_top1_accuracy": extended[
+                "weighted_shelf_constrained_segment_top1"
             ]["accuracy"],
             "by_shelf": extended["by_shelf"],
             "mean_segment_top1_confidence": mean_conf,
