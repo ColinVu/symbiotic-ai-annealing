@@ -6,7 +6,6 @@ labels. Blur threshold defaults to 50 (sweep constant) for alignment with traini
 
 from __future__ import annotations
 
-import csv
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -19,6 +18,7 @@ from ..inference.recognizer import ObjectRecognizer
 from ..preprocessing.video_processor import process_video_frames
 from ..state_detection.compact_timeline import carry_with_pipeline_frame_intervals_1based
 
+from ..ground_truth import load_ground_truth_labels as _load_ground_truth_labels
 from .sweep_config import SWEEP_FIXED_THRESHOLD
 
 SHELF_DIGIT_MAP = {"1": "c", "2": "d", "3": "e", "4": "f", "5": "g"}
@@ -102,47 +102,6 @@ def _weighted_shelf_label(vote_totals: Dict[str, float]) -> str:
     max_weight = max(vote_totals.values())
     tied = sorted(label for label, weight in vote_totals.items() if weight == max_weight)
     return tied[0]
-
-
-def _load_ground_truth_labels(ground_truth_csv: str, video_stem: str) -> List[str]:
-    """
-    Load verified ordered labels from a wide CSV: header row = stems per column,
-    each subsequent row = one pick index; empty cells end that column's sequence.
-    """
-    path = Path(ground_truth_csv)
-    with path.open("r", encoding="utf-8-sig", newline="") as f:
-        reader = csv.DictReader(f)
-        if reader.fieldnames is None:
-            raise ValueError(f"No header row in ground truth CSV: {path}")
-
-        # Map stripped stem -> actual DictReader key (raw header cell)
-        header_to_key: Dict[str, str] = {}
-        for raw_h in reader.fieldnames:
-            if raw_h is None:
-                continue
-            s = raw_h.strip()
-            if s:
-                header_to_key[s] = raw_h
-
-        if video_stem not in header_to_key:
-            raise ValueError(
-                f"Video stem {video_stem!r} not found in ground truth columns. "
-                f"Available: {sorted(header_to_key.keys())!r}"
-            )
-        col_key = header_to_key[video_stem]
-
-        labels: List[str] = []
-        for row in reader:
-            raw = (row or {}).get(col_key, "")
-            if raw is None:
-                continue
-            label = str(raw).strip()
-            if label:
-                labels.append(label)
-
-    if not labels:
-        raise ValueError(f"No non-empty ground truth labels for column {video_stem!r} in {path}")
-    return labels
 
 
 def _predict_rows_from_embeddings(

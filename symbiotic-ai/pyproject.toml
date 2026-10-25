@@ -20,6 +20,7 @@ nn-bulk-predict = "nn_model.bulk_predict:main"
 nn-create-labels = "nn_model.create_labels:main"
 nn-eval-labels = "nn_model.eval_labeled_picklists:main"
 cv-test = "cross_validation.test:main"
+shelf-layout = "shelf_layout.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["nn_model*", "cross_validation*"]
+include = ["nn_model*", "cross_validation*", "shelf_layout*"]

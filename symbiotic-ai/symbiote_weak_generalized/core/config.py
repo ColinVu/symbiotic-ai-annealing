@@ -1,6 +1,7 @@
 """Configuration constants for the weakly supervised video-to-classification pipeline."""
 
 import os
+from pathlib import Path
 
 os.environ["GLOG_minloglevel"] = "2"
 
@@ -35,7 +36,7 @@ DEFAULT_CONFIG = {
     "refinement_loops": 3,
     "triplet_margin": 0.1,
     "proxy_energy_margin": 0.1,
-    "ground_truth_csv": "../models/classifier/ground_truth.csv",
+    "ground_truth_csv": str(Path(__file__).resolve().parents[2] / "ground_truth.csv"),
 }
 
 __all__ = ['DEFAULT_CONFIG', 'MODEL']

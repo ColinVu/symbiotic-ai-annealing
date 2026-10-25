@@ -131,7 +131,7 @@ Examples:
         "--ground-truth-csv",
         type=str,
         default=None,
-        help="Optional ground_truth.csv for training-assignment scoring (written next to the model)",
+        help="Ground truth CSV for final_assignments.csv (defaults to this project's ground_truth.csv)",
     )
     train_parser.add_argument(
         "--k-fold",
@@ -482,7 +482,7 @@ Examples:
             "--ground-truth-csv",
             type=str,
             default=None,
-            help="Optional ground_truth.csv for training-assignment scoring",
+            help="Ground truth CSV for final_assignments.csv (defaults to this project's ground_truth.csv)",
         )
         p.add_argument(
             "--k-fold",

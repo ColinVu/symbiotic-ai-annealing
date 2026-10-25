@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Tuple
 
-from ..training.weak_supervision import WeakSupervisedTrainer
+from ..ground_truth import load_ground_truth_labels as _load_ground_truth_labels
 
-from .evaluator import _load_ground_truth_labels
+if TYPE_CHECKING:
+    from ..training.weak_supervision import WeakSupervisedTrainer
 
 
 def write_final_assignments_csv(
@@ -36,21 +37,32 @@ def write_final_assignments_csv(
 
     gt_path = str(Path(ground_truth_csv).resolve()) if ground_truth_csv else None
     gt_by_stem: Dict[str, List[str]] = {}
-    if gt_path and Path(gt_path).is_file():
-        stems = video_stems_order or sorted({vid for vid, _ in refined.keys()})
+    if gt_path:
+        if not Path(gt_path).is_file():
+            raise FileNotFoundError(f"Ground truth CSV not found: {gt_path}")
+        refined_stems = {vid for vid, _ in refined.keys()}
+        stems = list(dict.fromkeys(
+            stem for stem in (video_stems_order or []) if stem in refined_stems
+        ))
+        stems.extend(sorted(refined_stems - set(stems)))
         for stem in stems:
             try:
                 gt_by_stem[stem] = _load_ground_truth_labels(gt_path, stem)
-            except ValueError:
-                pass
+            except ValueError as exc:
+                raise ValueError(f"Cannot write ground truth for {stem}: {exc}") from exc
 
-    rows: List[Tuple[str, int, str, str, str, str]] = []
+    rows: List[Tuple[str, int, str, str, str]] = []
     for (vid, seg_id), lab in sorted(refined.items(), key=lambda x: (x[0][0], x[0][1])):
         assigned = str(lab)
         gt_lab = ""
         hit = ""
         expected = gt_by_stem.get(vid)
-        if expected is not None and 0 <= int(seg_id) < len(expected):
+        if expected is not None:
+            if not 0 <= int(seg_id) < len(expected):
+                raise ValueError(
+                    f"No ground truth for {vid} segment {seg_id}; "
+                    f"column contains {len(expected)} labels"
+                )
             gt_lab = expected[int(seg_id)]
             hit = "1" if assigned == gt_lab else "0"
         rows.append((str(vid), int(seg_id), assigned, gt_lab, hit))
