@@ -1,35 +1,22 @@
-# Shelf reassignment project
+# Shelf reassignment
 
-This directory documents the **decision component of a real-time shelf-change simulation**. Start with [EXECUTION_PLAN.md](EXECUTION_PLAN.md), use [EVALUATION_SPEC.md](EVALUATION_SPEC.md) for scoring and validation, and give [INTEGRATION.md](INTEGRATION.md) to the lab group building the bin-change simulator.
+This component recommends when to move items between shelves to reduce recognition mistakes. It makes a recommendation from observations available at the current simulation step; the simulator decides whether to apply the move. The decision component does not move physical items or change the live classifier.
 
-## Goal
+## How it works
 
-Identify **when** the observed recognition evidence warrants changing a shelf layout, **which** objects to move, and **where** to put them without creating more confusion elsewhere. At each simulated decision point, recommend a capacity-preserving swap or cycle from information available so far. Another lab group owns the simulation of bin changes; this project supplies the decision logic and a clear interface for that simulator. It does not change physical inventory or live inference configuration.
+1. **Find confused pairs.** For each observed pick segment with usable image embeddings, the existing shelf-constrained classifier predicts an item. The system compares that prediction with the item's inferred SKU assignment. If a segment assigned to A is predicted as B, it counts one `A → B` confusion. It combines errors in both directions and divides by the total usable segments assigned to A or B. These are decision-time proxy labels, not verified ground truth.
+2. **Choose pairs with enough evidence.** A pair can trigger the targeted search when the items share a shelf, at least five usable segments belong to the two items combined, at least two are mistaken for each other, and their combined confusion rate is at least 20%. These starting thresholds are configurable. The search considers up to ten qualifying pairs at a time.
+3. **Test ways to separate them.** For each pair, the system considers moving either item to another shelf. Because shelves must remain full, it exchanges that item with an occupant of the destination shelf. It uses observed embedding overlap to rank a limited set of exchange partners. A small fallback search can still propose candidates when confusion evidence is sparse or targeted swaps do not help.
+4. **Check the whole layout.** The system replays its weighted recognition vote under each shortlisted layout. A move is recommended only if it reduces estimated segment errors enough to justify the number of items moved, including any new errors on destination shelves. It may recommend no move. After accepting a move within one decision, it updates the confusion pairs before searching again. Three-item cycles remain available when a swap does not improve the result.
 
-## Research anchor
+The previous all-pairs search remains available as `search_mode="all_pairs"` for comparison. The targeted search is a heuristic: it examines fewer swaps and can miss an improvement outside its shortlist.
 
-The supplied paper, *Symbiotic AI for Teaching a Computer to Identify Warehouse Objects Without Object Labels* (`/Users/nathanbai/Downloads/vu.pdf` at planning time), reports 96.9% weighted shelf-constrained segment accuracy over 120 objects with ten-fold cross-validation. Section 4.2 reports 94.6% for 38 visually similar “gems” versus 98.0% for other objects, including 10 of 25 `f14` segments mistaken for `f46`. The paper also identifies noisy `g32` embeddings. These are examples and investigation targets, not hard-coded move rules. The paper's 96.9% must not be compared directly with the checked-in subset's different five-fold results.
+## Output
 
-## Relevant code and data
+The decision result includes a complete proposed SKU-to-shelf/slot layout, move transactions, estimated errors fixed and newly introduced, and the evidence behind the search. The CLI also writes `confusion_evidence.csv`, which shows pair counts, rates, and reasons a pair did not qualify. See the [integration guide](INTEGRATION.md) for the snapshot format, API, CLI settings, and output fields.
 
-| Existing component | Why it matters |
-| --- | --- |
-| `symbiote_weak_generalized/experiments/evaluator.py` | Canonical weighted shelf vote: nearest shelf centroid per frame, top-three distance margin weight, segment vote sum. Reuse or extract this logic. |
-| `cross_validation/{layout,manifests,splits,test}.py` | Existing model/result artifacts and historical baseline. The shelf-change simulation does not require new held-out video testing. |
-| `symbiote_weak_generalized/persistence/model_io.py` | Loads saved centroid arrays and optional embedding transforms. |
-| `symbiote_weak_generalized/scripts/confusion_from_cache.py` | Useful cache-loading precedent, but its shelf-constrained segment mode is kNN, not the paper's weighted-centroid protocol. Do not use its confusion matrix as the optimization objective. |
-| `ground_truth.csv` | Ordered true item labels for picklist videos. |
+The estimates replay existing embeddings while changing which items compete on each shelf. They do not predict changes in lighting, backgrounds, or camera views after a physical move. Inferred SKU assignments can also be wrong. Verified true labels are used only for separate retrospective analysis; they do not select moves. See the [evaluation specification](EVALUATION_SPEC.md) and [physical lab test protocol](LAB_TEST_PROTOCOL.md) for measuring results.
 
-The checked-in `cv_results_subset` is a five-fold sample, not the full paper experiment. Its first fold has metadata for 119 centroids and no `centroids.npy`; the local picklist-video directory also contains no videos. Before running a complete simulation, obtain model artifacts, embeddings or videos/cache, labels, and inventory. Preserve the existing uncommitted work in `symbiote_weak_generalized/cli/main.py`, `core/config.py`, `experiments/assignment_score.py`, `experiments/evaluator.py`, plus the untracked ground-truth helper and test.
+## Validation status
 
-## Chosen defaults
-
-- Five shelves, `c` through `g`, each with 24 object slots, unless an explicit inventory file overrides capacity.
-- Immutable item IDs (for example `f14`) identify objects; the first character describes the **current** shelf only. Proposed shelves come from a separate layout map.
-- Primary objective: reduce estimated weighted shelf-constrained **segment** errors at the current simulation state. Secondary objective: move fewer objects. Report per-item and per-shelf regressions.
-- Use observed embeddings available at the decision point to account for within-class spread and between-class overlap. Centroid-to-centroid similarity is diagnostic, not sufficient to approve a move.
-- Do not impose a fixed “similarity threshold” before seeing the data. A move is recommended when the currently observed evidence predicts a net gain after move cost. This is an in-simulation estimate, not a held-out accuracy claim. Swap search ranks all legal pairs by observed overlap, then exactly replays a configurable shortlist, so it does not prove global optimality.
-
-## Completion definition
-
-The implementation in `symbiotic-ai/shelf_layout/` consumes a simulation snapshot, reproduces the current-layout weighted-vote baseline, decides whether a move is warranted, generates legal layouts, and returns a proposed layout with estimated fixed/new errors. It includes tests for mapping, scoring, legality, destination-shelf regressions, and use of only observations available at the decision point. If required data are unavailable, it stops with an explicit missing-input report instead of inventing results. See [INTEGRATION.md](INTEGRATION.md) for the runnable interface.
+The focused shelf-layout tests pass. In one [synthetic 120-item comparison](TARGETED_CONFUSION_SEARCH_BENCHMARK.md), targeted search generated 40 candidate swaps versus 5,806 for the all-pairs mode, and both reached zero estimated errors. Complete model and simulation artifacts are still needed to compare search quality on the study data. The checked-in five-fold subset is incomplete, so the synthetic result is not a claim about physical or held-out accuracy.

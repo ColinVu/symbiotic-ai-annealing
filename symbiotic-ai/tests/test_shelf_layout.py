@@ -6,6 +6,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
 
@@ -72,6 +73,61 @@ class ShelfLayoutTests(unittest.TestCase):
         result = DecisionEngine(snapshot, model).recommend()
         self.assertEqual(result["recommendation"]["moved_skus"], 0)
 
+    def test_confusion_trigger_uses_segment_counts_and_reports_gates(self):
+        model, snapshot = fixture()
+        snapshot["observations"].extend(
+            {"id": f"a{i}", "revealed_at": 2, "inferred_sku": "a",
+             "observed_shelf": "s1", "frames": [model.centroids[1].tolist()],
+             "assignment_confidence": 0.7}
+            for i in range(2, 5)
+        )
+        engine = DecisionEngine(snapshot, model)
+        evidence = engine._confusion_evidence(engine.baseline, engine.score_current()["predictions"])
+        pair = next(row for row in evidence if (row["a"], row["b"]) == ("a", "b"))
+        self.assertTrue(pair["eligible"])
+        self.assertEqual(pair["a_segments"], 5)
+        self.assertEqual(pair["a_to_b"], 5)
+        self.assertEqual(pair["b_to_a"], 0)
+        self.assertAlmostEqual(pair["pair_rate"], 5 / 6)
+        self.assertEqual(pair["confidence_segments"], 3)
+        strict = engine._confusion_evidence(engine.baseline, engine.score_current()["predictions"],
+                                            min_pair_segments=8)
+        self.assertIn("insufficient_segments", strict[0]["exclusion_reasons"])
+
+    def test_targeted_path_avoids_all_pairs_enumeration_and_respects_budget(self):
+        model, snapshot = fixture()
+        engine = DecisionEngine(snapshot, model)
+        with patch("shelf_layout.engine.combinations", side_effect=AssertionError("all-pairs scan")):
+            result = engine.recommend(max_moved=2, cycle_pool_size=0,
+                                      min_pair_segments=1, min_pair_confusions=1,
+                                      fallback_swap_budget=0, swap_replay_limit=1)
+        self.assertTrue(result["search"]["passes"][0]["trigger_pairs"])
+        self.assertEqual(result["search"]["passes"][0]["exact_swap_replays"], 1)
+        self.assertTrue(all(p["exact_swap_replays"] <= 1 for p in result["search"]["passes"]))
+        self.assertEqual(result["recommendation"]["proxy_errors"], 0)
+        self.assertEqual(result["search"]["passes"][-1]["observed_pairs"], [])
+
+    def test_sparse_evidence_uses_bounded_fallback(self):
+        model, snapshot = fixture()
+        engine = DecisionEngine(snapshot, model)
+        result = engine.recommend(max_moved=2, cycle_pool_size=0, swap_replay_limit=2,
+                                  fallback_swap_budget=1)
+        self.assertFalse(result["search"]["passes"][0]["trigger_pairs"])
+        self.assertTrue(result["search"]["passes"][0]["fallback_used"])
+        self.assertLessEqual(result["search"]["passes"][0]["exact_swap_replays"], 1)
+        self.assertEqual(result["recommendation"]["proxy_errors"], 0)
+
+    def test_all_pairs_comparison_mode_and_determinism(self):
+        model, snapshot = fixture()
+        engine = DecisionEngine(snapshot, model)
+        targeted = engine.recommend(max_moved=2)
+        repeated = engine.recommend(max_moved=2)
+        old = engine.recommend(max_moved=2, search_mode="all_pairs")
+        self.assertEqual(targeted, repeated)
+        self.assertEqual(targeted["recommendation"]["proxy_errors"],
+                         old["recommendation"]["proxy_errors"])
+        self.assertEqual(old["settings"]["search_mode"], "all_pairs")
+
     def test_destination_shelf_can_create_new_error(self):
         model, snapshot = fixture()
         e_view = (0.8 * model.centroids[0] + 0.6 * model.centroids[4]).tolist()
@@ -129,6 +185,8 @@ class ShelfLayoutTests(unittest.TestCase):
                                    "--max-moved", "2"]), 0)
             self.assertTrue((out / "summary.md").is_file())
             self.assertTrue((out / "candidate_layouts.csv").is_file())
+            self.assertTrue((out / "confusion_evidence.csv").is_file())
+            self.assertIn("search", json.loads((out / "summary.json").read_text()))
             self.assertEqual(json.loads((out / "summary.json").read_text())["recommendation"]["proxy_errors"], 0)
             truth = root / "truth.json"
             truth.write_text(json.dumps({"a0": "a", "a1": "a", "b0": "b"}), encoding="utf-8")

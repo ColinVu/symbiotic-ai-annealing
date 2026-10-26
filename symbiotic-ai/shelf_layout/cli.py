@@ -51,6 +51,7 @@ def _report(engine: DecisionEngine, command: str, output: Path, result: Optional
                                "observations": len(engine.observations),
                                "baseline": diag["baseline"], "recommendation": rec,
                                "settings": result["settings"] if result else None,
+                               "search": result["search"] if result else None,
                                "interpretation": "In-simulation estimate on revealed observations; no new-video accuracy claim."}
     if engine.data.get("previous_decision") is not None:
         summary["previous_decision"] = engine.data["previous_decision"]
@@ -78,6 +79,12 @@ def _report(engine: DecisionEngine, command: str, output: Path, result: Optional
                ["source", "target", "confusions", "source_segments", "directed_overlap_segments",
                 "competitor_margin_p10", "centroid_cosine_distance", "same_shelf"],
                diag["confusing_pairs"])
+    _write_csv(output / "confusion_evidence.csv",
+               ["a", "b", "a_to_b", "b_to_a", "a_segments", "b_segments", "pair_count",
+                "pair_rate", "same_shelf", "mean_assignment_confidence", "confidence_segments",
+                "eligible", "exclusion_reasons"],
+               [{**row, "exclusion_reasons": ";".join(row["exclusion_reasons"])}
+                for row in diag["confusion_evidence"]])
     per_shelf = []
     for shelf in sorted(engine.data["capacities"]):
         rows = [r for r in engine.observations if proposed_layout[r["sku"]] == shelf]
@@ -115,6 +122,12 @@ def _report(engine: DecisionEngine, command: str, output: Path, result: Optional
                       f"Items moved: {rec['moved_skus']}",
                       f"Proxy errors fixed: {rec.get('fixed', 0)}",
                       f"New proxy errors: {rec.get('new_errors', 0)}"])
+        search = result["search"]
+        lines.extend([f"Swap candidates generated: {search['total_generated_swaps']}",
+                      f"Exact swap replays: {search['total_exact_swap_replays']}",
+                      f"Fallback passes: {search['fallback_passes']}"])
+        if rec["moved_skus"] == 0:
+            lines.append(f"No-move reason: {search['no_move_reason']}")
     if "retrospective" in summary:
         ret = summary["retrospective"]
         lines.extend(["", "## Retrospective true-label analysis", "",
@@ -127,6 +140,24 @@ def _report(engine: DecisionEngine, command: str, output: Path, result: Optional
                   f"Model SHA-256: `{engine.model.fingerprint}`",
                   f"Settings: `{json.dumps(result['settings'], sort_keys=True) if result else 'analysis only'}`", ""])
     (output / "summary.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def _add_search_options(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--search-mode", choices=("confusion", "all_pairs"), default="confusion")
+    parser.add_argument("--min-pair-segments", type=int, default=5)
+    parser.add_argument("--min-pair-confusions", type=int, default=2)
+    parser.add_argument("--min-pair-rate", type=float, default=0.20)
+    parser.add_argument("--max-confusion-pairs", type=int, default=10)
+    parser.add_argument("--partners-per-shelf", type=int, default=5)
+    parser.add_argument("--fallback-swap-budget", type=int, default=32)
+
+
+def _search_options(args: argparse.Namespace) -> Dict[str, Any]:
+    return {"search_mode": args.search_mode, "min_pair_segments": args.min_pair_segments,
+            "min_pair_confusions": args.min_pair_confusions, "min_pair_rate": args.min_pair_rate,
+            "max_confusion_pairs": args.max_confusion_pairs,
+            "partners_per_shelf": args.partners_per_shelf,
+            "fallback_swap_budget": args.fallback_swap_budget}
 
 
 def main(argv: Optional[List[str]] = None) -> int:
@@ -144,6 +175,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             sub.add_argument("--max-moved", type=int, default=12)
             sub.add_argument("--cycle-pool-size", type=int, default=12)
             sub.add_argument("--swap-replay-limit", type=int, default=200)
+            _add_search_options(sub)
     sim = subs.add_parser("simulate", help="Run decisions on simulator-provided snapshots in step order")
     sim.add_argument("--snapshots-dir", required=True)
     sim.add_argument("--model-dir", required=True)
@@ -152,6 +184,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     sim.add_argument("--max-moved", type=int, default=12)
     sim.add_argument("--cycle-pool-size", type=int, default=12)
     sim.add_argument("--swap-replay-limit", type=int, default=200)
+    _add_search_options(sim)
     args = parser.parse_args(argv)
     output = Path(args.output_dir)
     try:
@@ -171,7 +204,8 @@ def main(argv: Optional[List[str]] = None) -> int:
                 engine = DecisionEngine(snapshot, model)
                 result = engine.recommend(move_cost=args.move_cost, max_moved=args.max_moved,
                                           cycle_pool_size=args.cycle_pool_size,
-                                          swap_replay_limit=args.swap_replay_limit)
+                                          swap_replay_limit=args.swap_replay_limit,
+                                          **_search_options(args))
                 step_dir = output / f"step_{engine.data['step']:06d}"
                 _report(engine, "recommend", step_dir, result, None)
                 rec = result["recommendation"]
@@ -198,7 +232,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             return 0
         result = (engine.recommend(move_cost=args.move_cost, max_moved=args.max_moved,
                                    cycle_pool_size=args.cycle_pool_size,
-                                   swap_replay_limit=args.swap_replay_limit)
+                                   swap_replay_limit=args.swap_replay_limit,
+                                   **_search_options(args))
                   if args.command == "recommend" else None)
         truth = json.loads(Path(args.truth_json).read_text(encoding="utf-8")) if args.truth_json else None
         if truth is not None and result is None:

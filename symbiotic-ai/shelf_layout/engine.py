@@ -235,15 +235,104 @@ class DecisionEngine:
         self.directed_pair_risk = risk
         return risk + risk.T
 
-    def _swap_proxy_delta(self, layout: Mapping[str, str], a: str, b: str) -> float:
+    def _risk_totals(self, layout: Mapping[str, str]) -> Dict[str, np.ndarray]:
+        """Risk from each SKU to the current occupants of each shelf."""
+        return {shelf: self.pair_risk[:, [self.label_index[x] for x in self.labels
+                                          if layout[x] == shelf]].sum(axis=1)
+                for shelf in self.data["capacities"]}
+
+    def _swap_proxy_delta(self, layout: Mapping[str, str], a: str, b: str,
+                          totals: Optional[Mapping[str, np.ndarray]] = None) -> float:
         """Fast pairwise risk change used only to prioritize exact replay."""
         shelf_a, shelf_b = layout[a], layout[b]
         ia, ib = self.label_index[a], self.label_index[b]
-        a_old = [self.label_index[x] for x in self.labels if layout[x] == shelf_a and x != a]
-        b_old = [self.label_index[x] for x in self.labels if layout[x] == shelf_b and x != b]
         risk = self.pair_risk
-        return float(risk[ib, a_old].sum() + risk[ia, b_old].sum()
-                     - risk[ia, a_old].sum() - risk[ib, b_old].sum())
+        totals = totals if totals is not None else self._risk_totals(layout)
+        return float(totals[shelf_a][ib] - risk[ib, ia] + totals[shelf_b][ia] - risk[ia, ib]
+                     - totals[shelf_a][ia] - totals[shelf_b][ib])
+
+    def _confusion_evidence(self, layout: Mapping[str, str], predictions: Mapping[str, str],
+                            min_pair_segments: int = 5, min_pair_confusions: int = 2,
+                            min_pair_rate: float = 0.20) -> List[Dict[str, Any]]:
+        """Observed directed errors, grouped by unordered pair for search."""
+        counts: Counter[str] = Counter()
+        confusions: Counter[Tuple[str, str]] = Counter()
+        confidence: Dict[str, List[float]] = defaultdict(list)
+        for row in self.observations:
+            if not len(self.distances[row["id"]]):
+                continue
+            sku = row["sku"]
+            counts[sku] += 1
+            if row["confidence"] is not None:
+                confidence[sku].append(float(row["confidence"]))
+            pred = predictions[row["id"]]
+            if pred and pred != sku:
+                confusions[(sku, pred)] += 1
+        pairs = []
+        for a, b in sorted({tuple(sorted((source, target))) for source, target in confusions}):
+            total = confusions[a, b] + confusions[b, a]
+            segments = counts[a] + counts[b]
+            rate = total / segments if segments else 0.0
+            reasons = []
+            if layout[a] != layout[b]:
+                reasons.append("different_shelves")
+            if segments < min_pair_segments:
+                reasons.append("insufficient_segments")
+            if total < min_pair_confusions:
+                reasons.append("insufficient_confusions")
+            if rate < min_pair_rate:
+                reasons.append("low_rate")
+            known_confidence = confidence[a] + confidence[b]
+            pairs.append({"a": a, "b": b, "a_to_b": confusions[a, b],
+                          "b_to_a": confusions[b, a], "a_segments": counts[a],
+                          "b_segments": counts[b], "pair_count": total,
+                          "pair_rate": rate, "same_shelf": layout[a] == layout[b],
+                          "mean_assignment_confidence": (sum(known_confidence) / len(known_confidence)
+                                                         if known_confidence else None),
+                          "confidence_segments": len(known_confidence),
+                          "eligible": not reasons, "exclusion_reasons": reasons})
+        return sorted(pairs, key=lambda row: (-row["pair_count"], -row["pair_rate"],
+                                              row["a"], row["b"]))
+
+    def _fallback_pairs(self, layout: Mapping[str, str], budget: int) -> List[Tuple[str, str]]:
+        """Select a bounded set of risky same-shelf pairs without cross-shelf enumeration."""
+        if budget <= 0:
+            return []
+        candidates = []
+        for shelf in self.data["capacities"]:
+            members = [sku for sku in self.labels if layout[sku] == shelf]
+            for a, b in combinations(members, 2):
+                candidates.append((-float(self.pair_risk[self.label_index[a], self.label_index[b]]), a, b))
+        return [(a, b) for risk, a, b in sorted(candidates)[:budget] if risk < 0]
+
+    def _targeted_swaps(self, layout: Mapping[str, str], pairs: List[Tuple[str, str]],
+                        partners_per_shelf: int, max_moved: int,
+                        totals: Mapping[str, np.ndarray]) -> List[Tuple[float, str, str, Tuple[str, str]]]:
+        """Bounded proxy-ranked cross-shelf swaps around nominated items."""
+        proposals: Dict[Tuple[str, str], Tuple[float, str, str, Tuple[str, str]]] = {}
+        moved_now = sum(layout[x] != self.baseline[x] for x in self.labels)
+        for pair in pairs:
+            for source in pair:
+                for shelf in sorted(self.data["capacities"]):
+                    if shelf == layout[source]:
+                        continue
+                    ranked = sorted((self._swap_proxy_delta(layout, source, partner, totals), partner)
+                                    for partner in self.labels if layout[partner] == shelf)
+                    kept = 0
+                    for delta, partner in ranked:
+                        moved_after = moved_now
+                        moved_after += (layout[partner] != self.baseline[source]) - (layout[source] != self.baseline[source])
+                        moved_after += (layout[source] != self.baseline[partner]) - (layout[partner] != self.baseline[partner])
+                        if moved_after > max_moved:
+                            continue
+                        a, b = sorted((source, partner))
+                        proposal = (delta, a, b, pair)
+                        if (a, b) not in proposals or proposal < proposals[a, b]:
+                            proposals[a, b] = proposal
+                        kept += 1
+                        if kept >= partners_per_shelf:
+                            break
+        return sorted(proposals.values())
 
     def _members(self, layout: Mapping[str, str]) -> Dict[str, Tuple[str, ...]]:
         return {s: tuple(sku for sku in self.labels if layout[sku] == s)
@@ -311,10 +400,11 @@ class DecisionEngine:
         errors = (self.score_current() if moved == 0 else self.score(layout))["errors"]
         return (errors + move_cost * moved, moved, errors)
 
-    def _cycle_pool(self, baseline_predictions: Mapping[str, str], limit: int = 12) -> List[str]:
+    def _cycle_pool(self, predictions: Mapping[str, str], layout: Mapping[str, str],
+                    limit: int = 12) -> List[str]:
         risk = Counter()
         for row in self.observations:
-            pred = baseline_predictions[row["id"]]
+            pred = predictions[row["id"]]
             if pred != row["sku"]:
                 risk[row["sku"]] += 2
                 if pred:
@@ -326,7 +416,7 @@ class DecisionEngine:
                 i = self.label_index[sku]
                 for j in np.argsort(-similarities[i], kind="stable"):
                     other = self.labels[int(j)]
-                    if self.baseline[other] != self.baseline[sku] and other not in selected:
+                    if layout[other] != layout[sku] and other not in selected:
                         selected.append(other)
                         break
                 if len(selected) >= limit:
@@ -334,33 +424,105 @@ class DecisionEngine:
         return sorted(selected[:limit])
 
     def recommend(self, *, move_cost: float = 0.25, max_moved: int = 12,
-                  cycle_pool_size: int = 12, swap_replay_limit: int = 200) -> Dict[str, Any]:
-        if not np.isfinite(move_cost) or move_cost < 0 or max_moved < 0 or cycle_pool_size < 0 or swap_replay_limit < 1:
-            raise ValueError("Search settings must be nonnegative and swap_replay_limit >= 1")
+                  cycle_pool_size: int = 12, swap_replay_limit: int = 200,
+                  search_mode: str = "confusion", min_pair_segments: int = 5,
+                  min_pair_confusions: int = 2, min_pair_rate: float = 0.20,
+                  max_confusion_pairs: int = 10, partners_per_shelf: int = 5,
+                  fallback_swap_budget: int = 32) -> Dict[str, Any]:
+        if (not np.isfinite(move_cost) or move_cost < 0 or max_moved < 0 or cycle_pool_size < 0
+                or swap_replay_limit < 1 or min_pair_segments < 1 or min_pair_confusions < 1
+                or not np.isfinite(min_pair_rate) or not 0 <= min_pair_rate <= 1
+                or max_confusion_pairs < 1 or partners_per_shelf < 1 or fallback_swap_budget < 0
+                or search_mode not in {"confusion", "all_pairs"}):
+            raise ValueError("Invalid search settings")
         current = dict(self.baseline)
         baseline_score = self.score_current()
         best_seen = {tuple(current[sku] for sku in self.labels): (self._objective(current, move_cost), dict(current))}
         seen = set(best_seen)
+        search_stats = {"passes": [], "total_generated_swaps": 0, "total_exact_swap_replays": 0,
+                        "fallback_passes": 0, "no_move_reason": None}
         while True:
             old_obj = self._objective(current, move_cost)
             choice = None
-            swap_queue = []
-            for a, b in combinations(self.labels, 2):
-                if current[a] == current[b]:
-                    continue
-                candidate = dict(current)
-                candidate[a], candidate[b] = candidate[b], candidate[a]
-                key = tuple(candidate[sku] for sku in self.labels)
-                if key in seen or sum(candidate[x] != self.baseline[x] for x in self.labels) > max_moved:
-                    continue
-                swap_queue.append((self._swap_proxy_delta(current, a, b), key, candidate))
-            for _, key, candidate in sorted(swap_queue, key=lambda x: (x[0], x[1]))[:swap_replay_limit]:
+            predictions = (baseline_score if current == self.baseline else self.score(current))["predictions"]
+            evidence = self._confusion_evidence(current, predictions, min_pair_segments,
+                                                min_pair_confusions, min_pair_rate)
+            triggers = [row for row in evidence if row["eligible"]][:max_confusion_pairs]
+            stats = {"trigger_pairs": triggers, "observed_pairs": evidence,
+                     "generated_swaps": 0, "exact_swap_replays": 0,
+                     "fallback_used": False, "fallback_generated_swaps": 0,
+                     "replayed_swaps": []}
+            totals = self._risk_totals(current)
+            if search_mode == "all_pairs":
+                swap_queue = []
+                for a, b in combinations(self.labels, 2):
+                    if current[a] == current[b]:
+                        continue
+                    candidate = dict(current)
+                    candidate[a], candidate[b] = candidate[b], candidate[a]
+                    key = tuple(candidate[sku] for sku in self.labels)
+                    if key in seen or sum(candidate[x] != self.baseline[x] for x in self.labels) > max_moved:
+                        continue
+                    swap_queue.append((self._swap_proxy_delta(current, a, b, totals), key, a, b, candidate))
+                stats["generated_swaps"] = len(swap_queue)
+                ranked_candidates = [
+                    (key, candidate, {"source": "all_pairs", "a": a, "b": b,
+                                      "proxy_delta": float(delta), "proxy_rank": rank})
+                    for rank, (delta, key, a, b, candidate) in enumerate(
+                        sorted(swap_queue, key=lambda x: (x[0], x[1]))[:swap_replay_limit], 1)
+                ]
+            else:
+                proposals = self._targeted_swaps(current, [(r["a"], r["b"]) for r in triggers],
+                                                  partners_per_shelf, max_moved, totals)
+                stats["generated_swaps"] = len(proposals)
+                ranked_candidates = []
+                for rank, (delta, a, b, pair) in enumerate(proposals, 1):
+                    candidate = dict(current)
+                    candidate[a], candidate[b] = candidate[b], candidate[a]
+                    key = tuple(candidate[sku] for sku in self.labels)
+                    if key not in seen:
+                        ranked_candidates.append((key, candidate,
+                                                  {"source": "confusion_pair", "a": a, "b": b,
+                                                   "trigger_pair": list(pair), "proxy_delta": float(delta),
+                                                   "proxy_rank": rank}))
+                    if len(ranked_candidates) >= swap_replay_limit:
+                        break
+            for key, candidate, provenance in ranked_candidates:
                 obj = self._objective(candidate, move_cost)
+                stats["exact_swap_replays"] += 1
+                stats["replayed_swaps"].append({**provenance, "objective": obj[0],
+                                                 "proxy_errors": obj[2]})
                 if obj < old_obj and (choice is None or (obj, key) < (choice[0], choice[1])):
                     choice = (obj, key, candidate)
                 best_seen[key] = (obj, candidate)
+            if search_mode == "confusion" and choice is None and fallback_swap_budget:
+                stats["fallback_used"] = True
+                search_stats["fallback_passes"] += 1
+                fallback_pairs = self._fallback_pairs(current, fallback_swap_budget)
+                fallback = self._targeted_swaps(current, fallback_pairs, partners_per_shelf,
+                                                max_moved, totals)
+                stats["fallback_generated_swaps"] = len(fallback)
+                remaining = min(fallback_swap_budget, swap_replay_limit - stats["exact_swap_replays"])
+                for rank, (delta, a, b, pair) in enumerate(fallback, 1):
+                    if remaining <= 0:
+                        break
+                    candidate = dict(current)
+                    candidate[a], candidate[b] = candidate[b], candidate[a]
+                    key = tuple(candidate[sku] for sku in self.labels)
+                    if key in seen or key in best_seen:
+                        continue
+                    obj = self._objective(candidate, move_cost)
+                    stats["exact_swap_replays"] += 1
+                    stats["replayed_swaps"].append({"source": "fallback", "a": a, "b": b,
+                                                    "trigger_pair": list(pair), "proxy_delta": float(delta),
+                                                    "proxy_rank": rank, "objective": obj[0],
+                                                    "proxy_errors": obj[2]})
+                    remaining -= 1
+                    if obj < old_obj and (choice is None or (obj, key) < (choice[0], choice[1])):
+                        choice = (obj, key, candidate)
+                    best_seen[key] = (obj, candidate)
             if choice is None and cycle_pool_size >= 3:
-                pool = self._cycle_pool(baseline_score["predictions"], cycle_pool_size)
+                pool = self._cycle_pool(predictions, current, cycle_pool_size)
                 for triple in combinations(pool, 3):
                     if len({current[x] for x in triple}) != 3:
                         continue
@@ -376,7 +538,13 @@ class DecisionEngine:
                         if obj < old_obj and (choice is None or (obj, key) < (choice[0], choice[1])):
                             choice = (obj, key, candidate)
                         best_seen[key] = (obj, candidate)
+            search_stats["passes"].append(stats)
+            search_stats["total_generated_swaps"] += stats["generated_swaps"] + stats["fallback_generated_swaps"]
+            search_stats["total_exact_swap_replays"] += stats["exact_swap_replays"]
             if choice is None:
+                search_stats["no_move_reason"] = ("insufficient_confusion_evidence"
+                                                  if not triggers and not stats["fallback_generated_swaps"]
+                                                  else "no_exact_objective_improvement")
                 break
             current = choice[2]
             seen.add(choice[1])
@@ -420,8 +588,13 @@ class DecisionEngine:
                 "model_hash": self.model.fingerprint, "baseline": {k: v for k, v in baseline_score.items() if k != "predictions"},
                 "recommendation": recommended, "candidates": candidates,
                 "transactions": self._transactions(current),
+                "search": search_stats,
                 "settings": {"move_cost": move_cost, "max_moved": max_moved, "cycle_pool_size": cycle_pool_size,
-                             "swap_replay_limit": swap_replay_limit}}
+                             "swap_replay_limit": swap_replay_limit, "search_mode": search_mode,
+                             "min_pair_segments": min_pair_segments, "min_pair_confusions": min_pair_confusions,
+                             "min_pair_rate": min_pair_rate, "max_confusion_pairs": max_confusion_pairs,
+                             "partners_per_shelf": partners_per_shelf,
+                             "fallback_swap_budget": fallback_swap_budget}}
 
     def _locations_for(self, layout: Mapping[str, str]) -> Dict[str, Dict[str, str]]:
         result = {sku: {"shelf": shelf, "slot": self.data["locations"][sku][1]}
@@ -447,7 +620,9 @@ class DecisionEngine:
     def diagnostics(self) -> Dict[str, Any]:
         baseline = self.score_current()
         per_sku: Dict[str, Dict[str, Any]] = {}
-        pairs = Counter()
+        evidence = self._confusion_evidence(self.baseline, baseline["predictions"])
+        directed = {(row["a"], row["b"]): row["a_to_b"] for row in evidence}
+        directed.update({(row["b"], row["a"]): row["b_to_a"] for row in evidence})
         for sku in self.labels:
             rows = [r for r in self.observations if r["sku"] == sku]
             own = np.concatenate([self.distances[r["id"]][:, self.label_index[sku]] for r in rows]) if rows else np.array([])
@@ -455,17 +630,13 @@ class DecisionEngine:
             per_sku[sku] = {"segments": len(rows), "proxy_errors": wrong,
                             "own_distance_median": float(np.median(own)) if len(own) else None,
                             "own_distance_p90": float(np.percentile(own, 90)) if len(own) else None}
-            for row in rows:
-                pred = baseline["predictions"][row["id"]]
-                if pred and pred != sku:
-                    pairs[(sku, pred)] += 1
         similarity = self.model.centroids @ self.model.centroids.T
         pair_rows = []
         for i, source in enumerate(self.labels):
             for j, target in enumerate(self.labels):
                 if i == j:
                     continue
-                count = pairs[(source, target)]
+                count = directed.get((source, target), 0)
                 if count or similarity[i, j] > 0.9:
                     margins = [self.distances[r["id"]][:, j] - self.distances[r["id"]][:, i]
                                for r in self.observations if r["sku"] == source and len(self.distances[r["id"]])]
@@ -478,6 +649,7 @@ class DecisionEngine:
                                       "same_shelf": self.baseline[source] == self.baseline[target]})
         pair_rows.sort(key=lambda r: (-r["confusions"], r["centroid_cosine_distance"], r["source"], r["target"]))
         return {"per_sku": per_sku, "confusing_pairs": pair_rows,
+                "confusion_evidence": evidence,
                 "baseline": {k: v for k, v in baseline.items() if k != "predictions"}}
 
     def retrospective(self, truth: Mapping[str, str], layout: Mapping[str, str]) -> Dict[str, Any]:
