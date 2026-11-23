@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-09",
+  "metric_type": "ambiguity_risk",
+  "fixture": {
+    "items": 120,
+    "shelves": 5,
+    "capacity": 24,
+    "embedding_dimension": 120,
+    "observations": 3,
+    "centroids": "identity; second vector normalized from 0.99*e0 + 0.1*e1",
+    "frames": "second centroid, one frame per segment; all observed on s0",
+    "settings": "defaults; max_moved=2; cycle_pool_size=0"
+  },
+  "results": [
+    {
+      "search_mode": "confusion",
+      "runtime_seconds": 0.009162,
+      "baseline_ambiguity_risk": 2.0132386387445003,
+      "proposed_ambiguity_risk": 0.06265190307222901,
+      "predicted_risk_reduction": 1.9505867356722713,
+      "moved_skus": 2,
+      "generated_swaps": 40,
+      "evaluated_swaps": 40
+    },
+    {
+      "search_mode": "all_pairs",
+      "runtime_seconds": 0.029344,
+      "baseline_ambiguity_risk": 2.0132386387445003,
+      "proposed_ambiguity_risk": 0.06265190307222901,
+      "predicted_risk_reduction": 1.9505867356722713,
+      "moved_skus": 2,
+      "generated_swaps": 11520,
+      "evaluated_swaps": 200
+    }
+  ],
+  "actual_recognition_accuracy": null,
+  "interpretation": "Synthetic surrogate-risk validation only. No held-out or physical accuracy measured."
+}

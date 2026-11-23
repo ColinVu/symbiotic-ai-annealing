@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional
 
 from .engine import DecisionEngine, SnapshotError, load_model
+from .label_free import AmbiguitySettings
 
 
 def _write_json(path: Path, value: Any) -> None:
@@ -43,9 +44,13 @@ def _retrospective(engine: DecisionEngine, truth: Mapping[str, str], recommendat
 def _report(engine: DecisionEngine, command: str, output: Path, result: Optional[Dict[str, Any]],
             truth: Optional[Mapping[str, str]]) -> None:
     output.mkdir(parents=True, exist_ok=True)
+    if engine.mode == "label_free":
+        _label_free_report(engine, command, output, result, truth)
+        return
     diag = engine.diagnostics()
     rec = result["recommendation"] if result else None
-    summary: Dict[str, Any] = {"mode": command, "step": engine.data["step"],
+    summary: Dict[str, Any] = {"mode": command, "decision_mode": "legacy",
+                               "metric_type": "legacy_proxy_errors", "step": engine.data["step"],
                                "snapshot_hash": engine.data["snapshot_hash"],
                                "model_hash": engine.model.fingerprint,
                                "observations": len(engine.observations),
@@ -142,6 +147,81 @@ def _report(engine: DecisionEngine, command: str, output: Path, result: Optional
     (output / "summary.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def _label_free_report(engine, command, output, result, truth):
+    diag = engine.diagnostics()
+    summary = {"mode": command, "decision_mode": "label_free", "metric_type": "ambiguity_risk",
+               "step": engine.data["step"], "snapshot_hash": engine.data["snapshot_hash"],
+               "model_hash": engine.model.fingerprint, **diag,
+               "interpretation": "Uncalibrated predicted ambiguity risk; no recognition accuracy claim."}
+    if result:
+        summary.update(result)
+    if truth is not None:
+        # Shelf-only historical picks cannot be replayed under a proposed layout.
+        summary["retrospective"] = {"baseline_only": engine.retrospective(truth, engine.baseline),
+                                     "candidate_accuracy": None,
+                                     "reason": "Post-move observations are required to measure outcome accuracy."}
+    _write_json(output / "summary.json", summary)
+    _write_json(output / "segment_evidence.json", diag["segment_evidence"])
+    _write_csv(output / "ambiguity_evidence.csv",
+               ["a", "b", "observed_shelf", "support", "observation_ids", "centroid_cosine_distance",
+                "eligible", "exclusion_reasons"], diag["ambiguity_evidence"])
+    if result:
+        _write_csv(output / "move_transactions.csv",
+                   ["sku", "from_shelf", "from_slot", "to_shelf", "to_slot"], result["transactions"])
+        _write_csv(output / "candidate_layouts.csv",
+                   ["rank", "objective", "ambiguity_risk", "moved_skus", "sku", "shelf", "slot"],
+                   [{"rank": rank, "objective": c["objective"], "ambiguity_risk": c["ambiguity_risk"],
+                     "moved_skus": c["moved_skus"], "sku": sku, **loc}
+                    for rank, c in enumerate(result["candidates"], 1) for sku, loc in c["layout"].items()])
+        _write_csv(output / "decisions.csv",
+                   ["step", "metric_type", "baseline_ambiguity_risk", "proposed_ambiguity_risk", "moved_skus"],
+                   [_decision_row(result)])
+    lines = ["# Label-free shelf decision", "", summary["interpretation"], "",
+             f"Current ambiguity risk: {diag['baseline']['ambiguity_risk']:.6f}",
+             f"Unscorable segments: {len(diag['unscorable_segments'])}"]
+    if result:
+        rec = result["recommendation"]
+        lines += [f"Proposed ambiguity risk: {rec['ambiguity_risk']:.6f}",
+                  f"Predicted risk reduction: {rec['predicted_risk_reduction']:.6f}",
+                  f"Objective change: {rec['objective_change']:.6f}", f"Items moved: {rec['moved_skus']}"]
+        if not rec["moved_skus"]:
+            lines.append(f"No-move reason: {result['search']['no_move_reason']}")
+    lines += ["", "Thresholds and move cost require separate offline calibration.",
+              "Actual outcome accuracy requires held-out labels and new post-move recordings."]
+    (output / "summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _decision_row(result):
+    rec = result["recommendation"]
+    row = {"step": result["step"], "snapshot_hash": result["snapshot_hash"],
+           "metric_type": result["metric_type"], "moved_skus": rec["moved_skus"]}
+    if result["metric_type"] == "ambiguity_risk":
+        row.update(baseline_ambiguity_risk=result["baseline"]["ambiguity_risk"],
+                   proposed_ambiguity_risk=rec["ambiguity_risk"])
+    else:
+        row.update(baseline_proxy_errors=result["baseline"]["errors"], proposed_proxy_errors=rec["proxy_errors"])
+    return row
+
+
+def _engine(snapshot, model, args):
+    return DecisionEngine(snapshot, model, mode=args.mode, ambiguity=AmbiguitySettings(
+        max_candidate_distance=args.max_candidate_distance, max_score_gap=args.max_score_gap,
+        min_support=args.min_ambiguity_support, geometry_scale=args.geometry_scale,
+        observation_weight=args.observation_weight, fallback_min_risk=args.fallback_min_risk,
+        sparse_history_segments=args.sparse_history_segments))
+
+
+def _add_mode_options(parser):
+    parser.add_argument("--mode", choices=("label_free", "legacy"), default="label_free")
+    parser.add_argument("--max-candidate-distance", type=float, default=0.30)
+    parser.add_argument("--max-score-gap", type=float, default=0.03)
+    parser.add_argument("--min-ambiguity-support", type=int, default=3)
+    parser.add_argument("--geometry-scale", type=float, default=0.10)
+    parser.add_argument("--observation-weight", type=float, default=1.0)
+    parser.add_argument("--fallback-min-risk", type=float, default=0.5)
+    parser.add_argument("--sparse-history-segments", type=int, default=3)
+
+
 def _add_search_options(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--search-mode", choices=("confusion", "all_pairs"), default="confusion")
     parser.add_argument("--min-pair-segments", type=int, default=5)
@@ -165,22 +245,24 @@ def main(argv: Optional[List[str]] = None) -> int:
     subs = parser.add_subparsers(dest="command", required=True)
     for name in ("preflight", "analyze", "recommend"):
         sub = subs.add_parser(name)
+        _add_mode_options(sub)
         sub.add_argument("--snapshot", required=True, help="JSON snapshot with items and revealed observations")
         sub.add_argument("--model-dir", required=True, help="Saved centroid model directory")
         sub.add_argument("--output-dir", required=True)
         if name != "preflight":
             sub.add_argument("--truth-json", help="Optional ID-to-true-SKU mapping, used only after decisions")
         if name == "recommend":
-            sub.add_argument("--move-cost", type=float, default=0.25)
+            sub.add_argument("--move-cost", type=float, default=None)
             sub.add_argument("--max-moved", type=int, default=12)
             sub.add_argument("--cycle-pool-size", type=int, default=12)
             sub.add_argument("--swap-replay-limit", type=int, default=200)
             _add_search_options(sub)
     sim = subs.add_parser("simulate", help="Run decisions on simulator-provided snapshots in step order")
+    _add_mode_options(sim)
     sim.add_argument("--snapshots-dir", required=True)
     sim.add_argument("--model-dir", required=True)
     sim.add_argument("--output-dir", required=True)
-    sim.add_argument("--move-cost", type=float, default=0.25)
+    sim.add_argument("--move-cost", type=float, default=None)
     sim.add_argument("--max-moved", type=int, default=12)
     sim.add_argument("--cycle-pool-size", type=int, default=12)
     sim.add_argument("--swap-replay-limit", type=int, default=200)
@@ -201,7 +283,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                 raise SnapshotError("Simulation snapshots have duplicate steps")
             decisions = []
             for snapshot in snapshots:
-                engine = DecisionEngine(snapshot, model)
+                engine = _engine(snapshot, model, args)
                 result = engine.recommend(move_cost=args.move_cost, max_moved=args.max_moved,
                                           cycle_pool_size=args.cycle_pool_size,
                                           swap_replay_limit=args.swap_replay_limit,
@@ -209,20 +291,18 @@ def main(argv: Optional[List[str]] = None) -> int:
                 step_dir = output / f"step_{engine.data['step']:06d}"
                 _report(engine, "recommend", step_dir, result, None)
                 rec = result["recommendation"]
-                decisions.append({"step": engine.data["step"], "snapshot_hash": result["snapshot_hash"],
-                                  "baseline_proxy_errors": result["baseline"]["errors"],
-                                  "proposed_proxy_errors": rec["proxy_errors"],
-                                  "moved_skus": rec["moved_skus"],
+                decisions.append({**_decision_row(result),
                                   "previous_decision": json.dumps(engine.data.get("previous_decision"), sort_keys=True)})
             output.mkdir(parents=True, exist_ok=True)
-            _write_csv(output / "decisions.csv", ["step", "snapshot_hash", "baseline_proxy_errors",
+            _write_csv(output / "decisions.csv", ["step", "snapshot_hash", "metric_type", "baseline_ambiguity_risk",
+                                                  "proposed_ambiguity_risk", "baseline_proxy_errors",
                                                   "proposed_proxy_errors", "moved_skus", "previous_decision"], decisions)
             _write_json(output / "summary.json", {"mode": "simulate", "steps": len(decisions),
                                                   "decisions": decisions,
-                                                  "interpretation": "Existing-video simulation; each decision used its own revealed snapshot."})
+                                                  "interpretation": "Each decision used its supplied revealed snapshot; ambiguity risk and legacy proxy errors are separate metrics."})
             return 0
         snapshot = json.loads(Path(args.snapshot).read_text(encoding="utf-8"))
-        engine = DecisionEngine(snapshot, model)
+        engine = _engine(snapshot, model, args)
         if args.command == "preflight":
             output.mkdir(parents=True, exist_ok=True)
             _write_json(output / "preflight.json", {"status": "ok", "step": engine.data["step"],

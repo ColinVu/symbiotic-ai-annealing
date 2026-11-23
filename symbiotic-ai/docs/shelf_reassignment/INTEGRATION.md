@@ -2,6 +2,31 @@
 
 The implementation is in `symbiotic-ai/shelf_layout/`. The bin-change simulator supplies a complete snapshot at each decision point and owns whether or how a recommendation is applied. The engine never mutates its input or applies a physical move.
 
+## Default label-free API
+
+```python
+from shelf_layout import AmbiguitySettings, DecisionEngine, load_model
+
+model = load_model("/path/to/model")
+engine = DecisionEngine(snapshot, model, ambiguity=AmbiguitySettings(
+    max_candidate_distance=0.30, max_score_gap=0.03, min_support=3))
+decision = engine.recommend(max_moved=12)  # default move cost: 0.02 risk units/SKU
+```
+
+Supply `step`, `capacities`, complete `items` (SKU, shelf, slot), and `observations` with `id`, `revealed_at`, `observed_shelf`, and raw `frames`. No `inferred_sku` is required; if supplied, it and assignment confidence are ignored, including in the decision fingerprint. Ground-truth fields are rejected. Optional `pickup_slot` must name an occupied slot on the observed shelf; it is retained as audit metadata and does not influence decisions. All reveal-time, capacity, inventory, embedding, and transform validation still applies. Empty-frame segments are unscorable and cast no vote.
+
+CLI commands default to `--mode label_free`; use `--mode legacy` for comparison. All commands accept `--max-candidate-distance` (0.30), `--max-score-gap` (0.03), `--min-ambiguity-support` (3), `--geometry-scale` (0.10), `--observation-weight` (1), `--fallback-min-risk` (0.5), and `--sparse-history-segments` (3). These are **uncalibrated starting settings**, not production thresholds. `--move-cost` defaults to 0.02 in label-free mode and 0.25 in legacy mode. Legacy confusion thresholds apply only to legacy decisions. `--max-confusion-pairs` bounds nominated pairs in either mode. `--search-mode all_pairs` offers a broad geometry-risk comparison, bypassing targeted ambiguity gates.
+
+Segment scores are mean frame cosine distances to every candidate on the observed shelf, not probabilities. A segment votes only if its second-best distance is at most the strength threshold and its top-two gap is at most the gap threshold. For centroid distance `d`, geometry risk is `exp(-d / geometry_scale)`. A pair meeting minimum support gets an additional `observation_weight * support / usable_segments_on_observed_shelf`. The symmetric pair matrix is fixed for the snapshot; layout risk sums it once per same-shelf unordered pair. No reference spread is used because the saved model contract contains no reference embeddings; reports say so explicitly.
+
+The recommendation contains `ambiguity_risk`, `predicted_risk_reduction`, `objective_change`, per-shelf destination risks, a complete layout, and transactions. `evidence` contains segment scores, top-two gaps, weighted-vote winners for comparison, pair support, eligibility, and unscorable IDs. Search passes record nominated/fallback pairs, evaluated swap deltas, and affected-shelf risks. `summary.json`, `segment_evidence.json`, `ambiguity_evidence.csv`, `candidate_layouts.csv`, `move_transactions.csv`, and `decisions.csv` are separate from legacy proxy-error reports. `analyze` reports evidence and current risk without searching.
+
+The engine does not know an old shelf-only pick's identity after a move. `--truth-json` is read after selection and reports only current-layout retrospective accuracy in label-free mode; proposed accuracy requires new post-move snapshots. `simulate` respects each supplied inventory and never applies a proposal itself. See [validation](LABEL_FREE_VALIDATION.md).
+
+## Legacy API (`mode="legacy"`, CLI `--mode legacy`)
+
+The rest of this guide documents the retained inferred-label comparison path.
+
 ## Snapshot shape
 
 ```json
@@ -35,7 +60,7 @@ The snapshot's `items` describe the simulator's **current** layout. If a prior p
 from shelf_layout import DecisionEngine, load_model
 
 model = load_model("/path/to/saved/model")
-engine = DecisionEngine(snapshot, model)
+engine = DecisionEngine(snapshot, model, mode="legacy")
 decision = engine.recommend(move_cost=0.25, max_moved=12)
 ```
 
@@ -61,3 +86,7 @@ For retrospective analysis, `recommend` accepts `--truth-json path`, where the f
 ## Required data before a full study run
 
 The checked-in five-fold subset is incomplete for this feature: its first model lists 119 centroids but lacks `centroids.npy`, and the local picklist-video directory is empty. Obtain a complete saved model, all SKU locations, and the cached segment embeddings or simulator snapshots. The engine can be developed and tested with synthetic snapshots in the meantime; it must not report a numerical gain for the paper dataset until the full inputs are supplied.
+
+## Label-free handoff
+
+The default decision snapshot retains `step`, capacities, complete item-to-shelf/slot inventory, observed pickup shelf, and frame embeddings. It does **not require `inferred_sku`**; a pickup slot may be included if the simulator actually knows it. The engine returns top-two ambiguity evidence, estimated layout-risk change, a complete proposed layout, and transactions. `proxy_errors`, `fixed`, and `new_errors` remain legacy or retrospective metrics, not decision-time claims for unlabeled picks. The simulator must supply its actual next layout after accepting or rejecting a proposal.

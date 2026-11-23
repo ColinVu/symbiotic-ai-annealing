@@ -1,5 +1,7 @@
 # Targeted confusion search: initial comparison
 
+This benchmark covers the **legacy label-dependent** confusion search. It does not test the default [label-free ambiguity design](LABEL_FREE_AMBIGUITY_PLAN.md).
+
 ## Synthetic comparison
 
 The first comparison used 120 SKUs on five shelves of 24, 120 revealed one-frame observations, 32-dimensional normalized centroids, and a seeded near-duplicate pair on the same shelf. Six observations assigned to one item used the other item's embedding. Both modes used `max_moved=2`, `cycle_pool_size=0`, `swap_replay_limit=50`, and no fallback. Each mode used a fresh `DecisionEngine` on the same snapshot and model. Times below are single wall-clock measurements on the local development host; they are indicative, not a stable performance benchmark.

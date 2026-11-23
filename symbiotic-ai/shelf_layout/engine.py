@@ -1,7 +1,7 @@
 """Capacity-preserving shelf recommendations from observations revealed so far.
 
-The decision engine never reads ground truth. Its inferred SKU assignments are
-weak supervision; all reported error changes are in-simulation proxy estimates.
+The default path uses centroid distances and observed ambiguity without item
+labels. The explicit legacy path reports weak-label proxy errors for comparison.
 """
 
 from __future__ import annotations
@@ -15,6 +15,8 @@ from pathlib import Path
 from typing import Any, Callable, Dict, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
+
+from .label_free import AmbiguitySettings, LabelFreeMixin
 
 
 class SnapshotError(ValueError):
@@ -104,13 +106,16 @@ def load_model(model_dir: Union[str, Path]) -> ModelData:
     return ModelData(labels, centroids, transform, hash_value.hexdigest())
 
 
-def validate_snapshot(snapshot: Mapping[str, Any], model: ModelData) -> Dict[str, Any]:
+def validate_snapshot(snapshot: Mapping[str, Any], model: ModelData, mode: str = "label_free") -> Dict[str, Any]:
     """Validate and normalize the explicit simulator-to-decision API payload."""
+    if mode not in {"label_free", "legacy"}:
+        raise SnapshotError("mode must be label_free or legacy")
     if not isinstance(snapshot, Mapping):
         raise SnapshotError("Snapshot must be a JSON object")
     if (model.centroids.ndim != 2 or model.centroids.shape[0] != len(model.labels)
             or len(set(model.labels)) != len(model.labels) or not np.isfinite(model.centroids).all()):
         raise SnapshotError("ModelData has invalid labels or centroid matrix")
+    _unit(model.centroids)
     forbidden = {"ground_truth", "true_label", "truth", "expected_label"}
     if forbidden.intersection(snapshot):
         raise SnapshotError("Decision snapshot must not contain ground-truth labels")
@@ -160,11 +165,11 @@ def validate_snapshot(snapshot: Mapping[str, Any], model: ModelData) -> Dict[str
         observed_shelf = row.get("observed_shelf")
         if not isinstance(oid, str) or not oid or oid in ids:
             raise SnapshotError("Observation IDs must be unique nonempty strings")
-        if sku not in locations:
+        if mode == "legacy" and sku not in locations:
             raise SnapshotError(f"Unknown inferred_sku in observation {oid}")
         if observed_shelf not in capacities:
             raise SnapshotError(f"Observation {oid} needs an observed_shelf from its pickup event")
-        if observed_shelf != locations[sku][0]:
+        if mode == "legacy" and observed_shelf != locations[sku][0]:
             raise SnapshotError(
                 f"Observation {oid} assigns {sku} to a different shelf than its observed pickup; "
                 "resolve the weak assignment before using it for a move decision"
@@ -181,14 +186,25 @@ def validate_snapshot(snapshot: Mapping[str, Any], model: ModelData) -> Dict[str
             if frames.shape != (len(row["frames"]), model.centroids.shape[1]) or not np.isfinite(frames).all():
                 raise SnapshotError(f"Observation {oid} failed model transforms")
             frames = _unit(frames)
-        conf = row.get("assignment_confidence")
+        slot = row.get("pickup_slot")
+        if slot is not None and (observed_shelf, str(slot)) not in occupied:
+            raise SnapshotError(f"Observation {oid} has unknown pickup_slot")
+        if mode == "label_free":
+            sku = None
+        conf = row.get("assignment_confidence") if mode == "legacy" else None
         if conf is not None and (not isinstance(conf, (float, int)) or not 0 <= conf <= 1):
             raise SnapshotError(f"Observation {oid} has invalid assignment confidence")
         observations.append({"id": oid, "sku": sku, "observed_shelf": observed_shelf,
-                             "revealed_at": revealed, "frames": frames, "confidence": conf})
+                             "revealed_at": revealed, "frames": frames, "confidence": conf,
+                             "pickup_slot": str(slot) if slot is not None else None})
         ids.add(oid)
+    hash_snapshot = dict(snapshot)
+    if mode == "label_free":
+        hash_snapshot["observations"] = [
+            {k: v for k, v in row.items() if k not in {"inferred_sku", "assignment_confidence"}}
+            for row in raw_observations]
     return {"step": step, "capacities": dict(capacities), "locations": locations, "observations": observations,
-            "previous_decision": snapshot.get("previous_decision"), "snapshot_hash": _digest(snapshot)}
+            "previous_decision": snapshot.get("previous_decision"), "snapshot_hash": _digest(hash_snapshot)}
 
 
 def _margin(distances: np.ndarray) -> np.ndarray:
@@ -206,21 +222,25 @@ def _margin(distances: np.ndarray) -> np.ndarray:
     return out
 
 
-class DecisionEngine:
+class DecisionEngine(LabelFreeMixin):
     """Immutable-snapshot analysis and deterministic capacity-preserving search."""
 
-    def __init__(self, snapshot: Mapping[str, Any], model: ModelData):
+    def __init__(self, snapshot: Mapping[str, Any], model: ModelData, *,
+                 mode: str = "label_free", ambiguity: Optional[AmbiguitySettings] = None):
         self.model = model
-        self.data = validate_snapshot(snapshot, model)
+        self.mode = mode
+        self.ambiguity = ambiguity or AmbiguitySettings()
+        self.ambiguity.validate()
+        self.data = validate_snapshot(snapshot, model, mode)
         self.labels = model.labels
         self.label_index = {sku: i for i, sku in enumerate(self.labels)}
         self.baseline = {sku: shelf for sku, (shelf, _) in self.data["locations"].items()}
         self.observations = self.data["observations"]
         self.distances: Dict[str, np.ndarray] = {}
         for row in self.observations:
-            self.distances[row["id"]] = 1.0 - row["frames"] @ model.centroids.T
+            self.distances[row["id"]] = np.clip(1.0 - row["frames"] @ _unit(model.centroids).T, 0.0, 2.0)
         self._shelf_cache: Dict[Tuple[str, ...], Tuple[int, Dict[str, str]]] = {}
-        self.pair_risk = self._pair_risk()
+        self.pair_risk = (self._label_free_risk() if mode == "label_free" else self._pair_risk())
 
     def _pair_risk(self) -> np.ndarray:
         """Directed observed overlap, with each segment contributing total weight one."""
@@ -369,7 +389,9 @@ class DecisionEngine:
         return result
 
     def score(self, layout: Mapping[str, str]) -> Dict[str, Any]:
-        """Counterfactual replay: assumes each inferred SKU is picked from its proposed shelf."""
+        """Score layout risk, or replay inferred SKUs in explicit legacy mode."""
+        if self.mode == "label_free":
+            return self._risk_score(layout)
         if set(layout) != set(self.labels):
             raise SnapshotError("Layout must assign every SKU exactly once")
         members = self._members(layout)
@@ -386,7 +408,9 @@ class DecisionEngine:
                 "predictions": predictions}
 
     def score_current(self) -> Dict[str, Any]:
-        """Actual current replay: restrict each pick to its observed pickup shelf."""
+        """Score the current layout without moving historical shelf-only observations."""
+        if self.mode == "label_free":
+            return self._risk_score(self.baseline)
         members = self._members(self.baseline)
         predictions = {row["id"]: self._predict(row["id"], members[row["observed_shelf"]])
                        for row in self.observations}
@@ -423,12 +447,19 @@ class DecisionEngine:
                     break
         return sorted(selected[:limit])
 
-    def recommend(self, *, move_cost: float = 0.25, max_moved: int = 12,
+    def recommend(self, *, move_cost: Optional[float] = None, max_moved: int = 12,
                   cycle_pool_size: int = 12, swap_replay_limit: int = 200,
                   search_mode: str = "confusion", min_pair_segments: int = 5,
                   min_pair_confusions: int = 2, min_pair_rate: float = 0.20,
                   max_confusion_pairs: int = 10, partners_per_shelf: int = 5,
                   fallback_swap_budget: int = 32) -> Dict[str, Any]:
+        if self.mode == "label_free":
+            return self._recommend_label_free(
+                move_cost=0.02 if move_cost is None else move_cost, max_moved=max_moved,
+                cycle_pool_size=cycle_pool_size, swap_replay_limit=swap_replay_limit,
+                search_mode=search_mode, max_pairs=max_confusion_pairs,
+                partners_per_shelf=partners_per_shelf, fallback_swap_budget=fallback_swap_budget)
+        move_cost = 0.25 if move_cost is None else move_cost
         if (not np.isfinite(move_cost) or move_cost < 0 or max_moved < 0 or cycle_pool_size < 0
                 or swap_replay_limit < 1 or min_pair_segments < 1 or min_pair_confusions < 1
                 or not np.isfinite(min_pair_rate) or not 0 <= min_pair_rate <= 1
@@ -584,7 +615,7 @@ class DecisionEngine:
                            "moved_skus": sum(current[x] != self.baseline[x] for x in self.labels),
                            "proxy_errors": scored["errors"], "fixed": fixed,
                            "new_errors": newly_wrong, "layout": self._locations_for(current)}
-        return {"step": self.data["step"], "snapshot_hash": self.data["snapshot_hash"],
+        return {"metric_type": "legacy_proxy_errors", "step": self.data["step"], "snapshot_hash": self.data["snapshot_hash"],
                 "model_hash": self.model.fingerprint, "baseline": {k: v for k, v in baseline_score.items() if k != "predictions"},
                 "recommendation": recommended, "candidates": candidates,
                 "transactions": self._transactions(current),
@@ -618,6 +649,8 @@ class DecisionEngine:
                 for sku in self.labels if layout[sku] != self.baseline[sku]]
 
     def diagnostics(self) -> Dict[str, Any]:
+        if self.mode == "label_free":
+            return self._label_free_diagnostics()
         baseline = self.score_current()
         per_sku: Dict[str, Dict[str, Any]] = {}
         evidence = self._confusion_evidence(self.baseline, baseline["predictions"])
@@ -654,6 +687,8 @@ class DecisionEngine:
 
     def retrospective(self, truth: Mapping[str, str], layout: Mapping[str, str]) -> Dict[str, Any]:
         """Post-decision analysis only; never called by recommend()."""
+        if self.mode == "label_free" and layout != self.baseline:
+            raise SnapshotError("Unlabeled historical picks cannot measure post-move accuracy; use new observations")
         expected_ids = {r["id"] for r in self.observations}
         if set(truth) != expected_ids or any(sku not in layout for sku in truth.values()):
             raise SnapshotError("Truth mapping must cover every observed ID with a known SKU")

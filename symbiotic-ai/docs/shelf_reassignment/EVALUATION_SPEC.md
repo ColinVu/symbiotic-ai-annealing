@@ -1,4 +1,6 @@
-# Simulation scoring, tests, and acceptance contract
+# Current label-dependent simulation scoring and evaluation
+
+The default decision mode now implements the [label-free ambiguity plan](LABEL_FREE_AMBIGUITY_PLAN.md); see [integration](INTEGRATION.md) and [synthetic validation](LABEL_FREE_VALIDATION.md). Its ambiguity-risk reductions must not be reported as proxy errors or measured accuracy. The proxy-error scorer and contract below apply only to explicit `mode="legacy"`, which requires inferred SKUs.
 
 ## Definitions
 
@@ -41,3 +43,7 @@ Search objective on observations revealed at the current simulation step: `J(lay
 ## Interpretation limit
 
 Replay holds visual embeddings, centroids, and action segmentation fixed. Moving products may change backgrounds, hand pose, lighting, pick order, and marker visibility; the decision component estimates recognition changes from the shelf candidate set only. The other lab group's simulator owns bin-change effects and timing. The reported numbers describe this simulation on existing videos and do not establish how the system will perform on new video or after physical relocation.
+
+## Evaluation required for the label-free mode
+
+Calibrate top-two score strength, margin, and repeated-pair support using a labeled calibration set that is separate from final evaluation. Decision snapshots must omit inferred and true labels; changing labels in a separate analysis file must not affect a recommendation. Report ambiguity-pair support, proposed layout-risk reduction, move count, and runtime as decision outputs. On separately labeled or newly recorded post-move picks, report actual recognition accuracy, false alarms, missed ambiguous pairs, and destination-shelf regressions. When only the pickup shelf is known, do not score an old unlabeled segment under a proposed shelf by assuming which physical item it was. Keep predicted risk and observed accuracy in separate tables and claims.

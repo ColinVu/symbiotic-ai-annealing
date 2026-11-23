@@ -37,7 +37,7 @@ def fixture():
 class ShelfLayoutTests(unittest.TestCase):
     def test_recommendation_separates_confusing_pair_and_preserves_capacity(self):
         model, snapshot = fixture()
-        engine = DecisionEngine(snapshot, model)
+        engine = DecisionEngine(snapshot, model, mode="legacy")
         self.assertEqual(engine.score(engine.baseline)["errors"], 2)
         result = engine.recommend(max_moved=2)
         layout = result["recommendation"]["layout"]
@@ -55,22 +55,22 @@ class ShelfLayoutTests(unittest.TestCase):
         model, snapshot = fixture()
         snapshot["observations"][0]["revealed_at"] = 3
         with self.assertRaises(SnapshotError):
-            DecisionEngine(snapshot, model)
+            DecisionEngine(snapshot, model, mode="legacy")
         snapshot["observations"][0]["revealed_at"] = 1
         snapshot["observations"][0]["true_label"] = "a"
         with self.assertRaises(SnapshotError):
-            DecisionEngine(snapshot, model)
+            DecisionEngine(snapshot, model, mode="legacy")
 
     def test_pickup_shelf_must_match_current_weak_assignment(self):
         model, snapshot = fixture()
         snapshot["observations"][0]["observed_shelf"] = "s2"
         with self.assertRaisesRegex(SnapshotError, "different shelf than its observed pickup"):
-            DecisionEngine(snapshot, model)
+            DecisionEngine(snapshot, model, mode="legacy")
 
     def test_no_move_when_no_observations(self):
         model, snapshot = fixture()
         snapshot["observations"] = []
-        result = DecisionEngine(snapshot, model).recommend()
+        result = DecisionEngine(snapshot, model, mode="legacy").recommend()
         self.assertEqual(result["recommendation"]["moved_skus"], 0)
 
     def test_confusion_trigger_uses_segment_counts_and_reports_gates(self):
@@ -81,7 +81,7 @@ class ShelfLayoutTests(unittest.TestCase):
              "assignment_confidence": 0.7}
             for i in range(2, 5)
         )
-        engine = DecisionEngine(snapshot, model)
+        engine = DecisionEngine(snapshot, model, mode="legacy")
         evidence = engine._confusion_evidence(engine.baseline, engine.score_current()["predictions"])
         pair = next(row for row in evidence if (row["a"], row["b"]) == ("a", "b"))
         self.assertTrue(pair["eligible"])
@@ -96,7 +96,7 @@ class ShelfLayoutTests(unittest.TestCase):
 
     def test_targeted_path_avoids_all_pairs_enumeration_and_respects_budget(self):
         model, snapshot = fixture()
-        engine = DecisionEngine(snapshot, model)
+        engine = DecisionEngine(snapshot, model, mode="legacy")
         with patch("shelf_layout.engine.combinations", side_effect=AssertionError("all-pairs scan")):
             result = engine.recommend(max_moved=2, cycle_pool_size=0,
                                       min_pair_segments=1, min_pair_confusions=1,
@@ -109,7 +109,7 @@ class ShelfLayoutTests(unittest.TestCase):
 
     def test_sparse_evidence_uses_bounded_fallback(self):
         model, snapshot = fixture()
-        engine = DecisionEngine(snapshot, model)
+        engine = DecisionEngine(snapshot, model, mode="legacy")
         result = engine.recommend(max_moved=2, cycle_pool_size=0, swap_replay_limit=2,
                                   fallback_swap_budget=1)
         self.assertFalse(result["search"]["passes"][0]["trigger_pairs"])
@@ -119,7 +119,7 @@ class ShelfLayoutTests(unittest.TestCase):
 
     def test_all_pairs_comparison_mode_and_determinism(self):
         model, snapshot = fixture()
-        engine = DecisionEngine(snapshot, model)
+        engine = DecisionEngine(snapshot, model, mode="legacy")
         targeted = engine.recommend(max_moved=2)
         repeated = engine.recommend(max_moved=2)
         old = engine.recommend(max_moved=2, search_mode="all_pairs")
@@ -133,7 +133,7 @@ class ShelfLayoutTests(unittest.TestCase):
         e_view = (0.8 * model.centroids[0] + 0.6 * model.centroids[4]).tolist()
         snapshot["observations"].append({"id": "e0", "revealed_at": 2,
                                          "inferred_sku": "e", "observed_shelf": "s2", "frames": [e_view]})
-        engine = DecisionEngine(snapshot, model)
+        engine = DecisionEngine(snapshot, model, mode="legacy")
         layout = dict(engine.baseline)
         layout["a"], layout["d"] = layout["d"], layout["a"]
         old = engine.score(engine.baseline)["predictions"]
@@ -151,7 +151,7 @@ class ShelfLayoutTests(unittest.TestCase):
 
     def test_true_labels_are_post_decision_only(self):
         model, snapshot = fixture()
-        engine = DecisionEngine(snapshot, model)
+        engine = DecisionEngine(snapshot, model, mode="legacy")
         before = engine.recommend(max_moved=2)
         engine.retrospective({"a0": "a", "a1": "a", "b0": "b"}, engine.baseline)
         after = engine.recommend(max_moved=2)
@@ -163,7 +163,7 @@ class ShelfLayoutTests(unittest.TestCase):
             snap = Path(td) / "snapshot.json"
             snap.write_text(json.dumps(snapshot), encoding="utf-8")
             out = Path(td) / "out"
-            code = main(["preflight", "--snapshot", str(snap), "--model-dir", td,
+            code = main(["preflight", "--snapshot", str(snap), "--mode", "legacy", "--model-dir", td,
                          "--output-dir", str(out)])
             self.assertEqual(code, 2)
             self.assertTrue((out / "missing_inputs.json").is_file())
@@ -181,7 +181,7 @@ class ShelfLayoutTests(unittest.TestCase):
             snap.write_text(json.dumps(snapshot), encoding="utf-8")
             out = root / "out"
             self.assertEqual(main(["recommend", "--snapshot", str(snap),
-                                   "--model-dir", str(model_dir), "--output-dir", str(out),
+                                   "--mode", "legacy", "--model-dir", str(model_dir), "--output-dir", str(out),
                                    "--max-moved", "2"]), 0)
             self.assertTrue((out / "summary.md").is_file())
             self.assertTrue((out / "candidate_layouts.csv").is_file())
@@ -192,7 +192,7 @@ class ShelfLayoutTests(unittest.TestCase):
             truth.write_text(json.dumps({"a0": "a", "a1": "a", "b0": "b"}), encoding="utf-8")
             other = root / "with_truth"
             self.assertEqual(main(["recommend", "--snapshot", str(snap),
-                                   "--model-dir", str(model_dir), "--output-dir", str(other),
+                                   "--mode", "legacy", "--model-dir", str(model_dir), "--output-dir", str(other),
                                    "--max-moved", "2", "--truth-json", str(truth)]), 0)
             base_result = json.loads((out / "summary.json").read_text())
             truth_result = json.loads((other / "summary.json").read_text())
@@ -211,7 +211,7 @@ class ShelfLayoutTests(unittest.TestCase):
             snapshots = root / "snapshots"
             snapshots.mkdir()
             (snapshots / "one.json").write_text(json.dumps(snapshot), encoding="utf-8")
-            first = DecisionEngine(snapshot, model).recommend(max_moved=2)
+            first = DecisionEngine(snapshot, model, mode="legacy").recommend(max_moved=2)
             later = json.loads(json.dumps(snapshot))
             later["step"] = 3
             later["previous_decision"] = {"step": 2, "accepted": True}
@@ -221,7 +221,7 @@ class ShelfLayoutTests(unittest.TestCase):
             (snapshots / "two.json").write_text(json.dumps(later), encoding="utf-8")
             out = root / "out"
             self.assertEqual(main(["simulate", "--snapshots-dir", str(snapshots),
-                                   "--model-dir", str(model_dir), "--output-dir", str(out),
+                                   "--mode", "legacy", "--model-dir", str(model_dir), "--output-dir", str(out),
                                    "--max-moved", "2"]), 0)
             timeline = json.loads((out / "summary.json").read_text())
             self.assertEqual(timeline["steps"], 2)
